@@ -1,32 +1,89 @@
-<<<<<<< HEAD
 private int[][]map;
-static final int SQUARE_SIZE = 100;
+
 static final int WALL = -1;
 static final int AERIAL = -2;
 static final int GROUND = -3;
-=======
 
-private int map[][];
-private static final int WALL = -1;
-private static final int AERIAL = -2;
-private static final int GROUND = -3;
->>>>>>> a5d14ba3e9a98097bf79e85aa98263c322d1a235
+//inventory 
+//arraylist <towercharacters> (display)
+//int[] inventory 
+
+
 
 void setup(){
-  size(900, 600);
-  gamemap();
+  //menu screen *raymond*
+  //size(950, 550);
+  //background(0);
+  //rect(width/2 - 55,height/2 , 100, 100);
+  
+  //testing purpose
+  size(950, 550);
+  
+  
+}
+
+
+void mouseClicked(){
+//menu select
+
+
+//grid select (no character)
+//keypressed
+//if numerical # select character from inventory & place ->
+//directional keys
+
+//grid select (character)
+//if CHARBLK then remove?: set char hp = 0
+
 }
 
 void draw(){
   
 }
 
-void gamemap(){
-  stroke(255,255,255);
-  fill(0,0,0);
-  for(int i = 0 ; i < 800 ; i+=SQUARE_SIZE){
-    for(int j = 0; j < 500 ; j+=SQUARE_SIZE){
-      rect(i, j, SQUARE_SIZE, SQUARE_SIZE);
-    }
+//MAP1 for placement purposes 
+map = new int[4][9];
+for(int i = 0 ; i < 9 ; i++){
+  if(i != 0 || i != 8){  
+    map[0][i] = AERIAL;
+    map[3][i] = AERIAL;
   }
+  else{
+    map[0][i] = WALL;
+    map[3][i] = WALL;
+  }
+}
+for(int i = 0; i < 4 ; i++){
+  map[i][0] = WALL;
+  map[i][8] = WALL;
+}
+map[1][0] = GROUND;
+map[2][8] = GROUND;
+map[1][2] = AERIAL;
+map[2][4] = AERIAL;
+
+int[][] originalmap = new int[map.length][map[0].length]; //for display purposes
+
+
+
+void gamemap(int[][]map){
+  stroke(255,255,255);
+    int l = 0;
+    int k = 0;
+    for(int i = 0; i < map.length || ( l < 985 && k < 535 )  ; i++){
+      k = 0;
+      for(int j = 0 ; j < map[i].length ; j++){
+        if(map[i][j] == WALL){
+          fill(color(51));
+        } else if(map[i][j] == GROUND {
+          fill(color(0));
+        }
+        else{
+          fill(color(
+        }
+        rect(k,l, SQUARE_SIZE, SQUARE_SIZE);
+        k += SQUARE_SIZE;
+      }
+      l += SQUARE_SIZE;
+    }
 }
