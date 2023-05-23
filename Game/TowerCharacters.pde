@@ -51,5 +51,5 @@ public class TowerCharacters implements LivingObjects{
   
   public void toAttack(Enemies other){
     enemy.setHealth(this.getAttack() - enemy.getDefense());
-  }
+  } 
 }
