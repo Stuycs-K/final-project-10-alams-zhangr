@@ -1,36 +1,41 @@
+import java.util.*;
 static int[][]map;
 private int[][] ogmap;
-
-static final int SQUARE_SIZE = 100;
 
 static final int WALL = -1;
 static final int AERIAL = -2;
 static final int GROUND = -3;
 
-//inventory 
-//arraylist <towercharacters> (display)
-//int[] inventory 
-
-
 
 void setup(){
-  //menu screen *raymond*
-  //size(950, 550);
-  //background(0);
-  //rect(width/2 - 55,height/2 , 100, 100);
+  //menu screen *ray*
   
   //testing purpose
-  size(950, 550);
+  size(1000, 550);
   lvlOne();
-  println(map[0][0]);
-  //gameMap(ogmap);
+  gameMap(ogmap);
+  
+  //DEBUG TOSTRING 
+  //println(Arrays.toString(map)); not working for some reason
+  //String arr = "{";
+  //for(int i = 0 ; i < ogmap.length ; i ++){
+  //  for(int j = 0 ; j < ogmap[i].length ; j++){
+  //    if(j == 0){
+  //      arr += "\n";
+  //    }
+  //    arr += ogmap[i][j] + ", ";
+  //  }
+  //}
+  //arr += "}";
+  //println(arr);
+}
+
+void draw(){
   
 }
 
-
 void mouseClicked(){
 //menu select
-
 
 //grid select (no character)
 //keypressed
@@ -42,13 +47,14 @@ void mouseClicked(){
 
 }
 
-void draw(){
-  
-}
-
 void lvlOne(){
   //MAP1 for placement purposes 
   map = new int[4][9];
+  for(int i = 0 ; i < 4 ; i++){
+    for(int j = 0 ; j < 9 ; j++){
+      map[i][j] = GROUND;
+    }
+  }
   for(int i = 0 ; i < 9 ; i++){
     if(i != 0 || i != 8){  
       map[0][i] = AERIAL;
@@ -68,31 +74,34 @@ void lvlOne(){
   map[1][2] = AERIAL;
   map[2][4] = AERIAL;
  
-  int[][] ogmap = new int[map.length][map[0].length]; //for display purposes
-  for(int i = 0 ; i < ogmap.length ; i++){
-    for(int j = 0 ; j < ogmap[i].length ; j++){
-      ogmap[i][j] = map[i][j];
+  ogmap = new int[5][9]; //for display purposes INCLUDES INVENTORY
+  for(int i = 0 ; i < 5 ; i++){
+    for(int j = 0 ; j < 9 ; j++){
+      if(i != 4){
+        ogmap[i][j] = map[i][j];
+      }
     }
-  } 
+  }
 }
 
-
-  
-
 void gameMap(int[][]grid){ //pass ogmap
+  float SQUARE_SIZE = width/map[0].length;
   stroke(255,255,255);
-    int l = 0;
-    int k = 0;
-    for(int i = 0; i < map.length || ( l < 985 && k < 535 )  ; i++){
+    float l = 0;
+    float k = 0;
+    for(int i = 0; i < grid.length || ( l < 950 && k < 600 )  ; i++){
       k = 0;
-      for(int j = 0 ; j < map[i].length ; j++){
+      for(int j = 0 ; j < grid[i].length ; j++){
         if(grid[i][j] == WALL){
           fill(color(51));
         } else if(grid[i][j] == GROUND) {
-          fill(color(0));
+          fill(color(0, 0, 255));
         }
-        else{
-          fill(color(200));
+        else if(grid[i][j] == AERIAL){
+          fill(color(255, 0 , 0));
+        }
+        else{ //INVENTORY
+          fill(color(0,150,150));
         }
         rect(k,l, SQUARE_SIZE, SQUARE_SIZE);
         k += SQUARE_SIZE;
@@ -100,3 +109,8 @@ void gameMap(int[][]grid){ //pass ogmap
       l += SQUARE_SIZE;
     }
 }
+
+
+//inventory 
+//arraylist <towercharacters> (display)
+//int[] inventory 
