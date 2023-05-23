@@ -3,16 +3,14 @@ public abstract class LivingObjects{
   private int ticks;
   private int attack;
   private int direction;
-  private int[] range;
+  private int range;
+  private int[] location;
   
   public abstract void toAttack(LivingObjects other);
   
-  public abstract void leftRange();
-  public abstract void rightRange();
-  public abstract void topRange();
-  public abstract void bottomRange();
-  
-  
-  
-  
+  public abstract void leftRange(int[][] map, location);
+  public abstract void rightRange(int[][] map, location);
+  public abstract void topRange(int[][] map, location);
+  public abstract void bottomRange(int[][] map, location);
+
 }

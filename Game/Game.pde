@@ -6,7 +6,6 @@ static final int WALL = -1;
 static final int AERIAL = -2;
 static final int GROUND = -3;
 
-
 void setup(){
   //menu screen *ray*
   
