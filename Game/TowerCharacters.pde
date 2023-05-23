@@ -1,4 +1,4 @@
-public class TowerCharacters implements LivingObjects{
+public class TowerCharacters extends LivingObjects{
   public int[] location;  
   public int[] range;
   public int attack;
