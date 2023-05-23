@@ -1,6 +1,6 @@
 # Work Log
 
-## GROUP MEMBER 1
+## GROUP MEMBER 1 //SAFIKA
 
 ### date x
 
@@ -11,7 +11,7 @@ info
 info
 
 
-## GROUP MEMBER 2
+## GROUP MEMBER 2 //RAYMOND
 
 ### date x
 
