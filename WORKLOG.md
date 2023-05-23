@@ -1,21 +1,28 @@
 # Work Log
 
-## GROUP MEMBER 1
+## GROUP MEMBER 1 //SAFIKA
 
-### date x
+### 5/23/23
 
-info
+- created lvl 1 map
+- commented plans for future
+
+reminders:
+- work on inventory
+- tiles class?
+- research ak characters
 
 ### date y
 
 info
 
 
-## GROUP MEMBER 2
+## GROUP MEMBER 2 //RAYMOND
 
-### date x
+### 5/23/23
 
-info
+- Created skeleton of TowerCharacters class with getters and setters
+- Created a simple attack method for SniperMeteorite (child class of TowerCharacters) (on branch character_meteorite)
 
 ### date y
 
