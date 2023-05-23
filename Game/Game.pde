@@ -8,7 +8,9 @@ static final int GROUND = -3;
 
 void setup(){
   //menu screen *ray*
-  
+  rect();
+  rect();
+  rect();
   //testing purpose
   size(1000, 550);
   lvlOne();
