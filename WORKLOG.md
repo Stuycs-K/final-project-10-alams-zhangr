@@ -6,9 +6,10 @@
 
 - created lvl 1 map
 - commented plans for future
-**notes**
+
+reminders:
 - work on inventory
-- tiles? class
+- tiles class?
 - research ak characters
 
 ### date y
