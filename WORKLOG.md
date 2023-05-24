@@ -2,9 +2,15 @@
 
 ## GROUP MEMBER 1 //SAFIKA
 
-### date x
+### 5/23/23
 
-info
+- created lvl 1 map
+- commented plans for future
+
+reminders:
+- work on inventory
+- tiles class?
+- research ak characters
 
 ### date y
 
