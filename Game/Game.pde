@@ -43,8 +43,16 @@ void setup(){
 void draw(){
   if (levelSelect == 1){
     lvlOne();
+    gameMap(ogmap);
   }
-  
+  if (levelSelect == 2){
+    //lvlTwo();
+    gameMap(ogmap);
+  }
+  if (levelSelect == 3){
+    //lvlThree();
+    gameMap(ogmap);
+  }
 }
 
 void mouseClicked(){
