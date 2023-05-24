@@ -6,15 +6,24 @@ static final int WALL = -1;
 static final int AERIAL = -2;
 static final int GROUND = -3;
 
+private boolean onMenu = true;
+private int levelSelect = 0;
 void setup(){
   //menu screen *ray*
-  rect();
-  rect();
-  rect();
-  //testing purpose
   size(1000, 550);
-  lvlOne();
-  gameMap(ogmap);
+  rect(325, 175, 350, 50);
+  rect(325, 250, 350, 50);
+  rect(325, 325, 350, 50);
+  textSize(20);
+  fill(0);
+  text("Level One", 450, 210);
+  text("Level Two", 450, 285);
+  text("Level Three", 450, 360);
+
+  //testing purpose
+  //size(1000, 550);
+  //lvlOne();
+  //gameMap(ogmap);
   
   //DEBUG TOSTRING 
   //println(Arrays.toString(map)); not working for some reason
@@ -32,12 +41,25 @@ void setup(){
 }
 
 void draw(){
+  if (levelSelect == 1){
+    lvlOne();
+  }
   
 }
 
 void mouseClicked(){
 //menu select
-
+  if (onMenu){
+    if (mouseX >= 325 && mouseX <= 675 && mouseY >=175 && mouseY <= 225){
+      levelSelect = 1;
+    }
+    if (mouseX >= 325 && mouseX <= 675 && mouseY >=250 && mouseY <= 300){
+      levelSelect = 2;
+    }
+    if (mouseX >= 325 && mouseX <= 675 && mouseY >=325 && mouseY <= 375){
+      levelSelect = 3;
+    }
+  }
 //grid select (no character)
 //keypressed
 //if numerical # select character from inventory & place ->
