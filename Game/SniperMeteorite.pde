@@ -7,6 +7,6 @@
 //  public int health;
   
 //  public void toAttack(Enemies enemy){
-//    enemy.setHealth(this.getAttack() - enemy.getDefense(z));
+//    enemy.setHealth(this.getAttack() - enemy.getDefense());
 //  }
 //}
