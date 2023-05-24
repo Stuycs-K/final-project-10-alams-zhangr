@@ -1,37 +1,19 @@
 public abstract class LivingObjects{
-  private int health;
-  private int speed;
-  private int attack;
-  private int direction;
-  private int range;
-  private int[] location;
-  
+
   //HEALTH
-  public int getHealth(){
-    return health;
-  }
+  public abstract int getHealth();
   
-  public void setHealth(int newHealth){
-    health = newHealth;
-  }
+  public abstract void setHealth(int newHealth);
   
   //ATTACK
-  public int getAttack(){
-    return attack;
-  }
+  public abstract int getAttack();
   
-  public void setAttack(int newAttack){
-    attack = newAttack;
-  }
+  public abstract void setAttack(int newAttack);
   
   //DIRECTION
-  public int getDirection(){
-    return direction;
-  }
+  public abstract int getDirection();
   
-  public void setDirection(int newDirection){
-    direction = newDirection;
-  }
+  public abstract void setDirection(int newDirection);
   
   ////RANGE
   //public int[] getRange(){
@@ -43,13 +25,9 @@ public abstract class LivingObjects{
   //}
   
   //LOCATION
-  public int[] getLocation(){
-    return location;
-  }
+  public abstract int[] getLocation();
   
-  public void setLocation(int[] newLocation){
-    location = newLocation;
-  }
+  public abstract void setLocation(int[] newLocation);
   
   //public int getDefense(){
   //  return defense;
