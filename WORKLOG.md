@@ -15,7 +15,7 @@ reminders:
 ### 5/23/23
 
 - working on livingobject classes (enemies & TowerCharacters)
-- planned out two ways to implemeny enemy & character interaction
+- planned out two ways to implement enemy & character interaction
 
 reminders:
 - ADD SPRITES
@@ -30,4 +30,9 @@ reminders:
 
 ### 5/23/23
 
-info
+- successfully merged branch character_meteorite into main
+- created basic menu format
+- tried to implement clickable level buttons in menu, but did not work
+
+reminders:
+- find out if mouseClicked() operates only during draw() or can it operate during setup()
