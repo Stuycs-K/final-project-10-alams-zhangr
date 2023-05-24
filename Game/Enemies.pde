@@ -1,3 +1,3 @@
-public class Enemies implements LivingObjects{
+//public class Enemies implements LivingObjects{
    
-}
+//}
