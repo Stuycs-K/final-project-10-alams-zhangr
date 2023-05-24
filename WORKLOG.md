@@ -14,6 +14,12 @@ reminders:
 
 ### 5/23/23
 
+- working with the livingobjects class & its children
+- planned out movement
+
+reminders:
+- add SPRITES
+
 - working on livingobject classes (enemies & TowerCharacters)
 - planned out two ways to implement enemy & character interaction
 

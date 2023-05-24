@@ -10,10 +10,12 @@ void setup(){
   //menu screen *ray*
   
   //testing purpose
-  size(1000, 550);
-  lvlOne();
-  gameMap(ogmap);
+  //size(1000, 550);
+  //lvlOne();
+  //gameMap(ogmap);
   
+  Enemies brr = new Enemies(1, 2, 3, 4, new int[]{5, 5});
+  println(brr.getHealth());
   //DEBUG TOSTRING 
   //println(Arrays.toString(map)); not working for some reason
   //String arr = "{";
