@@ -19,52 +19,7 @@ public class Enemies extends LivingObjects{
     location = position;
   }
   
-  //HEALTH
-  public int getHealth(){
-    return health;
-  }
-  
-  public void setHealth(int newHealth){
-    health = newHealth;
-  }
-  
-  //ATTACK
-  public int getAttack(){
-    return attack;
-  }
-  
-  public void setAttack(int newAttack){
-    attack = newAttack;
-  }
-  
-  //DIRECTION
-  public int getDirection(){
-    return direction;
-  }
-  
-  public void setDirection(int newDirection){
-    direction = newDirection;
-  }
-  
-  ////RANGE
-  //public int[] getRange(){
-  //  return range;
-  //}
-  
-  //public void setRange(int[] newRange){
-  //  range = newRange;
-  //}
-  
-  //LOCATION
-  public int[] getLocation(){
-    return location;
-  }
-  
-  public void setLocation(int[] newLocation){
-    location = newLocation;
-  }
-  
-  public void toAttack(TowerCharacters other){
+  public void toAttack(LivingObjects other){
     other.setHealth(other.getHealth() - this.getAttack());
   }
   
