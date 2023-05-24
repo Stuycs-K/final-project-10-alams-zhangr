@@ -60,12 +60,15 @@ void mouseClicked(){
   if (onMenu){
     if (mouseX >= 325 && mouseX <= 675 && mouseY >=175 && mouseY <= 225){
       levelSelect = 1;
+      onMenu = false;
     }
     if (mouseX >= 325 && mouseX <= 675 && mouseY >=250 && mouseY <= 300){
       levelSelect = 2;
+      onMenu = false;
     }
     if (mouseX >= 325 && mouseX <= 675 && mouseY >=325 && mouseY <= 375){
       levelSelect = 3;
+      onMenu = false;
     }
   }
 //grid select (no character)
