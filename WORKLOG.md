@@ -26,6 +26,18 @@ reminders:
 reminders:
 - ADD SPRITES
 
+### 5/24/23
+
+- displayed inventory
+- layout for sprites & other images 
+- added sprite & deployed vars to ops (towercharacters)
+
+reminders:
+- add placement
+
+GOALS
+- get enemy moment(including stopping when interacting with a character) n character placement & returning character done by friday
+
 
 ## GROUP MEMBER 2 //RAYMOND
 
