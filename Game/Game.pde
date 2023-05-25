@@ -103,6 +103,7 @@ void mouseClicked(){
       }
       println(row + " " + column);
       
+      keyPressed();
     }
     
   }
@@ -114,6 +115,15 @@ void mouseClicked(){
 //grid select (character)
 //if CHARBLK then remove?: set char hp = 0
 
+}
+
+void keyPressed(){
+  if(key == CODED){
+    if(keyCode > 0 && keyCode < 7){
+      int index = keyCode - 1;
+      
+    }
+  }
 }
 
 void lvlOne(){
