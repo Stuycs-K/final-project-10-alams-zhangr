@@ -1,6 +1,7 @@
 import java.util.*;
 static int[][]map;
 private int[][] ogmap;
+private ArrayList<int[]> enemyPath;
 
 static final int WALL = -1;
 static final int AERIAL = -2;
@@ -118,6 +119,25 @@ void lvlOne(){
     }
   }
 }
+
+void lvlOneEnemyPath(){
+  enemyPath = new ArrayList<int[]>();
+  enemyPath.add(new int[]{2, 8});
+  enemyPath.add(new int[]{2, 7});
+  enemyPath.add(new int[]{2, 6});
+  enemyPath.add(new int[]{1, 6));
+  enemyPath.add(new int[]{1, 5});
+  enemyPath.add(new int[]{1, 4});
+  enemyPath.add(new int[]{1, 3});
+  enemyPath.add(new int[]{2, 3});
+  enemyPath.add(new int[]{2, 2});
+  enemyPath.add(new int[]{2, 1});
+  enemyPath.add(new int[]{1, 1});
+  enemyPath.add(new int[]{1, 0});
+}
+
+  
+
 
 void gameMap(int[][]grid){ //pass ogmap
   float SQUARE_SIZE = width/map[0].length;
