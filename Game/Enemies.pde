@@ -5,18 +5,20 @@ public class Enemies extends LivingObjects{
   private int direction;
   private int range;
   private int[] location;
+  private String sprite;
   
   public Enemies(){ //default
     
   }
   
-  public Enemies(int hp, int spd, int atk, int hit, int[] position){
+  public Enemies(int hp, int spd, int atk, int hit, int[] position, String img){
     health = hp;
     speed = spd;
     attack = atk;
     direction = 1;
     range = hit;
     location = position;
+    sprite = img;
   }
   
   ////////////////////////////////////////////
@@ -64,10 +66,13 @@ public class Enemies extends LivingObjects{
     location = newLocation;
   }
   
+  public String getSprite(){
+    return sprite;
+  }
+  
   ////////////////////////////////////////////
   public void toAttack(LivingObjects other){
     other.setHealth(other.getHealth() - this.getAttack());
   }
-  
   
 }
