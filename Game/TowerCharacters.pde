@@ -3,7 +3,7 @@ public class TowerCharacters extends LivingObjects{
   private int speed;
   private int attack;
   private int direction;
-  private int[] range;
+  private int range;
   private int[] location; 
   private int block;
   //public int defense;
