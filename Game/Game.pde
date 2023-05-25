@@ -11,6 +11,7 @@ private float SQUARE_SIZE;
 private boolean onMenu = true;
 private int levelSelect = 0;
 private PImage slug;
+int delay = 10;
 
 void setup(){
   //menu screen *ray*
@@ -23,6 +24,9 @@ void setup(){
   text("Level One", 450, 210);
   text("Level Two", 450, 285);
   text("Level Three", 450, 360);
+  lvlOne();
+  lvlOneEnemyPath();
+  frameRate(5);
   //testing purpose
   //size(1000, 550);
   //lvlOne();
@@ -47,9 +51,8 @@ void setup(){
 
 void draw(){
   if (levelSelect == 1){
-    lvlOne();
+    //lvlOne();
     gameMap(ogmap);
-    lvlOneEnemyPath();
   }
   if (levelSelect == 2){
     //lvlTwo();
@@ -61,7 +64,7 @@ void draw(){
   }
   if (!onMenu){  
     slug = loadImage("originium_slug.png");
-    while(enemyPath.size() > 1){
+    if(enemyPath.size() > 1){
       int[] coords = enemyPath.remove(enemyPath.size() - 1);
       image(slug, coords[1] * SQUARE_SIZE, coords[0] * SQUARE_SIZE);
     }
@@ -133,18 +136,19 @@ void lvlOne(){
 
 void lvlOneEnemyPath(){
   enemyPath = new ArrayList<int[]>();
-  enemyPath.add(new int[]{2, 8});
-  enemyPath.add(new int[]{2, 7});
-  enemyPath.add(new int[]{2, 6});
-  enemyPath.add(new int[]{1, 6});
-  enemyPath.add(new int[]{1, 5});
-  enemyPath.add(new int[]{1, 4});
-  enemyPath.add(new int[]{1, 3});
-  enemyPath.add(new int[]{2, 3});
-  enemyPath.add(new int[]{2, 2});
-  enemyPath.add(new int[]{2, 1});
-  enemyPath.add(new int[]{1, 1});
   enemyPath.add(new int[]{1, 0});
+  enemyPath.add(new int[]{1, 1});
+  enemyPath.add(new int[]{2, 1});
+  enemyPath.add(new int[]{2, 2});
+  enemyPath.add(new int[]{2, 3});
+  enemyPath.add(new int[]{1, 3});
+  enemyPath.add(new int[]{1, 4});
+  enemyPath.add(new int[]{1, 5});
+  enemyPath.add(new int[]{1, 6});
+  enemyPath.add(new int[]{2, 6});
+  enemyPath.add(new int[]{2, 7});
+  enemyPath.add(new int[]{2, 8});
+
 }
 
   
