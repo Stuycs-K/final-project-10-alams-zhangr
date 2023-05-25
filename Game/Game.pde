@@ -3,9 +3,11 @@ import java.util.*;
 float SQUARE_SIZE;
 
 private int[][]map;
-private int[][]ogmap;
+private int[][]ogmap; //for displaying inventory with map DO NOT TOUCH
 
-//private int[][] 
+private int[][]charMap;
+private int[][]eneMap;
+
 
 private TowerCharacters[]inventory;
 
@@ -140,7 +142,17 @@ void lvlOne(){
   map[2][8] = GROUND;
   map[1][2] = AERIAL;
   map[2][4] = AERIAL;
- 
+   
+  charMap = new int[4][9];
+  eneMap = new int[4][9];
+  
+  for(int i = 0 ; i < 4 ; i++){
+    for(int j = 0 ; j < 9 ; j++){
+      charMap[i][j] = map[i][j];
+      eneMap[i][j] = map[i][j];
+    }
+  }
+  //maybe combine later***
   ogmap = new int[5][9]; //for display purposes INCLUDES INVENTORY
   for(int i = 0 ; i < 5 ; i++){
     for(int j = 0 ; j < 9 ; j++){
