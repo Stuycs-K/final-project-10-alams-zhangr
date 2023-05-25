@@ -56,24 +56,13 @@ void setup(){
   inventory[3] = op0;
   inventory[4] = op0;
   inventory[5] = op0;
-  
-  lvlOne();
  
 }
 
 void draw(){
-  if (levelSelect == 1){
-    //lvlOne();
+  if(levelSelect > 0){
     gameMap(ogmap);
     inventory();
-  }
-  if (levelSelect == 2){
-    //lvlTwo();
-    gameMap(ogmap);
-  }
-  if (levelSelect == 3){
-    //lvlThree();
-    gameMap(ogmap);
   }
 }
 
@@ -82,6 +71,7 @@ void mouseClicked(){
   if (onMenu){
     if (mouseX >= 325 && mouseX <= 675 && mouseY >=175 && mouseY <= 225){
       levelSelect = 1;
+      lvlOne();
       onMenu = false;
       onMap = true;
     }
@@ -116,7 +106,7 @@ void mouseClicked(){
         opSelect = true;
         selectedX = column;
         selectedY = row;
-        println("Pressed #1-6 to select an operator");
+        println("Press #1-6 to select an operator");
       }
       else{
         opSelect = false;
@@ -135,10 +125,9 @@ void mouseClicked(){
 }
 
 void keyPressed(){
-  if(onMap){
     if(opSelect){
       if(key == CODED){
-        if(keyCode > 0 && keyCode < 7){
+        if(keyCode == 1){
           int index = keyCode - 1;
           inventory[index].setDeployed(true);
           PImage op0 = loadImage(inventory[index].getSprite());
@@ -166,7 +155,6 @@ void keyPressed(){
         directionSelect = false;
       }
     }
-  } 
 }
 
 void lvlOne(){
@@ -236,6 +224,10 @@ void gameMap(int[][]grid){ //pass ogmap
           fill(color(0,150,150));
         }
         rect(k,l, SQUARE_SIZE, SQUARE_SIZE);
+        if(charMap[i][j] > 0){
+          PImage op0 = loadImage(inventory[charMap[i][j]].getSprite());
+          image(op0, SQUARE_SIZE*j,SQUARE_SIZE*i, 150, 150);
+        }
         k += SQUARE_SIZE;
       }
       l += SQUARE_SIZE;
