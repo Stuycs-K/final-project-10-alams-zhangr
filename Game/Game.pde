@@ -7,8 +7,11 @@ static final int WALL = -1;
 static final int AERIAL = -2;
 static final int GROUND = -3;
 
+private float SQUARE_SIZE;
 private boolean onMenu = true;
 private int levelSelect = 0;
+private PImage slug;
+
 void setup(){
   //menu screen *ray*
   size(1000, 550);
@@ -46,6 +49,7 @@ void draw(){
   if (levelSelect == 1){
     lvlOne();
     gameMap(ogmap);
+    lvlOneEnemyPath();
   }
   if (levelSelect == 2){
     //lvlTwo();
@@ -54,6 +58,13 @@ void draw(){
   if (levelSelect == 3){
     //lvlThree();
     gameMap(ogmap);
+  }
+  if (!onMenu){  
+    slug = loadImage("originium_slug.png");
+    while(enemyPath.size() > 1){
+      int[] coords = enemyPath.remove(enemyPath.size() - 1);
+      image(slug, coords[1] * SQUARE_SIZE, coords[0] * SQUARE_SIZE);
+    }
   }
 }
 
@@ -125,7 +136,7 @@ void lvlOneEnemyPath(){
   enemyPath.add(new int[]{2, 8});
   enemyPath.add(new int[]{2, 7});
   enemyPath.add(new int[]{2, 6});
-  enemyPath.add(new int[]{1, 6));
+  enemyPath.add(new int[]{1, 6});
   enemyPath.add(new int[]{1, 5});
   enemyPath.add(new int[]{1, 4});
   enemyPath.add(new int[]{1, 3});
@@ -140,7 +151,7 @@ void lvlOneEnemyPath(){
 
 
 void gameMap(int[][]grid){ //pass ogmap
-  float SQUARE_SIZE = width/map[0].length;
+  SQUARE_SIZE = width/map[0].length;
   stroke(255,255,255);
     float l = 0;
     float k = 0;
