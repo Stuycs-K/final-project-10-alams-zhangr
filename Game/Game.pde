@@ -2,8 +2,10 @@ import java.util.*;
 
 float SQUARE_SIZE;
 
-static int[][]map;
+private int[][]map;
 private int[][]ogmap;
+
+//private int[][] 
 
 private TowerCharacters[]inventory;
 
@@ -12,6 +14,8 @@ static final int AERIAL = -2;
 static final int GROUND = -3;
 
 private boolean onMenu = true;
+private boolean onMap = false;
+
 private int levelSelect = 0;
 void setup(){
   //menu screen *ray*
@@ -30,9 +34,9 @@ void setup(){
   println(brr.getHealth());
   
   //OPS
-  //public TowerCharacters(int hp, int spd, int atk, int hit, String img, int blk){
-  TowerCharacters op0 = new TowerCharacters(50, 0, 1, 1, "ayer.png", 1);
-  TowerCharacters op1 = new TowerCharacters(50, 0, 1, 1, "ayer.png", 1);
+  //public TowerCharacters(int hp, int spd, int atk, int hit, String img, int blk, String type){
+  TowerCharacters op0 = new TowerCharacters(50, 0, 1, 1, "ayer.png", 1, "AERIAL");
+  TowerCharacters op1 = new TowerCharacters(50, 0, 1, 1, "ayer.png", 1, "AERIAL");
   
   inventory = new TowerCharacters[6];
   inventory[0] = op1;
@@ -67,15 +71,38 @@ void mouseClicked(){
     if (mouseX >= 325 && mouseX <= 675 && mouseY >=175 && mouseY <= 225){
       levelSelect = 1;
       onMenu = false;
+      onMap = true;
     }
     if (mouseX >= 325 && mouseX <= 675 && mouseY >=250 && mouseY <= 300){
       levelSelect = 2;
       onMenu = false;
+      onMap = true;
     }
     if (mouseX >= 325 && mouseX <= 675 && mouseY >=325 && mouseY <= 375){
       levelSelect = 3;
       onMenu = true;
+      onMap = true;
     }
+  }
+  
+  if(onMap){
+    if(mouseX <= 950 && mouseY <= 550){
+      int row = 0;
+      int column = 0;
+      int w = mouseX;
+      int h = mouseY;
+      while(w > SQUARE_SIZE){
+        w -= SQUARE_SIZE;
+        column++;
+      }
+      while(h > SQUARE_SIZE){
+        h -= SQUARE_SIZE;
+        row++;
+      }
+      println(row + " " + column);
+      
+    }
+    
   }
 //grid select (no character)
 //keypressed

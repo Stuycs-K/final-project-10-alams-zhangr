@@ -8,12 +8,13 @@ public class TowerCharacters extends LivingObjects{
   private String sprite;
   private int block;
   private boolean deployed;
+  private String type;
   //public int defense;
   
   public TowerCharacters(){ //default
   }
   
-  public TowerCharacters(int hp, int spd, int atk, int hit, String img, int blk){
+  public TowerCharacters(int hp, int spd, int atk, int hit, String img, int blk, String optype){
     health = hp;
     speed = spd;
     attack = atk;
@@ -23,6 +24,7 @@ public class TowerCharacters extends LivingObjects{
     sprite = img;
     block = blk;
     deployed = false;
+    type = optype;
   }
   
   //////////////////////////////////////////
@@ -84,6 +86,10 @@ public class TowerCharacters extends LivingObjects{
   
   public void setDeployed(boolean deploy){
     deployed = deploy;
+  }
+  
+  public String getType(){
+    return type;
   }
   
   /////////////////////////////////////////////////////////////////////////////////////////
