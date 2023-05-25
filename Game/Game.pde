@@ -32,8 +32,10 @@ void setup(){
   //OPS
   //public TowerCharacters(int hp, int spd, int atk, int hit, String img, int blk){
   TowerCharacters op0 = new TowerCharacters(50, 0, 1, 1, "ayer.png", 1);
+  TowerCharacters op1 = new TowerCharacters(50, 0, 1, 1, "ayer.png", 1);
+  
   inventory = new TowerCharacters[6];
-  inventory[0] = op0;
+  inventory[0] = op1;
   inventory[1] = op0;
   inventory[2] = op0;
   inventory[3] = op0;
@@ -72,7 +74,7 @@ void mouseClicked(){
     }
     if (mouseX >= 325 && mouseX <= 675 && mouseY >=325 && mouseY <= 375){
       levelSelect = 3;
-      onMenu = false;
+      onMenu = true;
     }
   }
 //grid select (no character)
@@ -151,7 +153,9 @@ void gameMap(int[][]grid){ //pass ogmap
 void inventory(){
   //display inventory
   for(int i = 0 ; i < 6 ; i++){
-    PImage op0 = loadImage(inventory[i].getSprite());
-    image(op0, SQUARE_SIZE*i,SQUARE_SIZE*3.5, 150, 150);
+    if(!inventory[i].getDeployed()){
+      PImage op0 = loadImage(inventory[i].getSprite());
+      image(op0, SQUARE_SIZE*i,SQUARE_SIZE*3.5, 150, 150);
+    }
   }
 }

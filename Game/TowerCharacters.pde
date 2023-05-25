@@ -82,8 +82,8 @@ public class TowerCharacters extends LivingObjects{
     return deployed;
   }
   
-  public void setDeployed(){
-    deployed = !deployed;
+  public void setDeployed(boolean deploy){
+    deployed = deploy;
   }
   
   /////////////////////////////////////////////////////////////////////////////////////////
