@@ -80,12 +80,12 @@ void mouseClicked(){
     }
     if (mouseX >= 325 && mouseX <= 675 && mouseY >=325 && mouseY <= 375){
       levelSelect = 3;
-      onMenu = true;
+      onMenu = false;
       onMap = true;
     }
   }
   
-  if(onMap){
+  else if(onMap){
     if(mouseX <= 950 && mouseY <= 550){
       int row = 0;
       int column = 0;
