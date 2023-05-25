@@ -1,6 +1,8 @@
 import java.util.*;
 
-float SQUARE_SIZE;
+private float SQUARE_SIZE;
+private int cost;
+private int timer;
 
 private int[][]map;
 private int[][]ogmap; //for displaying inventory with map DO NOT TOUCH
@@ -17,8 +19,15 @@ static final int GROUND = -3;
 
 private boolean onMenu = true;
 private boolean onMap = false;
+private boolean opSelect = false;
+private boolean directionSelect = false;
+
+private int selectedX;
+private int selectedY;
 
 private int levelSelect = 0;
+
+
 void setup(){
   //menu screen *ray*
   size(1000, 550);
@@ -36,9 +45,9 @@ void setup(){
   println(brr.getHealth());
   
   //OPS
-  //public TowerCharacters(int hp, int spd, int atk, int hit, String img, int blk, String type){
-  TowerCharacters op0 = new TowerCharacters(50, 0, 1, 1, "ayer.png", 1, "AERIAL");
-  TowerCharacters op1 = new TowerCharacters(50, 0, 1, 1, "ayer.png", 1, "AERIAL");
+  //public TowerCharacters(int hp, int spd, int atk, int hit, String img, int blk, String type, int dp){
+  TowerCharacters op0 = new TowerCharacters(50, 0, 1, 1, "ayer.png", 1, "AERIAL", 2);
+  TowerCharacters op1 = new TowerCharacters(50, 0, 1, 1, "ayer.png", 1, "AERIAL", 2);
   
   inventory = new TowerCharacters[6];
   inventory[0] = op1;
@@ -48,12 +57,13 @@ void setup(){
   inventory[4] = op0;
   inventory[5] = op0;
   
+  lvlOne();
  
 }
 
 void draw(){
   if (levelSelect == 1){
-    lvlOne();
+    //lvlOne();
     gameMap(ogmap);
     inventory();
   }
@@ -88,7 +98,7 @@ void mouseClicked(){
   }
   
   else if(onMap){
-    if(mouseX <= 950 && mouseY <= 550){
+    if(mouseX <= 950 && mouseY <= 550 - SQUARE_SIZE){
       int row = 0;
       int column = 0;
       int w = mouseX;
@@ -102,8 +112,15 @@ void mouseClicked(){
         row++;
       }
       println(row + " " + column);
-      
-      keyPressed();
+      if(map[row][column] == AERIAL && !(charMap[row][column] > -1)){
+        opSelect = true;
+        selectedX = column;
+        selectedY = row;
+        println("Pressed #1-6 to select an operator");
+      }
+      else{
+        opSelect = false;
+      }
     }
     
   }
@@ -118,12 +135,38 @@ void mouseClicked(){
 }
 
 void keyPressed(){
-  if(key == CODED){
-    if(keyCode > 0 && keyCode < 7){
-      int index = keyCode - 1;
-      
+  if(onMap){
+    if(opSelect){
+      if(key == CODED){
+        if(keyCode > 0 && keyCode < 7){
+          int index = keyCode - 1;
+          inventory[index].setDeployed(true);
+          PImage op0 = loadImage(inventory[index].getSprite());
+          image(op0, SQUARE_SIZE*selectedX,SQUARE_SIZE*selectedY, 150, 150);
+          charMap[selectedX][selectedY] = index;
+          println(index);
+          opSelect = false;
+          directionSelect = true;
+        }
+        else{
+          println("Does not exist");
+        }
+      }
     }
-  }
+    if(directionSelect){
+      if(key ==CODED){
+        if(keyCode == UP){
+        }
+        if(keyCode == RIGHT){
+        }
+        if(keyCode == DOWN){
+        }
+        if(keyCode == LEFT){
+        }
+        directionSelect = false;
+      }
+    }
+  } 
 }
 
 void lvlOne(){
