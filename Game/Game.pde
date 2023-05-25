@@ -1,6 +1,11 @@
 import java.util.*;
+
+float SQUARE_SIZE;
+
 static int[][]map;
-private int[][] ogmap;
+private int[][]ogmap;
+
+private TowerCharacters[]inventory;
 
 static final int WALL = -1;
 static final int AERIAL = -2;
@@ -19,33 +24,30 @@ void setup(){
   text("Level One", 450, 210);
   text("Level Two", 450, 285);
   text("Level Three", 450, 360);
-  //testing purpose
-  //size(1000, 550);
-  //lvlOne();
-  //gameMap(ogmap);
   
   //Enemies(int hp, int spd, int atk, int hit, int[] position, String img)
   Enemies brr = new Enemies(1, 2, 3, 4, new int[]{5, 5}, "hi");
   println(brr.getHealth());
-  //DEBUG TOSTRING 
-  //println(Arrays.toString(map)); not working for some reason
-  //String arr = "{";
-  //for(int i = 0 ; i < ogmap.length ; i ++){
-  //  for(int j = 0 ; j < ogmap[i].length ; j++){
-  //    if(j == 0){
-  //      arr += "\n";
-  //    }
-  //    arr += ogmap[i][j] + ", ";
-  //  }
-  //}
-  //arr += "}";
-  //println(arr);
+  
+  //OPS
+  //public TowerCharacters(int hp, int spd, int atk, int hit, String img, int blk){
+  TowerCharacters op0 = new TowerCharacters(50, 0, 1, 1, "ayer.png", 1);
+  inventory = new TowerCharacters[6];
+  inventory[0] = op0;
+  inventory[1] = op0;
+  inventory[2] = op0;
+  inventory[3] = op0;
+  inventory[4] = op0;
+  inventory[5] = op0;
+  
+ 
 }
 
 void draw(){
   if (levelSelect == 1){
     lvlOne();
     gameMap(ogmap);
+    inventory();
   }
   if (levelSelect == 2){
     //lvlTwo();
@@ -121,7 +123,7 @@ void lvlOne(){
 }
 
 void gameMap(int[][]grid){ //pass ogmap
-  float SQUARE_SIZE = width/map[0].length;
+  SQUARE_SIZE = width/map[0].length;
   stroke(255,255,255);
     float l = 0;
     float k = 0;
@@ -146,7 +148,10 @@ void gameMap(int[][]grid){ //pass ogmap
     }
 }
 
-
-//inventory 
-//arraylist <towercharacters> (display)
-//int[] inventory 
+void inventory(){
+  //display inventory
+  for(int i = 0 ; i < 6 ; i++){
+    PImage op0 = loadImage(inventory[i].getSprite());
+    image(op0, SQUARE_SIZE*i,SQUARE_SIZE*3.5, 150, 150);
+  }
+}
