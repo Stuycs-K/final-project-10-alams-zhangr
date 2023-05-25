@@ -6,9 +6,19 @@ static final int WALL = -1;
 static final int AERIAL = -2;
 static final int GROUND = -3;
 
+private boolean onMenu = true;
+private int levelSelect = 0;
 void setup(){
   //menu screen *ray*
-  
+  size(1000, 550);
+  rect(325, 175, 350, 50);
+  rect(325, 250, 350, 50);
+  rect(325, 325, 350, 50);
+  textSize(20);
+  fill(0);
+  text("Level One", 450, 210);
+  text("Level Two", 450, 285);
+  text("Level Three", 450, 360);
   //testing purpose
   //size(1000, 550);
   //lvlOne();
@@ -32,12 +42,36 @@ void setup(){
 }
 
 void draw(){
-  
+  if (levelSelect == 1){
+    lvlOne();
+    gameMap(ogmap);
+  }
+  if (levelSelect == 2){
+    //lvlTwo();
+    gameMap(ogmap);
+  }
+  if (levelSelect == 3){
+    //lvlThree();
+    gameMap(ogmap);
+  }
 }
 
 void mouseClicked(){
 //menu select
-
+  if (onMenu){
+    if (mouseX >= 325 && mouseX <= 675 && mouseY >=175 && mouseY <= 225){
+      levelSelect = 1;
+      onMenu = false;
+    }
+    if (mouseX >= 325 && mouseX <= 675 && mouseY >=250 && mouseY <= 300){
+      levelSelect = 2;
+      onMenu = false;
+    }
+    if (mouseX >= 325 && mouseX <= 675 && mouseY >=325 && mouseY <= 375){
+      levelSelect = 3;
+      onMenu = false;
+    }
+  }
 //grid select (no character)
 //keypressed
 //if numerical # select character from inventory & place ->
