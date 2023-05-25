@@ -68,6 +68,10 @@ public class TowerCharacters extends LivingObjects{
     location = newLocation;
   }
   
+  public String getSprite(){
+    return sprite;
+  }
+  
   public int getBlock(){
     return block;
   }

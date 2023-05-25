@@ -66,10 +66,13 @@ public class Enemies extends LivingObjects{
     location = newLocation;
   }
   
+  public String getSprite(){
+    return sprite;
+  }
+  
   ////////////////////////////////////////////
   public void toAttack(LivingObjects other){
     other.setHealth(other.getHealth() - this.getAttack());
   }
-  
   
 }
