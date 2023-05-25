@@ -24,7 +24,8 @@ void setup(){
   //lvlOne();
   //gameMap(ogmap);
   
-  Enemies brr = new Enemies(1, 2, 3, 4, new int[]{5, 5});
+  //Enemies(int hp, int spd, int atk, int hit, int[] position, String img)
+  Enemies brr = new Enemies(1, 2, 3, 4, new int[]{5, 5}, "hi");
   println(brr.getHealth());
   //DEBUG TOSTRING 
   //println(Arrays.toString(map)); not working for some reason
