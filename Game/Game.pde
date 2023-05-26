@@ -45,13 +45,15 @@ void setup(){
   
   //OPS
   //public TowerCharacters(int hp, int spd, int atk, int hit, String img, int blk, String type, int dp){
-  TowerCharacters op0 = new TowerCharacters(50, 0, 1, 1, "ayer.png", 1, "AERIAL", 2);
-  TowerCharacters op1 = new TowerCharacters(50, 0, 1, 1, "ayer.png", 1, "AERIAL", 2);
+  TowerCharacters op0 = new TowerCharacters(50, 0, 1, 1, "ayer.png", 1, "GROUND", 2);
+  TowerCharacters op1 = new TowerCharacters(50, 0, 1, 1, "meterorite.png", 1, "AERIAL", 2);
+  TowerCharacters op2 = new TowerCharacters(50, 0, 1, 1, "purestream.png", 1, "AERIAL", 2);
+
   
   inventory = new TowerCharacters[6];
-  inventory[0] = op1;
-  inventory[1] = op0;
-  inventory[2] = op0;
+  inventory[0] = op0;
+  inventory[1] = op1;
+  inventory[2] = op2;
   inventory[3] = op0;
   inventory[4] = op0;
   inventory[5] = op0;
@@ -107,6 +109,10 @@ void mouseClicked(){
         selectedX = column;
         selectedY = row;
         println("Press #1-6 to select an operator");
+        //text display
+        textSize(50);
+        fill(color(255, 0, 0));
+        text("Press #1-6 to select an operator", SQUARE_SIZE*map.length, width/2);
       }
       else{
         opSelect = false;
@@ -118,6 +124,10 @@ void mouseClicked(){
 void keyPressed(){
     if(opSelect){
       while(keyPressed == false){
+        //text display
+        textSize(15);
+        fill(color(255, 0, 0));
+        text("Press #1-6 to select an operator", 10, SQUARE_SIZE*map.length);
       }
       println(key);
       String inputs = "123456";
