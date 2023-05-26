@@ -1,7 +1,15 @@
 import java.util.*;
-static int[][]map;
-private int[][] ogmap;
-private ArrayList<int[]> enemyPath;
+
+float SQUARE_SIZE;
+
+private int[][]map;
+private int[][]ogmap; //for displaying inventory with map DO NOT TOUCH
+
+private int[][]charMap;
+private int[][]eneMap;
+
+
+private TowerCharacters[]inventory;
 
 static final int WALL = -1;
 static final int AERIAL = -2;
@@ -9,6 +17,8 @@ static final int GROUND = -3;
 
 private float SQUARE_SIZE;
 private boolean onMenu = true;
+private boolean onMap = false;
+
 private int levelSelect = 0;
 private PImage slug;
 int delay = 10;
@@ -32,27 +42,31 @@ void setup(){
   //lvlOne();
   //gameMap(ogmap);
   
-  Enemies brr = new Enemies(1, 2, 3, 4, new int[]{5, 5});
+  //Enemies(int hp, int spd, int atk, int hit, int[] position, String img)
+  Enemies brr = new Enemies(1, 2, 3, 4, new int[]{5, 5}, "hi");
   println(brr.getHealth());
-  //DEBUG TOSTRING 
-  //println(Arrays.toString(map)); not working for some reason
-  //String arr = "{";
-  //for(int i = 0 ; i < ogmap.length ; i ++){
-  //  for(int j = 0 ; j < ogmap[i].length ; j++){
-  //    if(j == 0){
-  //      arr += "\n";
-  //    }
-  //    arr += ogmap[i][j] + ", ";
-  //  }
-  //}
-  //arr += "}";
-  //println(arr);
+  
+  //OPS
+  //public TowerCharacters(int hp, int spd, int atk, int hit, String img, int blk, String type){
+  TowerCharacters op0 = new TowerCharacters(50, 0, 1, 1, "ayer.png", 1, "AERIAL");
+  TowerCharacters op1 = new TowerCharacters(50, 0, 1, 1, "ayer.png", 1, "AERIAL");
+  
+  inventory = new TowerCharacters[6];
+  inventory[0] = op1;
+  inventory[1] = op0;
+  inventory[2] = op0;
+  inventory[3] = op0;
+  inventory[4] = op0;
+  inventory[5] = op0;
+  
+ 
 }
 
 void draw(){
   if (levelSelect == 1){
     //lvlOne();
     gameMap(ogmap);
+    inventory();
   }
   if (levelSelect == 2){
     //lvlTwo();
@@ -77,15 +91,38 @@ void mouseClicked(){
     if (mouseX >= 325 && mouseX <= 675 && mouseY >=175 && mouseY <= 225){
       levelSelect = 1;
       onMenu = false;
+      onMap = true;
     }
     if (mouseX >= 325 && mouseX <= 675 && mouseY >=250 && mouseY <= 300){
       levelSelect = 2;
       onMenu = false;
+      onMap = true;
     }
     if (mouseX >= 325 && mouseX <= 675 && mouseY >=325 && mouseY <= 375){
       levelSelect = 3;
       onMenu = false;
+      onMap = true;
     }
+  }
+  
+  else if(onMap){
+    if(mouseX <= 950 && mouseY <= 550){
+      int row = 0;
+      int column = 0;
+      int w = mouseX;
+      int h = mouseY;
+      while(w > SQUARE_SIZE){
+        w -= SQUARE_SIZE;
+        column++;
+      }
+      while(h > SQUARE_SIZE){
+        h -= SQUARE_SIZE;
+        row++;
+      }
+      println(row + " " + column);
+      
+    }
+    
   }
 //grid select (no character)
 //keypressed
@@ -123,7 +160,17 @@ void lvlOne(){
   map[2][8] = GROUND;
   map[1][2] = AERIAL;
   map[2][4] = AERIAL;
- 
+   
+  charMap = new int[4][9];
+  eneMap = new int[4][9];
+  
+  for(int i = 0 ; i < 4 ; i++){
+    for(int j = 0 ; j < 9 ; j++){
+      charMap[i][j] = map[i][j];
+      eneMap[i][j] = map[i][j];
+    }
+  }
+  //maybe combine later***
   ogmap = new int[5][9]; //for display purposes INCLUDES INVENTORY
   for(int i = 0 ; i < 5 ; i++){
     for(int j = 0 ; j < 9 ; j++){
@@ -180,7 +227,12 @@ void gameMap(int[][]grid){ //pass ogmap
     }
 }
 
-
-//inventory 
-//arraylist <towercharacters> (display)
-//int[] inventory 
+void inventory(){
+  //display inventory
+  for(int i = 0 ; i < 6 ; i++){
+    if(!inventory[i].getDeployed()){
+      PImage op0 = loadImage(inventory[i].getSprite());
+      image(op0, SQUARE_SIZE*i,SQUARE_SIZE*3.5, 150, 150);
+    }
+  }
+}

@@ -26,6 +26,18 @@ reminders:
 reminders:
 - ADD SPRITES
 
+### 5/24/23
+
+- displayed inventory
+- layout for sprites & other images 
+- added sprite & deployed vars to ops (towercharacters)
+
+reminders:
+- add placement
+
+GOALS
+- get enemy moment(including stopping when interacting with a character) n character placement & returning character done by friday
+
 
 ## GROUP MEMBER 2 //RAYMOND
 
@@ -42,3 +54,12 @@ reminders:
 
 reminders:
 - find out if mouseClicked() operates only during draw() or can it operate during setup()
+
+### 5/24/23
+
+- made a path for enemies
+- successfully made enemy cross map in path
+
+reminders:
+- figure out how to make path of enemy slower
+- figure out how to remove image
