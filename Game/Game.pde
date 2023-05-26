@@ -6,7 +6,7 @@ private int cost;
 private int timer; //unsure if needed
 private int unitLimit;
 
-private int[][]map; //USELESS but nice to have
+private int[][]map; //NOT USELESS CHECK LVL SETUP OPTIMIZE LATER 
 private int[][]ogmap; //for displaying inventory with map DO NOT TOUCH
 private int[][]charMap;
 private int[][]eneMap;
@@ -258,6 +258,8 @@ void lvlOne() {
       }
     }
   }
+  map[2][8] = WALL;
+  map[1][0] = WALL;
 }
 
 void lvlOneEnemyPath() {
