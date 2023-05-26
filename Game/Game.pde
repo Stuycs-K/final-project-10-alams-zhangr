@@ -20,6 +20,7 @@ private boolean onMap = false;
 private int levelSelect = 0;
 private PImage slug;
 int delay = 10;
+private boolean pause = false;
 
 void setup(){
   //menu screen *ray*
@@ -75,11 +76,19 @@ void draw(){
     gameMap(ogmap);
   }
   if (!onMenu){  
+    fill(#7D7D7D);
+    rect(960, 0, 40, 40);
+    fill(0);
+    rect(968, 10, 8, 20);
+    rect(984, 10, 8, 20);
     slug = loadImage("originium_slug.png");
     if(enemyPath.size() > 1){
       int[] coords = enemyPath.remove(enemyPath.size() - 1);
       image(slug, coords[1] * SQUARE_SIZE, coords[0] * SQUARE_SIZE);
     }
+  }
+  if (pause){
+    noLoop();
   }
 }
 
@@ -100,6 +109,9 @@ void mouseClicked(){
       levelSelect = 3;
       onMenu = false;
       onMap = true;
+    }
+    if (mouseX >= 960 && mouseX <= width && mouseY >= 0 && mouseY <= 40){
+      pause();
     }
   }
   
@@ -233,4 +245,8 @@ void inventory(){
       image(op0, SQUARE_SIZE*i,SQUARE_SIZE*3.5, 150, 150);
     }
   }
+}
+
+void pause(){
+  pause = !pause;
 }
