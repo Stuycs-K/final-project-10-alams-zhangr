@@ -62,20 +62,8 @@ void draw(){
   if(levelSelect > 0){
     gameMap(ogmap);
     inventory();
-    //displayChar();
+    displayChar();
   }
-  //if(opSelect){
-  //  while(keyPressed == false){
-  //  }
-  //  if(keyboardInput.isPressed(Controller.num1)){
-  //    inventory[Controller.num1].setDeployed(true);
-  //    PImage op0 = loadImage(inventory[Controller.num1].getSprite());
-  //    image(op0, SQUARE_SIZE*selectedX,SQUARE_SIZE*selectedY, 150, 150);
-  //    charMap[selectedY][selectedX] = Controller.num1;
-  //    opSelect = false;
-  //    directionSelect = true;
-  //  }
-  //}
 }
 
 void mouseClicked(){
@@ -124,37 +112,30 @@ void mouseClicked(){
         opSelect = false;
       }
     }
-    
   }
-  
-
-//grid select (no character)
-//keypressed
-//if numerical # select character from inventory & place ->
-//directional keys
-
-//grid select (character)
-//if CHARBLK then remove?: set char hp = 0
-
 }
-
+ 
 void keyPressed(){
     if(opSelect){
       while(keyPressed == false){
       }
-      
-        println(key);
-        if(key == '1'){
-          String keey = "" + key;
-          int index = Integer.parseInt(keey) - 1;
-          inventory[index].setDeployed(true);
-          PImage op0 = loadImage(inventory[index].getSprite());
-          image(op0, SQUARE_SIZE*selectedX,SQUARE_SIZE*selectedY, 150, 150);
-          charMap[selectedY][selectedX] = index;
-          println(index);
-          opSelect = false;
-          directionSelect = true;
+      println(key);
+      String inputs = "123456";
+      boolean equal = false;
+      for(int i = 0; i < inputs.length() ; i++){
+        if(key == inputs.charAt(i)){
+          equal = true;
         }
+      }
+      if(equal){
+        String keey = "" + key;
+        int index = Integer.parseInt(keey) - 1;
+        inventory[index].setDeployed(true);
+        charMap[selectedY][selectedX] = index;
+        println(index);
+        opSelect = false;
+        directionSelect = true;
+      }
       
     
     //if(directionSelect){
