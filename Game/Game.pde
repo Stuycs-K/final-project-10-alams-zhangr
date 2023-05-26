@@ -133,13 +133,7 @@ void mouseClicked() {
         if (!(charMap[row][column] > -1)) {
 
           opSelect = true;
-
-          //replace
-          println("Press #1-6 to select an operator");
-          //text display
-          textSize(25);
-          fill(color(0, 255, 0));
-          text("Press #1-6 to select an operator", 0, SQUARE_SIZE*map.length);
+          
         } else {
           opRemove = true;
         }
@@ -151,7 +145,7 @@ void mouseClicked() {
 }
 
 void keyPressed() {
-  if (directionSelect) {
+  if (directionSelect && keyPressed == false) {
     int index = charMap[selectedY][selectedX];
     while (keyPressed = false) {
     }
@@ -174,9 +168,9 @@ void keyPressed() {
   if (opSelect) {
     while (keyPressed == false) {
       //text display
-      //textSize(25);
-      //fill(color(0, 255, 0));
-      //text("Press #1-6 to select an operator", 0, SQUARE_SIZE*map.length);
+      textSize(25);
+      fill(color(0, 255, 0));
+      text("Press #1-6 to select an operator", 0, SQUARE_SIZE*map.length);
     }
     String inputs = "123456";
     boolean equal = false;
@@ -200,7 +194,7 @@ void keyPressed() {
   if (opRemove) {
     while (keyPressed = false) {
     }
-    if (key == ENTER) {
+    if (key == ENTER && charMap[selectedY][selectedX] > -1) {
       int index = charMap[selectedY][selectedX];
       charMap[selectedY][selectedX] = map[selectedY][selectedX];
       inventory[index].setDeployed(false);
