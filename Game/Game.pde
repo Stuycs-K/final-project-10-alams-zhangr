@@ -26,7 +26,7 @@ void setup(){
   text("Level Three", 450, 360);
   lvlOne();
   lvlOneEnemyPath();
-  frameRate(5);
+  frameRate(10);
   //testing purpose
   //size(1000, 550);
   //lvlOne();
