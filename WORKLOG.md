@@ -29,7 +29,7 @@ reminders:
 ### 5/24/23
 
 - displayed inventory
-- layout for sprites & other images 
+- layout for sprites & other images
 - added sprite & deployed vars to ops (towercharacters)
 
 reminders:
@@ -37,6 +37,23 @@ reminders:
 
 GOALS
 - get enemy moment(including stopping when interacting with a character) n character placement & returning character done by friday
+
+### 5/25/23
+
+- worked on keypress controls for character placement & removal
+- edited op vars
+
+ISSUES
+- issue with keypress direction selection
+- issue with displaying text instructions for keypress
+
+REMINDERS
+- Add highlight to selected block
+- Add ranges to livingObjects
+- On charMap set enemy spawn n charBase to wall
+- Fix display of characters to fit in squares
+- Organize code
+
 
 
 ## GROUP MEMBER 2 //RAYMOND
@@ -63,3 +80,8 @@ reminders:
 reminders:
 - figure out how to make path of enemy slower
 - figure out how to remove image
+
+### 5/25/23
+
+- got enemy path to work
+- attempted to implement pause, but does not work as intended
