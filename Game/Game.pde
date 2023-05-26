@@ -1,12 +1,10 @@
 import java.util.*;
-
-float SQUARE_SIZE;
-
 private int[][]map;
 private int[][]ogmap; //for displaying inventory with map DO NOT TOUCH
 
 private int[][]charMap;
 private int[][]eneMap;
+private ArrayList<int[]> enemyPath;//just to make it work at the moment
 
 
 private TowerCharacters[]inventory;
