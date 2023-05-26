@@ -27,13 +27,14 @@ private boolean onMenu = true;
 private boolean onMap = false;
 private boolean opSelect = false;
 private boolean directionSelect = false;
+private boolean opRemove = false;
 
 private int selectedX;
 private int selectedY;
 
 private int levelSelect = 0;
 
-void setup(){
+void setup() {
   //menu screen
   size(1000, 550);
   rect(325, 175, 350, 50);
@@ -44,11 +45,11 @@ void setup(){
   text("Level One", 450, 210);
   text("Level Two", 450, 285);
   text("Level Three", 450, 360);
-  
+
   //SETUP LIVING OBJECTS
   //Enemies(int hp, int spd, int atk, int hit, int[] position, String img)
   Enemies brr = new Enemies(1, 2, 3, 4, new int[]{5, 5}, "hi");
-  
+
   //TowerCharacters(int hp, int spd, int atk, int hit, String img, int blk, String type, int dp){
   TowerCharacters op0 = new TowerCharacters(50, 0, 1, 1, "ayer.png", 1, GROUND, 2);
   TowerCharacters op1 = new TowerCharacters(50, 0, 1, 1, "meterorite.png", 1, AERIAL, 2);
@@ -56,7 +57,7 @@ void setup(){
   TowerCharacters op3 = new TowerCharacters(50, 0, 1, 1, "kaltsit.png", 1, AERIAL, 2);
   TowerCharacters op4 = new TowerCharacters(50, 0, 1, 1, "mudrock.png", 1, GROUND, 2);
   TowerCharacters op5 = new TowerCharacters(50, 0, 1, 1, "mizuki.png", 1, GROUND, 2);
-  
+
   //SETUP INVENTORY
   inventory = new TowerCharacters[6];
   inventory[0] = op0;
@@ -65,155 +66,158 @@ void setup(){
   inventory[3] = op3;
   inventory[4] = op4;
   inventory[5] = op5;
- 
 }
 
-void draw(){
-  if(levelSelect > 0){
+void draw() {
+  if (levelSelect > 0) {
     gameMap(ogmap);
     inventory();
     displayChar();
   }
 }
 
-void mouseClicked(){
-//menu select
-  if (onMenu){
-    if (mouseX >= 325 && mouseX <= 675 && mouseY >=175 && mouseY <= 225){
+void mouseClicked() {
+  //menu select
+  if (onMenu) {
+    if (mouseX >= 325 && mouseX <= 675 && mouseY >=175 && mouseY <= 225) {
       levelSelect = 1;
       lvlOne();
       onMenu = false;
       onMap = true;
     }
-    if (mouseX >= 325 && mouseX <= 675 && mouseY >=250 && mouseY <= 300){
+    if (mouseX >= 325 && mouseX <= 675 && mouseY >=250 && mouseY <= 300) {
       levelSelect = 2;
       onMenu = false;
       onMap = true;
     }
-    if (mouseX >= 325 && mouseX <= 675 && mouseY >=325 && mouseY <= 375){
+    if (mouseX >= 325 && mouseX <= 675 && mouseY >=325 && mouseY <= 375) {
       levelSelect = 3;
       onMenu = false;
       onMap = true;
     }
-  }
-  
-  else if(onMap){
-    if(mouseX <= 950 && mouseY <= 550 - SQUARE_SIZE){
+  } else if (onMap) {
+    if (mouseX <= 950 && mouseY <= 550 - SQUARE_SIZE) {
       int row = 0;
       int column = 0;
       int w = mouseX;
       int h = mouseY;
-      while(w > SQUARE_SIZE){
+      while (w > SQUARE_SIZE) {
         w -= SQUARE_SIZE;
         column++;
       }
-      while(h > SQUARE_SIZE){
+      while (h > SQUARE_SIZE) {
         h -= SQUARE_SIZE;
         row++;
       }
+      selectedX = column;
+      selectedY = row;
       println(row + " " + column);
-      if(map[row][column] == AERIAL || map[row][column] == GROUND){
-        
-        if(!(charMap[row][column] > -1)){
-          
-        opSelect = true;
-        selectedX = column;
-        selectedY = row;
-        
-        //replace
-        println("Press #1-6 to select an operator");
-        //text display
-        textSize(25);
-        fill(color(0, 255, 0));
-        text("Press #1-6 to select an operator", 0, SQUARE_SIZE*map.length);
+      if (map[row][column] == AERIAL || map[row][column] == GROUND) {
+
+        if (!(charMap[row][column] > -1)) {
+
+          opSelect = true;
+
+          //replace
+          println("Press #1-6 to select an operator");
+          //text display
+          textSize(25);
+          fill(color(0, 255, 0));
+          text("Press #1-6 to select an operator", 0, SQUARE_SIZE*map.length);
+        } else {
+          opRemove = true;
         }
-        
-        
-        else{
-          
-          println("removed character");
-          
-        }
-        
-      }
-      else{
+      } else {
         opSelect = false;
       }
     }
   }
 }
- 
-void keyPressed(){
-    if(opSelect){
-      while(keyPressed == false){
-        //text display
-        //textSize(25);
-        //fill(color(0, 255, 0));
-        //text("Press #1-6 to select an operator", 0, SQUARE_SIZE*map.length);
+
+void keyPressed() {
+  if (opSelect) {
+    while (keyPressed == false) {
+      //text display
+      //textSize(25);
+      //fill(color(0, 255, 0));
+      //text("Press #1-6 to select an operator", 0, SQUARE_SIZE*map.length);
+    }
+    String inputs = "123456";
+    boolean equal = false;
+    for (int i = 0; i < inputs.length(); i++) {
+      if (key == inputs.charAt(i)) {
+        equal = true;
       }
-      String inputs = "123456";
-      boolean equal = false;
-      for(int i = 0; i < inputs.length() ; i++){
-        if(key == inputs.charAt(i)){
-          equal = true;
-        }
+    }
+    if (equal) {
+      String keey = "" + key;
+      int index = Integer.parseInt(keey) - 1;
+      while (!inventory[index].getDeployed() && inventory[index].getType() == map[selectedY][selectedX]) {
+        inventory[index].setDeployed(true);
+        charMap[selectedY][selectedX] = index;
+        directionSelect = true;
+        opSelect = false;
       }
-      if(equal){
-         String keey = "" + key;
-        int index = Integer.parseInt(keey) - 1;
-        while(!inventory[index].getDeployed() && inventory[index].getType() == map[selectedY][selectedX]){
-          inventory[index].setDeployed(true);
-          charMap[selectedY][selectedX] = index;
-          directionSelect = true;
-          opSelect = false;
-        }
-      }
+    }
   }
-  if(directionSelect){
+  if (directionSelect) {
     int index = charMap[selectedY][selectedX];
     println("select using wasd");
-    while(keyPressed == false){
+    while (keyPressed == false) {
       //println("select direction");
     }
-    if(key == 'w'){
+    if (key == 'w') {
       inventory[index].setDirection(T);
     }
-    if(key == 'd'){
+    if (key == 'd') {
       inventory[index].setDirection(R);
     }
-    if(key == 's'){
+    if (key == 's') {
       inventory[index].setDirection(D);
     }
-    if(key == 'a'){
+    if (key == 'a') {
       inventory[index].setDirection(L);
     }
     println("direction is " + inventory[index].getDirection());
     directionSelect = false;
- }
+  }
+  
+  if(opRemove){
+    while(keyPressed = false){
+    }
+    if(key == ENTER){
+      int index = charMap[selectedY][selectedX];
+      charMap[selectedY][selectedX] = map[selectedY][selectedX];
+      inventory[index].setDeployed(false);
+      println("removed character");
+    }
+    else{
+      opRemove = false;
+    }
+  }
 }
 
 
 /////////////////MAPS SETUP////////////////////////////
 
-void lvlOne(){
-  //MAP1 for placement purposes 
+void lvlOne() {
+  //MAP1 for placement purposes
   map = new int[4][9];
-  for(int i = 0 ; i < 4 ; i++){
-    for(int j = 0 ; j < 9 ; j++){
+  for (int i = 0; i < 4; i++) {
+    for (int j = 0; j < 9; j++) {
       map[i][j] = GROUND;
     }
   }
-  for(int i = 0 ; i < 9 ; i++){
-    if(i != 0 || i != 8){  
+  for (int i = 0; i < 9; i++) {
+    if (i != 0 || i != 8) {
       map[0][i] = AERIAL;
       map[3][i] = AERIAL;
-    }
-    else{
+    } else {
       map[0][i] = WALL;
       map[3][i] = WALL;
     }
   }
-  for(int i = 0; i < 4 ; i++){
+  for (int i = 0; i < 4; i++) {
     map[i][0] = WALL;
     map[i][8] = WALL;
   }
@@ -221,21 +225,21 @@ void lvlOne(){
   map[2][8] = GROUND;
   map[1][2] = AERIAL;
   map[2][4] = AERIAL;
-   
+
   charMap = new int[4][9];
   eneMap = new int[4][9];
-  
-  for(int i = 0 ; i < 4 ; i++){
-    for(int j = 0 ; j < 9 ; j++){
+
+  for (int i = 0; i < 4; i++) {
+    for (int j = 0; j < 9; j++) {
       charMap[i][j] = map[i][j];
       eneMap[i][j] = map[i][j];
     }
   }
   //maybe combine later***
   ogmap = new int[5][9]; //for display purposes INCLUDES INVENTORY
-  for(int i = 0 ; i < 5 ; i++){
-    for(int j = 0 ; j < 9 ; j++){
-      if(i != 4){
+  for (int i = 0; i < 5; i++) {
+    for (int j = 0; j < 9; j++) {
+      if (i != 4) {
         ogmap[i][j] = map[i][j];
       }
     }
@@ -249,49 +253,47 @@ void lvlOne(){
 
 ///////////DISPLAYING/////////////////////////////////////
 
-void gameMap(int[][]grid){ //pass ogmap
+void gameMap(int[][]grid) { //pass ogmap
   SQUARE_SIZE = width/map[0].length;
-  stroke(255,255,255);
-    float l = 0;
-    float k = 0;
-    for(int i = 0; i < grid.length || ( l < 950 && k < 600 )  ; i++){
-      k = 0;
-      for(int j = 0 ; j < grid[i].length ; j++){
-        if(grid[i][j] == WALL){
-          fill(color(51));
-        } else if(grid[i][j] == GROUND) {
-          fill(color(0, 0, 255));
-        }
-        else if(grid[i][j] == AERIAL){
-          fill(color(255, 0 , 0));
-        }
-        else{ //INVENTORY
-          fill(color(0,150,150));
-        }
-        rect(k,l, SQUARE_SIZE, SQUARE_SIZE);
-        k += SQUARE_SIZE;
+  stroke(255, 255, 255);
+  float l = 0;
+  float k = 0;
+  for (int i = 0; i < grid.length || ( l < 950 && k < 600 ); i++) {
+    k = 0;
+    for (int j = 0; j < grid[i].length; j++) {
+      if (grid[i][j] == WALL) {
+        fill(color(51));
+      } else if (grid[i][j] == GROUND) {
+        fill(color(0, 0, 255));
+      } else if (grid[i][j] == AERIAL) {
+        fill(color(255, 0, 0));
+      } else { //INVENTORY
+        fill(color(0, 150, 150));
       }
-      l += SQUARE_SIZE;
+      rect(k, l, SQUARE_SIZE, SQUARE_SIZE);
+      k += SQUARE_SIZE;
     }
+    l += SQUARE_SIZE;
+  }
 }
 
-void displayChar(){
-  for(int i = 0 ; i < charMap.length ; i++){
-    for(int j = 0 ; j < charMap[i].length ; j++){
-        if(charMap[i][j] >= 0){
-          PImage op0 = loadImage(inventory[charMap[i][j]].getSprite());
-          image(op0, SQUARE_SIZE*j,SQUARE_SIZE*i, 150, 150);
-        }
+void displayChar() {
+  for (int i = 0; i < charMap.length; i++) {
+    for (int j = 0; j < charMap[i].length; j++) {
+      if (charMap[i][j] >= 0) {
+        PImage op0 = loadImage(inventory[charMap[i][j]].getSprite());
+        image(op0, SQUARE_SIZE*j, SQUARE_SIZE*i, 150, 150);
+      }
     }
   }
 }
 
-void inventory(){
+void inventory() {
   //display inventory
-  for(int i = 0 ; i < 6 ; i++){
-    if(!inventory[i].getDeployed()){
+  for (int i = 0; i < 6; i++) {
+    if (!inventory[i].getDeployed()) {
       PImage op0 = loadImage(inventory[i].getSprite());
-      image(op0, SQUARE_SIZE*i,SQUARE_SIZE*3.5, 150, 150);
+      image(op0, SQUARE_SIZE*i, SQUARE_SIZE*3.5, 150, 150);
     }
   }
 }
