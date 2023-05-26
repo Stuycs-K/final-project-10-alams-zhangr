@@ -2,7 +2,7 @@
 
 ## GROUP MEMBER 1 //SAFIKA
 
-### 5/23/23
+### 5/22/23
 
 - created lvl 1 map
 - commented plans for future
@@ -12,18 +12,76 @@ reminders:
 - tiles class?
 - research ak characters
 
-### date y
+### 5/23/23
 
-info
+- working with the livingobjects class & its children
+- planned out movement
+
+reminders:
+- add SPRITES
+
+- working on livingobject classes (enemies & TowerCharacters)
+- planned out two ways to implement enemy & character interaction
+
+reminders:
+- ADD SPRITES
+
+### 5/24/23
+
+- displayed inventory
+- layout for sprites & other images
+- added sprite & deployed vars to ops (towercharacters)
+
+reminders:
+- add placement
+
+GOALS
+- get enemy moment(including stopping when interacting with a character) n character placement & returning character done by friday
+
+### 5/25/23
+
+- worked on keypress controls for character placement & removal
+- edited op vars
+
+ISSUES
+- issue with keypress direction selection
+- issue with displaying text instructions for keypress
+
+REMINDERS
+- Add highlight to selected block
+- Add ranges to livingObjects
+- On charMap set enemy spawn n charBase to wall
+- Fix display of characters to fit in squares
+- Organize code
+
 
 
 ## GROUP MEMBER 2 //RAYMOND
 
-### 5/23/23
+### 5/22/23
 
 - Created skeleton of TowerCharacters class with getters and setters
 - Created a simple attack method for SniperMeteorite (child class of TowerCharacters) (on branch character_meteorite)
 
-### date y
+### 5/23/23
 
-info
+- successfully merged branch character_meteorite into main
+- created basic menu format
+- tried to implement clickable level buttons in menu, but did not work
+
+reminders:
+- find out if mouseClicked() operates only during draw() or can it operate during setup()
+
+### 5/24/23
+
+- made a path for enemies
+- successfully made enemy cross map in path
+
+reminders:
+- figure out how to make path of enemy slower
+- figure out how to remove image
+
+### 5/25/23
+
+- got enemy path to work
+- attempted to implement pause, but does not work as intended
