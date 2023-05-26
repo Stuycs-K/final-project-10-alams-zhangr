@@ -10,6 +10,7 @@ private int[][]map; //USELESS but nice to have
 private int[][]ogmap; //for displaying inventory with map DO NOT TOUCH
 private int[][]charMap;
 private int[][]eneMap;
+private ArrayList<int[]> enemyPath;//just to make it work at the moment
 
 
 private TowerCharacters[]inventory;
@@ -34,7 +35,10 @@ private int selectedY;
 
 private int levelSelect = 0;
 
-void setup() {
+private PImage slug;
+int delay = 10;
+
+void setup(){
   //menu screen
   size(1000, 550);
   rect(325, 175, 350, 50);
@@ -45,8 +49,13 @@ void setup() {
   text("Level One", 450, 210);
   text("Level Two", 450, 285);
   text("Level Three", 450, 360);
-
+  
+  lvlOne();
+  lvlOneEnemyPath();
+  frameRate(10);
+  
   //SETUP LIVING OBJECTS
+ 
   //Enemies(int hp, int spd, int atk, int hit, int[] position, String img)
   Enemies brr = new Enemies(1, 2, 3, 4, new int[]{5, 5}, "hi");
 
@@ -73,6 +82,13 @@ void draw() {
     gameMap(ogmap);
     inventory();
     displayChar();
+  }
+  if (!onMenu){  
+    slug = loadImage("originium_slug.png");
+    if(enemyPath.size() > 1){
+      int[] coords = enemyPath.remove(enemyPath.size() - 1);
+      image(slug, coords[1] * SQUARE_SIZE, coords[0] * SQUARE_SIZE);
+    }
   }
 }
 
@@ -246,6 +262,22 @@ void lvlOne() {
   }
 }
 
+void lvlOneEnemyPath(){
+  enemyPath = new ArrayList<int[]>();
+  enemyPath.add(new int[]{1, 0});
+  enemyPath.add(new int[]{1, 1});
+  enemyPath.add(new int[]{2, 1});
+  enemyPath.add(new int[]{2, 2});
+  enemyPath.add(new int[]{2, 3});
+  enemyPath.add(new int[]{1, 3});
+  enemyPath.add(new int[]{1, 4});
+  enemyPath.add(new int[]{1, 5});
+  enemyPath.add(new int[]{1, 6});
+  enemyPath.add(new int[]{2, 6});
+  enemyPath.add(new int[]{2, 7});
+  enemyPath.add(new int[]{2, 8});
+
+}
 
 
 
@@ -253,7 +285,7 @@ void lvlOne() {
 
 ///////////DISPLAYING/////////////////////////////////////
 
-void gameMap(int[][]grid) { //pass ogmap
+void gameMap(int[][]grid){ //pass ogmap
   SQUARE_SIZE = width/map[0].length;
   stroke(255, 255, 255);
   float l = 0;

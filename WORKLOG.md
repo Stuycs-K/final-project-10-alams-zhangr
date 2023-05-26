@@ -29,7 +29,7 @@ reminders:
 ### 5/24/23
 
 - displayed inventory
-- layout for sprites & other images 
+- layout for sprites & other images
 - added sprite & deployed vars to ops (towercharacters)
 
 reminders:
@@ -63,3 +63,8 @@ reminders:
 reminders:
 - figure out how to make path of enemy slower
 - figure out how to remove image
+
+### 5/25/23
+
+- got enemy path to work
+- attempted to implement pause, but does not work as intended
