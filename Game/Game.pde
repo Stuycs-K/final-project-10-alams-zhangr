@@ -27,23 +27,6 @@ private int selectedY;
 
 private int levelSelect = 0;
 
-
-/*KEY PRESSED STUUFF*/
-
-Controller keyboardInput;
-
-void keyPressed(){
-  keyboardInput.press(keyCode);
-}
-
-void keyReleased(){
-  keyboardInput.press(keyCode);
-}
-
-
-/////////////////////////
-
-
 void setup(){
   //menu screen *ray*
   size(1000, 550);
@@ -81,16 +64,18 @@ void draw(){
     inventory();
     //displayChar();
   }
-  if(opSelect){
-    if(keyboardInput.isPressed(Controller.num1)){
-      inventory[Controller.num1].setDeployed(true);
-      PImage op0 = loadImage(inventory[Controller.num1].getSprite());
-      image(op0, SQUARE_SIZE*selectedX,SQUARE_SIZE*selectedY, 150, 150);
-      charMap[selectedY][selectedX] = Controller.num1;
-      opSelect = false;
-      directionSelect = true;
-    }
-  }
+  //if(opSelect){
+  //  while(keyPressed == false){
+  //  }
+  //  if(keyboardInput.isPressed(Controller.num1)){
+  //    inventory[Controller.num1].setDeployed(true);
+  //    PImage op0 = loadImage(inventory[Controller.num1].getSprite());
+  //    image(op0, SQUARE_SIZE*selectedX,SQUARE_SIZE*selectedY, 150, 150);
+  //    charMap[selectedY][selectedX] = Controller.num1;
+  //    opSelect = false;
+  //    directionSelect = true;
+  //  }
+  //}
 }
 
 void mouseClicked(){
@@ -153,39 +138,39 @@ void mouseClicked(){
 
 }
 
-//void keyPressed(){
-//    if(opSelect){
-//      if(key == CODED){
-//        println(key);
-//        if(keyCode == 1){
-//          int index = keyCode - 1;
-//          inventory[index].setDeployed(true);
-//          PImage op0 = loadImage(inventory[index].getSprite());
-//          image(op0, SQUARE_SIZE*selectedX,SQUARE_SIZE*selectedY, 150, 150);
-//          charMap[selectedX][selectedY] = index;
-//          println(index);
-//          opSelect = false;
-//          directionSelect = true;
-//        }
-//        else{
-//          println("Does not exist");
-//        }
-//      }
-//    }
-//    if(directionSelect){
-//      if(key ==CODED){
-//        if(keyCode == UP){
-//        }
-//        if(keyCode == RIGHT){
-//        }
-//        if(keyCode == DOWN){
-//        }
-//        if(keyCode == LEFT){
-//        }
-//        directionSelect = false;
-//      }
-//    }
-//}
+void keyPressed(){
+    if(opSelect){
+      while(keyPressed == false){
+      }
+      
+        println(key);
+        if(key == '1'){
+          String keey = "" + key;
+          int index = Integer.parseInt(keey) - 1;
+          inventory[index].setDeployed(true);
+          PImage op0 = loadImage(inventory[index].getSprite());
+          image(op0, SQUARE_SIZE*selectedX,SQUARE_SIZE*selectedY, 150, 150);
+          charMap[selectedY][selectedX] = index;
+          println(index);
+          opSelect = false;
+          directionSelect = true;
+        }
+      
+    
+    //if(directionSelect){
+    //  if(key ==CODED){
+    //    if(keyCode == UP){
+    //    }
+    //    if(keyCode == RIGHT){
+    //    }
+    //    if(keyCode == DOWN){
+    //    }
+    //    if(keyCode == LEFT){
+    //    }
+    //    directionSelect = false;
+    //  }
+    }
+}
 
 void lvlOne(){
   //MAP1 for placement purposes 
