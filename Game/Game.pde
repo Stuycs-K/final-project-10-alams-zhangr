@@ -51,8 +51,8 @@ void setup() {
   text("Level Three", 450, 360);
 
   lvlOne();
-  lvlOneEnemyPath();
-  frameRate(10);
+  //lvlOneEnemyPath();
+  //frameRate(1);
 
   //SETUP LIVING OBJECTS
 
@@ -83,13 +83,13 @@ void draw() {
     inventory();
     displayChar();
   }
-  if (!onMenu) {
-    slug = loadImage("originium_slug.png");
-    if (enemyPath.size() > 1) {
-      int[] coords = enemyPath.remove(enemyPath.size() - 1);
-      image(slug, coords[1] * SQUARE_SIZE, coords[0] * SQUARE_SIZE);
-    }
-  }
+  //if (!onMenu) {
+  //  slug = loadImage("originium_slug.png");
+  //  if (enemyPath.size() > 1) {
+  //    int[] coords = enemyPath.remove(enemyPath.size() - 1);
+  //    image(slug, coords[1] * SQUARE_SIZE, coords[0] * SQUARE_SIZE);
+  //  }
+  //}
 }
 
 void mouseClicked() {
@@ -128,11 +128,16 @@ void mouseClicked() {
       selectedX = column;
       selectedY = row;
       println(row + " " + column);
-      if (map[row][column] == AERIAL || map[row][column] == GROUND) {
+      if ((map[row][column] == AERIAL || map[row][column] == GROUND)) {
 
         if (!(charMap[row][column] > -1)) {
-
+          if(opSelect){
+            opSelect = false;
+          }
+          else{
           opSelect = true;
+          }
+
           
         } else {
           opRemove = true;
@@ -145,9 +150,15 @@ void mouseClicked() {
 }
 
 void keyPressed() {
-  if (directionSelect && keyPressed == false) {
+  if (directionSelect) {
+        String inputs = "123456";
+    boolean equal = false;
+    for (int i = 0; i < inputs.length(); i++) {
+      if (key == inputs.charAt(i)) {
+        equal = true;
+      }
     int index = charMap[selectedY][selectedX];
-    while (keyPressed = false) {
+    while (keyPressed == false || !(charMap[selectedY][selectedX] > -1) ) {
     }
     if (key == 'w') {
       inventory[index].setDirection(T);
@@ -163,6 +174,7 @@ void keyPressed() {
     }
     println("direction is " + inventory[index].getDirection());
     directionSelect = false;
+    //opSelect = false;
   }
 
   if (opSelect) {
@@ -192,7 +204,7 @@ void keyPressed() {
   }
 
   if (opRemove) {
-    while (keyPressed = false) {
+    while (keyPressed == false) {
     }
     if (key == ENTER && charMap[selectedY][selectedX] > -1) {
       int index = charMap[selectedY][selectedX];
@@ -269,9 +281,6 @@ void lvlOneEnemyPath() {
   enemyPath.add(new int[]{2, 7});
   enemyPath.add(new int[]{2, 8});
 }
-
-
-
 
 
 ///////////DISPLAYING/////////////////////////////////////
