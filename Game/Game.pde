@@ -28,6 +28,22 @@ private int selectedY;
 private int levelSelect = 0;
 
 
+/*KEY PRESSED STUUFF*/
+
+Controller keyboardInput;
+
+void keyPressed(){
+  keyboardInput.press(keyCode);
+}
+
+void keyReleased(){
+  keyboardInput.press(keyCode);
+}
+
+
+/////////////////////////
+
+
 void setup(){
   //menu screen *ray*
   size(1000, 550);
@@ -63,6 +79,17 @@ void draw(){
   if(levelSelect > 0){
     gameMap(ogmap);
     inventory();
+    //displayChar();
+  }
+  if(opSelect){
+    if(keyboardInput.isPressed(Controller.num1)){
+      inventory[Controller.num1].setDeployed(true);
+      PImage op0 = loadImage(inventory[Controller.num1].getSprite());
+      image(op0, SQUARE_SIZE*selectedX,SQUARE_SIZE*selectedY, 150, 150);
+      charMap[selectedY][selectedX] = Controller.num1;
+      opSelect = false;
+      directionSelect = true;
+    }
   }
 }
 
@@ -114,6 +141,8 @@ void mouseClicked(){
     }
     
   }
+  
+
 //grid select (no character)
 //keypressed
 //if numerical # select character from inventory & place ->
@@ -124,38 +153,39 @@ void mouseClicked(){
 
 }
 
-void keyPressed(){
-    if(opSelect){
-      if(key == CODED){
-        if(keyCode == 1){
-          int index = keyCode - 1;
-          inventory[index].setDeployed(true);
-          PImage op0 = loadImage(inventory[index].getSprite());
-          image(op0, SQUARE_SIZE*selectedX,SQUARE_SIZE*selectedY, 150, 150);
-          charMap[selectedX][selectedY] = index;
-          println(index);
-          opSelect = false;
-          directionSelect = true;
-        }
-        else{
-          println("Does not exist");
-        }
-      }
-    }
-    if(directionSelect){
-      if(key ==CODED){
-        if(keyCode == UP){
-        }
-        if(keyCode == RIGHT){
-        }
-        if(keyCode == DOWN){
-        }
-        if(keyCode == LEFT){
-        }
-        directionSelect = false;
-      }
-    }
-}
+//void keyPressed(){
+//    if(opSelect){
+//      if(key == CODED){
+//        println(key);
+//        if(keyCode == 1){
+//          int index = keyCode - 1;
+//          inventory[index].setDeployed(true);
+//          PImage op0 = loadImage(inventory[index].getSprite());
+//          image(op0, SQUARE_SIZE*selectedX,SQUARE_SIZE*selectedY, 150, 150);
+//          charMap[selectedX][selectedY] = index;
+//          println(index);
+//          opSelect = false;
+//          directionSelect = true;
+//        }
+//        else{
+//          println("Does not exist");
+//        }
+//      }
+//    }
+//    if(directionSelect){
+//      if(key ==CODED){
+//        if(keyCode == UP){
+//        }
+//        if(keyCode == RIGHT){
+//        }
+//        if(keyCode == DOWN){
+//        }
+//        if(keyCode == LEFT){
+//        }
+//        directionSelect = false;
+//      }
+//    }
+//}
 
 void lvlOne(){
   //MAP1 for placement purposes 
@@ -224,14 +254,21 @@ void gameMap(int[][]grid){ //pass ogmap
           fill(color(0,150,150));
         }
         rect(k,l, SQUARE_SIZE, SQUARE_SIZE);
-        if(charMap[i][j] > 0){
-          PImage op0 = loadImage(inventory[charMap[i][j]].getSprite());
-          image(op0, SQUARE_SIZE*j,SQUARE_SIZE*i, 150, 150);
-        }
         k += SQUARE_SIZE;
       }
       l += SQUARE_SIZE;
     }
+}
+
+void displayChar(){
+  for(int i = 0 ; i < charMap.length ; i++){
+    for(int j = 0 ; j < charMap[i].length ; j++){
+        if(charMap[i][j] > 0){
+          PImage op0 = loadImage(inventory[charMap[i][j]].getSprite());
+          image(op0, SQUARE_SIZE*j,SQUARE_SIZE*i, 150, 150);
+        }
+    }
+  }
 }
 
 void inventory(){
