@@ -38,7 +38,7 @@ private int levelSelect = 0;
 private PImage slug;
 int delay = 10;
 
-void setup(){
+void setup() {
   //menu screen
   size(1000, 550);
   rect(325, 175, 350, 50);
@@ -49,13 +49,13 @@ void setup(){
   text("Level One", 450, 210);
   text("Level Two", 450, 285);
   text("Level Three", 450, 360);
-  
+
   lvlOne();
   lvlOneEnemyPath();
   frameRate(10);
-  
+
   //SETUP LIVING OBJECTS
- 
+
   //Enemies(int hp, int spd, int atk, int hit, int[] position, String img)
   Enemies brr = new Enemies(1, 2, 3, 4, new int[]{5, 5}, "hi");
 
@@ -83,9 +83,9 @@ void draw() {
     inventory();
     displayChar();
   }
-  if (!onMenu){  
+  if (!onMenu) {
     slug = loadImage("originium_slug.png");
-    if(enemyPath.size() > 1){
+    if (enemyPath.size() > 1) {
       int[] coords = enemyPath.remove(enemyPath.size() - 1);
       image(slug, coords[1] * SQUARE_SIZE, coords[0] * SQUARE_SIZE);
     }
@@ -151,6 +151,26 @@ void mouseClicked() {
 }
 
 void keyPressed() {
+  if (directionSelect) {
+    int index = charMap[selectedY][selectedX];
+    while (keyPressed = false) {
+    }
+    if (key == 'w') {
+      inventory[index].setDirection(T);
+    }
+    if (key == 'd') {
+      inventory[index].setDirection(R);
+    }
+    if (key == 's') {
+      inventory[index].setDirection(D);
+    }
+    if (key == 'a') {
+      inventory[index].setDirection(L);
+    }
+    println("direction is " + inventory[index].getDirection());
+    directionSelect = false;
+  }
+
   if (opSelect) {
     while (keyPressed == false) {
       //text display
@@ -176,38 +196,16 @@ void keyPressed() {
       }
     }
   }
-  if (directionSelect) {
-    int index = charMap[selectedY][selectedX];
-    println("select using wasd");
-    while (keyPressed == false) {
-      //println("select direction");
+
+  if (opRemove) {
+    while (keyPressed = false) {
     }
-    if (key == 'w') {
-      inventory[index].setDirection(T);
-    }
-    if (key == 'd') {
-      inventory[index].setDirection(R);
-    }
-    if (key == 's') {
-      inventory[index].setDirection(D);
-    }
-    if (key == 'a') {
-      inventory[index].setDirection(L);
-    }
-    println("direction is " + inventory[index].getDirection());
-    directionSelect = false;
-  }
-  
-  if(opRemove){
-    while(keyPressed = false){
-    }
-    if(key == ENTER){
+    if (key == ENTER) {
       int index = charMap[selectedY][selectedX];
       charMap[selectedY][selectedX] = map[selectedY][selectedX];
       inventory[index].setDeployed(false);
       println("removed character");
-    }
-    else{
+    } else {
       opRemove = false;
     }
   }
@@ -262,7 +260,7 @@ void lvlOne() {
   }
 }
 
-void lvlOneEnemyPath(){
+void lvlOneEnemyPath() {
   enemyPath = new ArrayList<int[]>();
   enemyPath.add(new int[]{1, 0});
   enemyPath.add(new int[]{1, 1});
@@ -276,7 +274,6 @@ void lvlOneEnemyPath(){
   enemyPath.add(new int[]{2, 6});
   enemyPath.add(new int[]{2, 7});
   enemyPath.add(new int[]{2, 8});
-
 }
 
 
@@ -285,7 +282,7 @@ void lvlOneEnemyPath(){
 
 ///////////DISPLAYING/////////////////////////////////////
 
-void gameMap(int[][]grid){ //pass ogmap
+void gameMap(int[][]grid) { //pass ogmap
   SQUARE_SIZE = width/map[0].length;
   stroke(255, 255, 255);
   float l = 0;
