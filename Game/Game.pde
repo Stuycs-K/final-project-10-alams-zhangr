@@ -11,7 +11,8 @@ private int[][]ogmap; //for displaying inventory with map DO NOT TOUCH
 private int[][]charMap;
 private int[][]eneMap;
 private ArrayList<int[]> enemyPath;//just to make it work at the moment
-
+//int[] inside is in the format [row, col, direction of next block]
+//next block: 1 = up, 2 = right, 3 = down, 4 = left, 0 = none (last element)
 
 private TowerCharacters[]inventory;
 
@@ -262,18 +263,18 @@ void lvlOne() {
 
 void lvlOneEnemyPath() {
   enemyPath = new ArrayList<int[]>();
-  enemyPath.add(new int[]{1, 0});
-  enemyPath.add(new int[]{1, 1});
-  enemyPath.add(new int[]{2, 1});
-  enemyPath.add(new int[]{2, 2});
-  enemyPath.add(new int[]{2, 3});
-  enemyPath.add(new int[]{1, 3});
-  enemyPath.add(new int[]{1, 4});
-  enemyPath.add(new int[]{1, 5});
-  enemyPath.add(new int[]{1, 6});
-  enemyPath.add(new int[]{2, 6});
-  enemyPath.add(new int[]{2, 7});
-  enemyPath.add(new int[]{2, 8});
+  enemyPath.add(new int[]{1, 0, 0});
+  enemyPath.add(new int[]{1, 1, 4});
+  enemyPath.add(new int[]{2, 1, 1});
+  enemyPath.add(new int[]{2, 2, 4});
+  enemyPath.add(new int[]{2, 3, 4});
+  enemyPath.add(new int[]{1, 3, 3});
+  enemyPath.add(new int[]{1, 4, 4});
+  enemyPath.add(new int[]{1, 5, 4});
+  enemyPath.add(new int[]{1, 6, 4});
+  enemyPath.add(new int[]{2, 6, 1});
+  enemyPath.add(new int[]{2, 7, 4});
+  enemyPath.add(new int[]{2, 8, 4});
 }
 
 
