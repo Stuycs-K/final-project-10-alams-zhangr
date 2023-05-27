@@ -95,5 +95,7 @@ public class Enemies extends LivingObjects{
     this.setLocation(new int[]{coords[0] + step, coords[1]);
   }
   
-  public void movePath(ArrayList<int[]> move
+  public void movePath(ArrayList<int[]> path){
+    if (path.size() = 0){
+      
 }
