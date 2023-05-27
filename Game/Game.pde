@@ -155,10 +155,8 @@ void keyPressed() {
       if (key == inputs.charAt(i)) {
         equal = true;
       }
-    }
-    
+    } 
     if (equal){
-      
     if (key == 'w') {
       inventory[index].setDirection(T);
     }
@@ -286,12 +284,22 @@ void lvlOneEnemyPath() {
 
 void gameMap(int[][]grid) { //pass ogmap
   SQUARE_SIZE = width/map[0].length;
+  strokeWeight(1);
   stroke(255, 255, 255);
   float l = 0;
   float k = 0;
+  
+  float selectl = 0;
+  float selectk = 0;
+  
   for (int i = 0; i < grid.length || ( l < 950 && k < 600 ); i++) {
     k = 0;
     for (int j = 0; j < grid[i].length; j++) {
+      if(opSelect && i == selectedY && j == selectedX){
+        selectl = l;
+        selectk = k;
+      }
+      
       if (grid[i][j] == WALL) {
         fill(color(51));
       } else if (grid[i][j] == GROUND) {
@@ -305,6 +313,11 @@ void gameMap(int[][]grid) { //pass ogmap
       k += SQUARE_SIZE;
     }
     l += SQUARE_SIZE;
+  }
+  if(opSelect){
+  strokeWeight(10);
+  stroke(color(0, 255,0));
+  rect(selectk, selectl, SQUARE_SIZE, SQUARE_SIZE);
   }
 }
 
