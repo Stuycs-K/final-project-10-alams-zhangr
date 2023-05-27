@@ -75,25 +75,28 @@ public class Enemies extends LivingObjects{
     other.setHealth(other.getHealth() - this.getAttack());
   }
   
-  public void moveLeft(int step){
-    int[] coords = this.getLocation();
-    this.setLocation(new int[]{coords[0], coords[1] - step);
-  }
-  
-  public void moveRight(int step){
-    int[] coords = this.getLocation();
-    this.setLocation(new int[]{coords[0], coords[1] + step);
-  }
-  
-  public void moveUp(int step){
-    int[] coords = this.getLocation();
-    this.setLocation(new int[]{coords[0] - step, coords[1]);
-  }
-  
-  public void moveDown(int step){
-    int[] coords = this.getLocation();
-    this.setLocation(new int[]{coords[0] + step, coords[1]);
-  }
+  public void move(int step){
+    int coords = this.getLocation();
+    if (coords[2] == 1){ //up
+      int[] coords = this.getLocation();
+      this.setLocation(new int[]{coords[0] - step, coords[1]});
+    }
+    else if (coords[2] == 2){ //right
+      int[] coords = this.getLocation();
+      this.setLocation(new int[]{coords[0], coords[1] + step});
+    }
+    else if (coords[2] == 3){ //down
+      int[] coords = this.getLocation();
+      this.setLocation(new int[]{coords[0] + step, coords[1]});
+    }
+    else if (coords[2] == 4){ //left
+      int[] coords = this.getLocation();
+      this.setLocation(new int[]{coords[0], coords[1] - step});
+    }
+  }    
+      
+      
+      
   
   public void movePath(ArrayList<int[]> path){
     if (path.size() = 0){
