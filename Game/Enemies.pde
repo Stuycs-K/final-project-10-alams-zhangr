@@ -77,28 +77,64 @@ public class Enemies extends LivingObjects{
   
   public void move(int step){
     int coords = this.getLocation();
-    if (coords[2] == 1){ //up
+    if (this.getDirection() == 1){ //up
       int[] coords = this.getLocation();
       this.setLocation(new int[]{coords[0] - step, coords[1]});
     }
-    else if (coords[2] == 2){ //right
+    else if (this.getDirection() == 2){ //right
       int[] coords = this.getLocation();
       this.setLocation(new int[]{coords[0], coords[1] + step});
     }
-    else if (coords[2] == 3){ //down
+    else if (this.getDirection() == 3){ //down
       int[] coords = this.getLocation();
       this.setLocation(new int[]{coords[0] + step, coords[1]});
     }
-    else if (coords[2] == 4){ //left
+    else if (this.getDirection() == 4){ //left
       int[] coords = this.getLocation();
       this.setLocation(new int[]{coords[0], coords[1] - step});
     }
-  }    
-      
-      
-      
+  }
   
-  public void movePath(ArrayList<int[]> path){
+  public void boolean nextStepOnPath(ArrayList<int[]> path, int step, int SQUARE_SIZE){
+    int[] block = path.get(path.size() - 1);
+    int[] coords = this.getLocation();
+    if (this.getDirection() == 1){ //up
+      if ((coords[0] - step)/SQUARE_SIZE != block[1]){
+        return false;
+      }
+    }
+    else if (this.getDirection() == 2){ //right
+      if ((coords[1] + step)/SQUARE_SIZE != block[0]){
+        return false;
+      }
+    }
+    else if (this.getDirection() == 3){ //down
+      if ((coords[0] + step)/SQUARE_SIZE != block[1]){
+        return false;
+      }
+    }
+    else if (this.getDirection() == 4){ //left
+      if ((coords[1] - step)/SQUARE_SIZE != block[0]){
+        return false;
+      }
+    }
+  }
+     
+  
+  public void movePath(ArrayList<int[]> path, int step, int SQUARE_SIZE){
     if (path.size() = 0){
-      
+      int[] coords = path.get(path.size() - 1);
+      if (this.getDirection() == coords[3] && nextStepOnPath(path, step, SQUARE_SIZE)){
+        move(step);
+      }
+      else {
+        path.remove(path.size() - 1);
+        int[] coords = path.get(path.size() - 1);
+        this.setDirection(coords[3]);
+        if (this.getDirection() == coords[3] && nextStepOnPath(path, step, SQUARE_SIZE)){
+          move(step);
+        }
+      }
+    }
+  } 
 }
