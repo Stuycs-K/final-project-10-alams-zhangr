@@ -51,8 +51,8 @@ void setup() {
   text("Level Three", 450, 360);
 
   lvlOne();
-  lvlOneEnemyPath();
-  frameRate(10);
+  //lvlOneEnemyPath();
+  //frameRate(1);
 
   //SETUP LIVING OBJECTS
 
@@ -83,13 +83,13 @@ void draw() {
     inventory();
     displayChar();
   }
-  if (!onMenu) {
-    slug = loadImage("originium_slug.png");
-    if (enemyPath.size() > 1) {
-      int[] coords = enemyPath.remove(enemyPath.size() - 1);
-      image(slug, coords[1] * SQUARE_SIZE, coords[0] * SQUARE_SIZE);
-    }
-  }
+  //if (!onMenu) {
+  //  slug = loadImage("originium_slug.png");
+  //  if (enemyPath.size() > 1) {
+  //    int[] coords = enemyPath.remove(enemyPath.size() - 1);
+  //    image(slug, coords[1] * SQUARE_SIZE, coords[0] * SQUARE_SIZE);
+  //  }
+  //}
 }
 
 void mouseClicked() {
@@ -112,7 +112,7 @@ void mouseClicked() {
       onMap = true;
     }
   } else if (onMap) {
-    if (mouseX <= 950 && mouseY <= 550 - SQUARE_SIZE) {
+    if (mouseX <= 950 && mouseY <= 550 - SQUARE_SIZE && !(directionSelect)) {
       int row = 0;
       int column = 0;
       int w = mouseX;
@@ -131,15 +131,9 @@ void mouseClicked() {
       if (map[row][column] == AERIAL || map[row][column] == GROUND) {
 
         if (!(charMap[row][column] > -1)) {
-
           opSelect = true;
 
-          //replace
-          println("Press #1-6 to select an operator");
-          //text display
-          textSize(25);
-          fill(color(0, 255, 0));
-          text("Press #1-6 to select an operator", 0, SQUARE_SIZE*map.length);
+          
         } else {
           opRemove = true;
         }
@@ -153,8 +147,16 @@ void mouseClicked() {
 void keyPressed() {
   if (directionSelect) {
     int index = charMap[selectedY][selectedX];
-    while (keyPressed = false) {
+    while (keyPressed == false) {
     }
+    String inputs = "wasd";
+    boolean equal = false;
+    for (int i = 0; i < inputs.length(); i++) {
+      if (key == inputs.charAt(i)) {
+        equal = true;
+      }
+    } 
+    if (equal){
     if (key == 'w') {
       inventory[index].setDirection(T);
     }
@@ -169,14 +171,16 @@ void keyPressed() {
     }
     println("direction is " + inventory[index].getDirection());
     directionSelect = false;
+    //opSelect = false;
+    }
   }
 
   if (opSelect) {
     while (keyPressed == false) {
       //text display
-      //textSize(25);
-      //fill(color(0, 255, 0));
-      //text("Press #1-6 to select an operator", 0, SQUARE_SIZE*map.length);
+      textSize(25);
+      fill(color(0, 255, 0));
+      text("Press #1-6 to select an operator", 0, SQUARE_SIZE*map.length);
     }
     String inputs = "123456";
     boolean equal = false;
@@ -198,9 +202,9 @@ void keyPressed() {
   }
 
   if (opRemove) {
-    while (keyPressed = false) {
+    while (keyPressed == false) {
     }
-    if (key == ENTER) {
+    if (key == ENTER && charMap[selectedY][selectedX] > -1) {
       int index = charMap[selectedY][selectedX];
       charMap[selectedY][selectedX] = map[selectedY][selectedX];
       inventory[index].setDeployed(false);
@@ -210,7 +214,6 @@ void keyPressed() {
     }
   }
 }
-
 
 /////////////////MAPS SETUP////////////////////////////
 
@@ -249,6 +252,7 @@ void lvlOne() {
       eneMap[i][j] = map[i][j];
     }
   }
+ 
   //maybe combine later***
   ogmap = new int[5][9]; //for display purposes INCLUDES INVENTORY
   for (int i = 0; i < 5; i++) {
@@ -258,6 +262,7 @@ void lvlOne() {
       }
     }
   }
+  
   map[2][8] = WALL;
   map[1][0] = WALL;
 }
@@ -279,19 +284,26 @@ void lvlOneEnemyPath() {
 }
 
 
-
-
-
 ///////////DISPLAYING/////////////////////////////////////
 
 void gameMap(int[][]grid) { //pass ogmap
   SQUARE_SIZE = width/map[0].length;
+  strokeWeight(1);
   stroke(255, 255, 255);
   float l = 0;
   float k = 0;
+  
+  float selectl = 0;
+  float selectk = 0;
+  
   for (int i = 0; i < grid.length || ( l < 950 && k < 600 ); i++) {
     k = 0;
     for (int j = 0; j < grid[i].length; j++) {
+      if(opSelect && i == selectedY && j == selectedX){
+        selectl = l;
+        selectk = k;
+      }
+      
       if (grid[i][j] == WALL) {
         fill(color(51));
       } else if (grid[i][j] == GROUND) {
@@ -306,6 +318,11 @@ void gameMap(int[][]grid) { //pass ogmap
     }
     l += SQUARE_SIZE;
   }
+  if(opSelect){
+  strokeWeight(10);
+  stroke(color(0, 255,0));
+  rect(selectk, selectl, SQUARE_SIZE, SQUARE_SIZE);
+  }
 }
 
 void displayChar() {
@@ -313,7 +330,7 @@ void displayChar() {
     for (int j = 0; j < charMap[i].length; j++) {
       if (charMap[i][j] >= 0) {
         PImage op0 = loadImage(inventory[charMap[i][j]].getSprite());
-        image(op0, SQUARE_SIZE*j, SQUARE_SIZE*i, 150, 150);
+        image(op0, SQUARE_SIZE*j - 30, SQUARE_SIZE*i - 70, 175, 175);
       }
     }
   }
@@ -324,7 +341,14 @@ void inventory() {
   for (int i = 0; i < 6; i++) {
     if (!inventory[i].getDeployed()) {
       PImage op0 = loadImage(inventory[i].getSprite());
+      if(opSelect){
+        int type = map[selectedY][selectedX];
+        if(inventory[i].getType() != type){
+          tint(255,0,0);
+        }
+      }
       image(op0, SQUARE_SIZE*i, SQUARE_SIZE*3.5, 150, 150);
+      noTint();
     }
   }
 }
