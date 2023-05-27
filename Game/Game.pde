@@ -341,7 +341,14 @@ void inventory() {
   for (int i = 0; i < 6; i++) {
     if (!inventory[i].getDeployed()) {
       PImage op0 = loadImage(inventory[i].getSprite());
+      if(opSelect){
+        int type = map[selectedY][selectedX];
+        if(inventory[i].getType() != type){
+          tint(255,0,0);
+        }
+      }
       image(op0, SQUARE_SIZE*i, SQUARE_SIZE*3.5, 150, 150);
+      noTint();
     }
   }
 }
