@@ -112,7 +112,7 @@ void mouseClicked() {
       onMap = true;
     }
   } else if (onMap) {
-    if (mouseX <= 950 && mouseY <= 550 - SQUARE_SIZE) {
+    if (mouseX <= 950 && mouseY <= 550 - SQUARE_SIZE && !(directionSelect)) {
       int row = 0;
       int column = 0;
       int w = mouseX;
@@ -128,15 +128,10 @@ void mouseClicked() {
       selectedX = column;
       selectedY = row;
       println(row + " " + column);
-      if ((map[row][column] == AERIAL || map[row][column] == GROUND)) {
+      if (map[row][column] == AERIAL || map[row][column] == GROUND) {
 
         if (!(charMap[row][column] > -1)) {
-          if(opSelect){
-            opSelect = false;
-          }
-          else{
           opSelect = true;
-          }
 
           
         } else {
@@ -151,15 +146,19 @@ void mouseClicked() {
 
 void keyPressed() {
   if (directionSelect) {
-        String inputs = "123456";
+    int index = charMap[selectedY][selectedX];
+    while (keyPressed == false) {
+    }
+    String inputs = "wasd";
     boolean equal = false;
     for (int i = 0; i < inputs.length(); i++) {
       if (key == inputs.charAt(i)) {
         equal = true;
       }
-    int index = charMap[selectedY][selectedX];
-    while (keyPressed == false || !(charMap[selectedY][selectedX] > -1) ) {
     }
+    
+    if (equal){
+      
     if (key == 'w') {
       inventory[index].setDirection(T);
     }
@@ -175,6 +174,7 @@ void keyPressed() {
     println("direction is " + inventory[index].getDirection());
     directionSelect = false;
     //opSelect = false;
+    }
   }
 
   if (opSelect) {
@@ -216,7 +216,6 @@ void keyPressed() {
     }
   }
 }
-
 
 /////////////////MAPS SETUP////////////////////////////
 
