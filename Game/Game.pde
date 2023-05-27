@@ -51,8 +51,8 @@ void setup() {
   text("Level Three", 450, 360);
 
   lvlOne();
-  lvlOneEnemyPath();
-  frameRate(10);
+  //lvlOneEnemyPath();
+  //frameRate(1);
 
   //SETUP LIVING OBJECTS
 
@@ -83,13 +83,13 @@ void draw() {
     inventory();
     displayChar();
   }
-  if (!onMenu) {
-    slug = loadImage("originium_slug.png");
-    if (enemyPath.size() > 1) {
-      int[] coords = enemyPath.remove(enemyPath.size() - 1);
-      image(slug, coords[1] * SQUARE_SIZE, coords[0] * SQUARE_SIZE);
-    }
-  }
+  //if (!onMenu) {
+  //  slug = loadImage("originium_slug.png");
+  //  if (enemyPath.size() > 1) {
+  //    int[] coords = enemyPath.remove(enemyPath.size() - 1);
+  //    image(slug, coords[1] * SQUARE_SIZE, coords[0] * SQUARE_SIZE);
+  //  }
+  //}
 }
 
 void mouseClicked() {
@@ -112,7 +112,7 @@ void mouseClicked() {
       onMap = true;
     }
   } else if (onMap) {
-    if (mouseX <= 950 && mouseY <= 550 - SQUARE_SIZE) {
+    if (mouseX <= 950 && mouseY <= 550 - SQUARE_SIZE && !(directionSelect)) {
       int row = 0;
       int column = 0;
       int w = mouseX;
@@ -131,15 +131,9 @@ void mouseClicked() {
       if (map[row][column] == AERIAL || map[row][column] == GROUND) {
 
         if (!(charMap[row][column] > -1)) {
-
           opSelect = true;
 
-          //replace
-          println("Press #1-6 to select an operator");
-          //text display
-          textSize(25);
-          fill(color(0, 255, 0));
-          text("Press #1-6 to select an operator", 0, SQUARE_SIZE*map.length);
+          
         } else {
           opRemove = true;
         }
@@ -153,8 +147,18 @@ void mouseClicked() {
 void keyPressed() {
   if (directionSelect) {
     int index = charMap[selectedY][selectedX];
-    while (keyPressed = false) {
+    while (keyPressed == false) {
     }
+    String inputs = "wasd";
+    boolean equal = false;
+    for (int i = 0; i < inputs.length(); i++) {
+      if (key == inputs.charAt(i)) {
+        equal = true;
+      }
+    }
+    
+    if (equal){
+      
     if (key == 'w') {
       inventory[index].setDirection(T);
     }
@@ -169,14 +173,16 @@ void keyPressed() {
     }
     println("direction is " + inventory[index].getDirection());
     directionSelect = false;
+    //opSelect = false;
+    }
   }
 
   if (opSelect) {
     while (keyPressed == false) {
       //text display
-      //textSize(25);
-      //fill(color(0, 255, 0));
-      //text("Press #1-6 to select an operator", 0, SQUARE_SIZE*map.length);
+      textSize(25);
+      fill(color(0, 255, 0));
+      text("Press #1-6 to select an operator", 0, SQUARE_SIZE*map.length);
     }
     String inputs = "123456";
     boolean equal = false;
@@ -198,9 +204,9 @@ void keyPressed() {
   }
 
   if (opRemove) {
-    while (keyPressed = false) {
+    while (keyPressed == false) {
     }
-    if (key == ENTER) {
+    if (key == ENTER && charMap[selectedY][selectedX] > -1) {
       int index = charMap[selectedY][selectedX];
       charMap[selectedY][selectedX] = map[selectedY][selectedX];
       inventory[index].setDeployed(false);
@@ -210,7 +216,6 @@ void keyPressed() {
     }
   }
 }
-
 
 /////////////////MAPS SETUP////////////////////////////
 
@@ -275,9 +280,6 @@ void lvlOneEnemyPath() {
   enemyPath.add(new int[]{2, 7});
   enemyPath.add(new int[]{2, 8});
 }
-
-
-
 
 
 ///////////DISPLAYING/////////////////////////////////////
