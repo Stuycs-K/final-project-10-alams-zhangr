@@ -3,7 +3,7 @@ import java.util.*;
 private float SQUARE_SIZE;
 
 private int cost;
-private int timer; //unsure if needed
+private int timer;
 private int unitLimit;
 
 private int[][]map; //NOT USELESS CHECK LVL SETUP OPTIMIZE LATER 
@@ -50,7 +50,6 @@ void setup() {
   text("Level Two", 450, 285);
   text("Level Three", 450, 360);
 
-  lvlOne();
   //lvlOneEnemyPath();
   //frameRate(1);
 
@@ -352,6 +351,9 @@ void inventory() {
   for (int i = 0; i < 6; i++) {
     if (!inventory[i].getDeployed()) {
       PImage op0 = loadImage(inventory[i].getSprite());
+      if(cost < inventory[i].getDp() || unitLimit == 0){
+        tint(150,150,150);
+      }
       if(opSelect){
         int type = map[selectedY][selectedX];
         if(inventory[i].getType() != type){
