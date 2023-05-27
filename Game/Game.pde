@@ -6,7 +6,7 @@ private int cost;
 private int timer; //unsure if needed
 private int unitLimit;
 
-private int[][]map; //USELESS but nice to have
+private int[][]map; //NOT USELESS CHECK LVL SETUP OPTIMIZE LATER 
 private int[][]ogmap; //for displaying inventory with map DO NOT TOUCH
 private int[][]charMap;
 private int[][]eneMap;
@@ -77,11 +77,14 @@ void setup() {
   inventory[5] = op5;
 }
 
+////////////////////DRAW///////////////////////////////
 void draw() {
   if (levelSelect > 0) {
     gameMap(ogmap);
+    timer++;
     inventory();
     displayChar();
+    limits();
   }
   //if (!onMenu) {
   //  slug = loadImage("originium_slug.png");
@@ -91,6 +94,9 @@ void draw() {
   //  }
   //}
 }
+
+////////////////////////////////////////////////////
+
 
 void mouseClicked() {
   //menu select
@@ -192,9 +198,11 @@ void keyPressed() {
     if (equal) {
       String keey = "" + key;
       int index = Integer.parseInt(keey) - 1;
-      while (!inventory[index].getDeployed() && inventory[index].getType() == map[selectedY][selectedX]) {
+      while (!inventory[index].getDeployed() && inventory[index].getType() == map[selectedY][selectedX] && ((cost - inventory[index].getDp()) >= 0) && unitLimit > 0) {
+        cost -= inventory[index].getDp();
         inventory[index].setDeployed(true);
         charMap[selectedY][selectedX] = index;
+        unitLimit--;
         directionSelect = true;
         opSelect = false;
       }
@@ -208,6 +216,7 @@ void keyPressed() {
       int index = charMap[selectedY][selectedX];
       charMap[selectedY][selectedX] = map[selectedY][selectedX];
       inventory[index].setDeployed(false);
+      unitLimit++;
       println("removed character");
     } else {
       opRemove = false;
@@ -219,6 +228,8 @@ void keyPressed() {
 
 void lvlOne() {
   //MAP1 for placement purposes
+  cost = 5;
+  unitLimit = 3;
   map = new int[4][9];
   for (int i = 0; i < 4; i++) {
     for (int j = 0; j < 9; j++) {
@@ -351,4 +362,18 @@ void inventory() {
       noTint();
     }
   }
+}
+
+void limits(){
+  //display cost
+  if(timer%20 == 0){
+    cost++;
+  }
+  fill(color(255,255,255));
+  rect((map[0].length - 2)*SQUARE_SIZE, (map.length)*SQUARE_SIZE, SQUARE_SIZE*2, SQUARE_SIZE);
+  textSize(30);
+  fill(color(0,0,0));
+  text("Cost: " + cost, (map[0].length - 2)*SQUARE_SIZE + 20, map.length*SQUARE_SIZE + 30);
+  text("Unit Limit: " + unitLimit, (map[0].length - 2)*SQUARE_SIZE + 20, map.length*SQUARE_SIZE + 90);
+
 }
