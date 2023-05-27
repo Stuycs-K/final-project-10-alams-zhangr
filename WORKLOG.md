@@ -85,3 +85,9 @@ reminders:
 
 - got enemy path to work
 - attempted to implement pause, but does not work as intended
+
+### 5/26/23
+
+- working on enemy movement
+- revamped enemyPath in game (new parameter in the int array elements)
+- new move method (have not tested yet)
