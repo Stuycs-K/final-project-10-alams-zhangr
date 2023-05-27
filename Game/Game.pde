@@ -252,6 +252,7 @@ void lvlOne() {
       eneMap[i][j] = map[i][j];
     }
   }
+ 
   //maybe combine later***
   ogmap = new int[5][9]; //for display purposes INCLUDES INVENTORY
   for (int i = 0; i < 5; i++) {
@@ -261,6 +262,9 @@ void lvlOne() {
       }
     }
   }
+  
+  map[2][8] = WALL;
+  map[1][0] = WALL;
 }
 
 void lvlOneEnemyPath() {
@@ -326,7 +330,7 @@ void displayChar() {
     for (int j = 0; j < charMap[i].length; j++) {
       if (charMap[i][j] >= 0) {
         PImage op0 = loadImage(inventory[charMap[i][j]].getSprite());
-        image(op0, SQUARE_SIZE*j, SQUARE_SIZE*i, 150, 150);
+        image(op0, SQUARE_SIZE*j - 30, SQUARE_SIZE*i - 70, 175, 175);
       }
     }
   }
