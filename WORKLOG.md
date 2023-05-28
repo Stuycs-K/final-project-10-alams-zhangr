@@ -66,6 +66,13 @@ ISSUES
 REMINDERS
 - test ranges (work on ranges & individual object timers)
 
+### 5/27/23
+- changed range & tested 
+- working on character and enemy interaction
+
+ISSUES
+- text indicators for selection not working
+
 
 ## GROUP MEMBER 2 //RAYMOND
 
