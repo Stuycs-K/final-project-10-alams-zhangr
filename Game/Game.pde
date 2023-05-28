@@ -6,7 +6,7 @@ private int cost;
 private int timer;
 private int unitLimit;
 
-private int[][]map; //NOT USELESS CHECK LVL SETUP OPTIMIZE LATER 
+private int[][]map; //NOT USELESS CHECK LVL SETUP OPTIMIZE LATER
 private int[][]ogmap; //for displaying inventory with map DO NOT TOUCH
 private int[][]charMap;
 private int[][]eneMap;
@@ -14,6 +14,7 @@ private ArrayList<int[]> enemyPath;//just to make it work at the moment
 
 
 private TowerCharacters[]inventory;
+private ArrayList<Enemies>enemyList;
 
 static final int WALL = -1;
 static final int AERIAL = -2;
@@ -56,10 +57,14 @@ void setup() {
   //SETUP LIVING OBJECTS
 
   //Enemies(int hp, int spd, int atk, int hit, int[] position, String img)
-  Enemies brr = new Enemies(1, 2, 3, 4, new int[]{5, 5}, "hi");
+  Enemies slug = new Enemies(10, 10, 0, 0, new int[]{2, 8}, "originium_slug.png" );
 
+  //SETUP ENEMYLIST
+  enemyList = new ArrayList<Enemies>();
+  enemyList.add(slug);
+  
   //TowerCharacters(int hp, int spd, int atk, int hit, String img, int blk, String type, int dp){
-  TowerCharacters op0 = new TowerCharacters(50, 0, 1, 1, "ayer.png", 1, GROUND, 2);
+  TowerCharacters op0 = new TowerCharacters(50, 0, 5, 1, "ayer.png", 1, GROUND, 2);
   TowerCharacters op1 = new TowerCharacters(50, 0, 1, 1, "meterorite.png", 1, AERIAL, 2);
   TowerCharacters op2 = new TowerCharacters(50, 0, 1, 1, "purestream.png", 1, AERIAL, 2);
   TowerCharacters op3 = new TowerCharacters(50, 0, 1, 1, "kaltsit.png", 1, AERIAL, 2);
@@ -84,7 +89,12 @@ void draw() {
     inventory();
     displayChar();
     limits();
+    charAction();
+    
   }
+
+
+
   //if (!onMenu) {
   //  slug = loadImage("originium_slug.png");
   //  if (enemyPath.size() > 1) {
@@ -94,7 +104,7 @@ void draw() {
   //}
 }
 
-////////////////////////////////////////////////////
+///////////////////GAMEPLAY/////////////////////////////////
 
 
 void mouseClicked() {
@@ -137,8 +147,6 @@ void mouseClicked() {
 
         if (!(charMap[row][column] > -1)) {
           opSelect = true;
-
-          
         } else {
           opRemove = true;
         }
@@ -160,23 +168,23 @@ void keyPressed() {
       if (key == inputs.charAt(i)) {
         equal = true;
       }
-    } 
-    if (equal){
-    if (key == 'w') {
-      inventory[index].setDirection(T);
     }
-    if (key == 'd') {
-      inventory[index].setDirection(R);
-    }
-    if (key == 's') {
-      inventory[index].setDirection(D);
-    }
-    if (key == 'a') {
-      inventory[index].setDirection(L);
-    }
-    println("direction is " + inventory[index].getDirection());
-    directionSelect = false;
-    //opSelect = false;
+    if (equal) {
+      if (key == 'w') {
+        inventory[index].setDirection(T);
+      }
+      if (key == 'd') {
+        inventory[index].setDirection(R);
+      }
+      if (key == 's') {
+        inventory[index].setDirection(D);
+      }
+      if (key == 'a') {
+        inventory[index].setDirection(L);
+      }
+      println("direction is " + inventory[index].getDirection());
+      directionSelect = false;
+      //opSelect = false;
     }
   }
 
@@ -223,6 +231,47 @@ void keyPressed() {
   }
 }
 
+
+void charAction() {
+  for (int i = 0; i < inventory.length; i++) { //array of enemies must start at index 1 if peek = 0 hp then remove
+    if (inventory[i].getDeployed()) {
+      if (inventory[i].checkRange() != -10) {
+        if (enemyList.get(inventory[i].checkRange()).getHealth() > 0) {
+           println(enemyList.get(inventory[i].checkRange()).getHealth());
+          inventory[i].toAttack(enemyList.get(inventory[i].checkRange()));
+        } else {
+          inventory[i].blocked.remove();
+          enemyList.remove(0);
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /////////////////MAPS SETUP////////////////////////////
 
 void lvlOne() {
@@ -262,7 +311,7 @@ void lvlOne() {
       eneMap[i][j] = map[i][j];
     }
   }
- 
+
   //maybe combine later***
   ogmap = new int[5][9]; //for display purposes INCLUDES INVENTORY
   for (int i = 0; i < 5; i++) {
@@ -272,9 +321,10 @@ void lvlOne() {
       }
     }
   }
-  
+
   map[2][8] = WALL;
   map[1][0] = WALL;
+  eneMap[2][3] = 0;
 }
 
 void lvlOneEnemyPath() {
@@ -302,18 +352,18 @@ void gameMap(int[][]grid) { //pass ogmap
   stroke(255, 255, 255);
   float l = 0;
   float k = 0;
-  
+
   float selectl = 0;
   float selectk = 0;
-  
+
   for (int i = 0; i < grid.length || ( l < 950 && k < 600 ); i++) {
     k = 0;
     for (int j = 0; j < grid[i].length; j++) {
-      if(opSelect && i == selectedY && j == selectedX){
+      if (opSelect && i == selectedY && j == selectedX) {
         selectl = l;
         selectk = k;
       }
-      
+
       if (grid[i][j] == WALL) {
         fill(color(51));
       } else if (grid[i][j] == GROUND) {
@@ -328,10 +378,10 @@ void gameMap(int[][]grid) { //pass ogmap
     }
     l += SQUARE_SIZE;
   }
-  if(opSelect){
-  strokeWeight(10);
-  stroke(color(0, 255,0));
-  rect(selectk, selectl, SQUARE_SIZE, SQUARE_SIZE);
+  if (opSelect) {
+    strokeWeight(10);
+    stroke(color(0, 255, 0));
+    rect(selectk, selectl, SQUARE_SIZE, SQUARE_SIZE);
   }
 }
 
@@ -342,6 +392,10 @@ void displayChar() {
         PImage op0 = loadImage(inventory[charMap[i][j]].getSprite());
         image(op0, SQUARE_SIZE*j - 30, SQUARE_SIZE*i - 70, 175, 175);
       }
+      if (eneMap[i][j] >= 0) {
+        PImage op0 = loadImage(enemyList.get(eneMap[i][j]).getSprite());
+        image(op0, SQUARE_SIZE*j, SQUARE_SIZE*i + 30, 120, 120); //testing
+      }
     }
   }
 }
@@ -351,13 +405,13 @@ void inventory() {
   for (int i = 0; i < 6; i++) {
     if (!inventory[i].getDeployed()) {
       PImage op0 = loadImage(inventory[i].getSprite());
-      if(cost < inventory[i].getDp() || unitLimit == 0){
-        tint(150,150,150);
+      if (cost < inventory[i].getDp() || unitLimit == 0) {
+        tint(150, 150, 150);
       }
-      if(opSelect){
+      if (opSelect) {
         int type = map[selectedY][selectedX];
-        if(inventory[i].getType() != type){
-          tint(255,0,0);
+        if (inventory[i].getType() != type) {
+          tint(255, 0, 0);
         }
       }
       image(op0, SQUARE_SIZE*i, SQUARE_SIZE*3.5, 150, 150);
@@ -366,16 +420,15 @@ void inventory() {
   }
 }
 
-void limits(){
+void limits() {
   //display cost
-  if(timer%20 == 0){
+  if (timer%20 == 0) {
     cost++;
   }
-  fill(color(255,255,255));
+  fill(color(255, 255, 255));
   rect((map[0].length - 2)*SQUARE_SIZE, (map.length)*SQUARE_SIZE, SQUARE_SIZE*2, SQUARE_SIZE);
   textSize(30);
-  fill(color(0,0,0));
+  fill(color(0, 0, 0));
   text("Cost: " + cost, (map[0].length - 2)*SQUARE_SIZE + 20, map.length*SQUARE_SIZE + 30);
   text("Unit Limit: " + unitLimit, (map[0].length - 2)*SQUARE_SIZE + 20, map.length*SQUARE_SIZE + 90);
-
 }
