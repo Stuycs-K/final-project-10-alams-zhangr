@@ -54,6 +54,17 @@ REMINDERS
 - Fix display of characters to fit in squares
 - Organize code
 
+### 5/26/23
+- Fixed issues with directselect
+- added indicators for selection
+- added cost, global timer, & unit limit 
+- display ops better
+
+ISSUES
+- text indicators for selection are not working
+
+REMINDERS
+- test ranges (work on ranges & individual object timers)
 
 
 ## GROUP MEMBER 2 //RAYMOND
