@@ -61,7 +61,7 @@ void setup() {
   enemyList.add(slug);
 
   //TowerCharacters(int hp, int spd, int atk, int hit, String img, int blk, String type, int dp){
-  TowerCharacters op0 = new TowerCharacters(50, 2, 5, 1, "ayer.png", 1, GROUND, 2);
+  TowerCharacters op0 = new TowerCharacters(50, 20, 5, 1, "ayer.png", 1, GROUND, 2);
   TowerCharacters op1 = new TowerCharacters(50, 0, 1, 1, "meterorite.png", 1, AERIAL, 2);
   TowerCharacters op2 = new TowerCharacters(50, 0, 1, 1, "purestream.png", 1, AERIAL, 2);
   TowerCharacters op3 = new TowerCharacters(50, 0, 1, 1, "kaltsit.png", 1, AERIAL, 2);
