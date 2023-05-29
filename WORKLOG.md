@@ -54,6 +54,24 @@ REMINDERS
 - Fix display of characters to fit in squares
 - Organize code
 
+### 5/26/23
+- Fixed issues with directselect
+- added indicators for selection
+- added cost, global timer, & unit limit 
+- display ops better
+
+ISSUES
+- text indicators for selection are not working
+
+REMINDERS
+- test ranges (work on ranges & individual object timers)
+
+### 5/27/23
+- changed range & tested 
+- working on character and enemy interaction
+
+ISSUES
+- text indicators for selection not working
 
 
 ## GROUP MEMBER 2 //RAYMOND
@@ -85,3 +103,9 @@ reminders:
 
 - got enemy path to work
 - attempted to implement pause, but does not work as intended
+
+### 5/26/23
+
+- working on enemy movement
+- revamped enemyPath in game (new parameter in the int array elements)
+- new move method (have not tested yet)

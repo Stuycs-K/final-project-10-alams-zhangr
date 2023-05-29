@@ -49,13 +49,9 @@ public class Enemies extends LivingObjects{
   }
   
   ////RANGE
-  //public int[] getRange(){
-  //  return range;
-  //}
-  
-  //public void setRange(int[] newRange){
-  //  range = newRange;
-  //}
+  public int getRange(){
+    return range;
+  }
   
   //LOCATION
   public int[] getLocation(){
