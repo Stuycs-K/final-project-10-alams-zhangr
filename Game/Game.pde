@@ -51,10 +51,7 @@ void setup() {
   text("Level Two", 450, 285);
   text("Level Three", 450, 360);
 
-  //lvlOneEnemyPath();
-  //frameRate(1);
-
-  //SETUP LIVING OBJECTS
+  //////////////////SETUP LIVING OBJECTS//////////////////
 
   //Enemies(int hp, int spd, int atk, int hit, int[] position, String img)
   Enemies slug = new Enemies(10, 10, 0, 0, new int[]{2, 8}, "originium_slug.png" );
@@ -62,9 +59,9 @@ void setup() {
   //SETUP ENEMYLIST
   enemyList = new ArrayList<Enemies>();
   enemyList.add(slug);
-  
+
   //TowerCharacters(int hp, int spd, int atk, int hit, String img, int blk, String type, int dp){
-  TowerCharacters op0 = new TowerCharacters(50, 0, 5, 1, "ayer.png", 1, GROUND, 2);
+  TowerCharacters op0 = new TowerCharacters(50, 2, 5, 1, "ayer.png", 1, GROUND, 2);
   TowerCharacters op1 = new TowerCharacters(50, 0, 1, 1, "meterorite.png", 1, AERIAL, 2);
   TowerCharacters op2 = new TowerCharacters(50, 0, 1, 1, "purestream.png", 1, AERIAL, 2);
   TowerCharacters op3 = new TowerCharacters(50, 0, 1, 1, "kaltsit.png", 1, AERIAL, 2);
@@ -81,8 +78,8 @@ void setup() {
   inventory[5] = op5;
 }
 
-  Display display = new Display();
-////////////////////DRAW///////////////////////////////
+Display display = new Display();
+
 void draw() {
   if (levelSelect > 0) {
     display.gameMap(ogmap);
@@ -91,19 +88,8 @@ void draw() {
     display.displayChar();
     display.limits();
     charAction();
-    
   }
-
-  //if (!onMenu) {
-  //  slug = loadImage("originium_slug.png");
-  //  if (enemyPath.size() > 1) {
-  //    int[] coords = enemyPath.remove(enemyPath.size() - 1);
-  //    image(slug, coords[1] * SQUARE_SIZE, coords[0] * SQUARE_SIZE);
-  //  }
-  //}
 }
-
-///////////////////GAMEPLAY/////////////////////////////////
 
 Maps level = new Maps();
 
@@ -113,6 +99,12 @@ void mouseClicked() {
     if (mouseX >= 325 && mouseX <= 675 && mouseY >=175 && mouseY <= 225) {
       levelSelect = 1;
       level.lvlOne();
+
+      //testing
+      eneMap[2][3] = 0;
+      enemyList.get(0).setLocation(new int[]{2, 3});
+
+
       onMenu = false;
       onMap = true;
     }
@@ -126,6 +118,8 @@ void mouseClicked() {
       onMenu = false;
       onMap = true;
     }
+
+    /////GAME PLAY////
   } else if (onMap) {
     if (mouseX <= 950 && mouseY <= 550 - SQUARE_SIZE && !(directionSelect)) {
       int row = 0;
@@ -184,7 +178,6 @@ void keyPressed() {
       }
       println("direction is " + inventory[index].getDirection());
       directionSelect = false;
-      //opSelect = false;
     }
   }
 
@@ -207,9 +200,10 @@ void keyPressed() {
       int index = Integer.parseInt(keey) - 1;
       while (!inventory[index].getDeployed() && inventory[index].getType() == map[selectedY][selectedX] && ((cost - inventory[index].getDp()) >= 0) && unitLimit > 0) {
         cost -= inventory[index].getDp();
-        inventory[index].setDeployed(true);
         charMap[selectedY][selectedX] = index;
+        inventory[index].setLocation(new int[]{selectedX, selectedY});
         unitLimit--;
+        inventory[index].setDeployed(true);
         directionSelect = true;
         opSelect = false;
       }
@@ -235,13 +229,24 @@ void keyPressed() {
 void charAction() {
   for (int i = 0; i < inventory.length; i++) { //array of enemies must start at index 1 if peek = 0 hp then remove
     if (inventory[i].getDeployed()) {
-      if (inventory[i].checkRange() != -10) {
-        if (enemyList.get(inventory[i].checkRange()).getHealth() > 0) {
-           println(enemyList.get(inventory[i].checkRange()).getHealth());
-          inventory[i].toAttack(enemyList.get(inventory[i].checkRange()));
-        } else {
-          inventory[i].blocked.remove();
-          enemyList.remove(0);
+      if (inventory[i].checkRange() != null) {
+        println(inventory[i].checkRange());
+        inventory[i].setAttacking(true);
+        //inventory[i].increaseTicks();
+        println ("move " + inventory[i].getTicks());
+        if (inventory[i].getTicks()%inventory[i].getSpeed() == 0) {
+          if (inventory[i].checkRange().getHealth() > 0) {
+            println(inventory[i].checkRange().getHealth());
+            inventory[i].toAttack(inventory[i].checkRange());
+            if (inventory[i].checkRange().getHealth() <= 0) {
+              inventory[i].setAttacking(false);
+              //inventory[i].restartTicks();
+              int[] position = inventory[i].checkRange().getLocation();
+              eneMap[position[0]][position[1]] = map[position[0]][position[1]];
+              enemyList.remove(0);
+              inventory[i].blocked.remove();
+            }
+          }
         }
       }
     }

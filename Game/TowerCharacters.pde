@@ -8,7 +8,7 @@ public class TowerCharacters extends LivingObjects{
   private String sprite;
   public int ticks = 0;
   private int block;
-  public Queue<Integer> blocked;
+  public Queue<Enemies> blocked;
   private boolean deployed;
   private boolean attacking;
   private int type;
@@ -27,7 +27,7 @@ public class TowerCharacters extends LivingObjects{
     location = new int[]{0, 0};
     sprite = img;
     block = blk;
-    blocked = new LinkedList<Integer>();
+    blocked = new LinkedList<Enemies>();
     deployed = false;
     attacking = false;
     type = optype;
@@ -41,6 +41,10 @@ public class TowerCharacters extends LivingObjects{
   
   public void setHealth(int newHealth){
     health = newHealth;
+  }
+  
+  public int getSpeed(){
+    return speed;
   }
   
   //ATTACK
@@ -79,6 +83,18 @@ public class TowerCharacters extends LivingObjects{
     return sprite;
   }
   
+  public void increaseTicks(){
+    ticks++;
+  }
+  
+  public void restartTicks(){
+    ticks = 0;
+  }
+  
+  public int getTicks(){
+    return ticks;
+  }
+  
   public int getBlock(){
     return block;
   }
@@ -89,6 +105,16 @@ public class TowerCharacters extends LivingObjects{
   
   public void setDeployed(boolean deploy){
     deployed = deploy;
+  }
+  
+  public boolean getAttacking(){
+    return attacking;
+  }
+  
+  public void setAttacking(boolean attacks){
+    attacking = attacks;
+    if(attacks) increaseTicks();
+    else restartTicks();
   }
   
   public int getType(){
@@ -104,10 +130,10 @@ public class TowerCharacters extends LivingObjects{
     other.setHealth(other.getHealth() - this.getAttack());
   } 
   
-    public int checkRange(){ //returns first value of blocked
-    if(eneMap[this.location[1]][this.location[0]] > -1){
-      if(blocked.peek() != null && blocked.peek() != eneMap[location[1]][location[0]]){
-      blocked.add(eneMap[location[1]][location[0]]);
+    public Enemies checkRange(){ //returns first value of blocked
+    if(eneMap[location[1]][location[0]] > -1){
+      if(!blocked.contains(enemyList.get(eneMap[location[1]][location[0]]))){
+        blocked.add(enemyList.get(eneMap[location[1]][location[0]]));
       }
     }
     if(this.getRange() == 1){
@@ -115,10 +141,6 @@ public class TowerCharacters extends LivingObjects{
     }
     if(this.getRange() == 2){
       rangeTwo();
-    }
-    
-    if(blocked.peek() == null){
-      return -10;
     }
     return blocked.peek();
   }
@@ -129,28 +151,27 @@ public class TowerCharacters extends LivingObjects{
     if(this.getDirection() == TOP){
       if(y - 1 > 0){
         if(eneMap[y - 1][x] > -1){
-          blocked.add(eneMap[y-1][x]);
         }
       }
     }
     if(this.getDirection() == RIGHT){
       if(x + 1 < eneMap[0].length){
         if(eneMap[y][x+1] > -1){
-          blocked.add(eneMap[y][x+1]);
+          
         }
       }
     }
     if(this.getDirection() == DOWN){
       if(y + 1 < eneMap.length){
         if(eneMap[y +1][x] > -1){
-          blocked.add(eneMap[y + 1][x]);
+          
         }
       }
     }
     if(this.getDirection() == LEFT){
       if(x - 1 > 0){
         if(eneMap[y][x - 1] > -1){
-          blocked.add(eneMap[y][x - 1]);
+          
         }
       }
     }

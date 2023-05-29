@@ -33,8 +33,6 @@ public abstract class LivingObjects{
   ////////////////////////////////////////////////////
   public abstract void toAttack(LivingObjects other);
   
-  public abstract int checkRange();
-  
   public abstract void rangeOne();
   
   public abstract void rangeTwo();

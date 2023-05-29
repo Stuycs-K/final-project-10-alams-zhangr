@@ -4,7 +4,7 @@ public class Maps {
 
   void lvlOne() {
     //MAP1 for placement purposes
-    cost = 0;
+    cost = 5;
     unitLimit = 3;
     map = new int[4][9];
     for (int i = 0; i < 4; i++) {
@@ -52,7 +52,6 @@ public class Maps {
 
     map[2][8] = WALL;
     map[1][0] = WALL;
-    eneMap[2][3] = 0;
   }
 
   void lvlOneEnemyPath() {
