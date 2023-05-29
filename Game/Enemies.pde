@@ -72,21 +72,17 @@ public class Enemies extends LivingObjects{
   }
   
   public void move(int step){
-    int coords = this.getLocation();
+    int[] coords = this.getLocation();
     if (this.getDirection() == 1){ //up
-      int[] coords = this.getLocation();
       this.setLocation(new int[]{coords[0] - step, coords[1]});
     }
     else if (this.getDirection() == 2){ //right
-      int[] coords = this.getLocation();
       this.setLocation(new int[]{coords[0], coords[1] + step});
     }
     else if (this.getDirection() == 3){ //down
-      int[] coords = this.getLocation();
       this.setLocation(new int[]{coords[0] + step, coords[1]});
     }
     else if (this.getDirection() == 4){ //left
-      int[] coords = this.getLocation();
       this.setLocation(new int[]{coords[0], coords[1] - step});
     }
   }
@@ -118,8 +114,9 @@ public class Enemies extends LivingObjects{
      
   
   public void movePath(ArrayList<int[]> path, int step, int SQUARE_SIZE){
-    if (path.size() = 0){
+    if (path.size() == 0){
       int[] coords = path.get(path.size() - 1);
+      this.setDirection(coords[3]);
       if (this.getDirection() == coords[3] && nextStepOnPath(path, step, SQUARE_SIZE)){
         move(step);
       }
