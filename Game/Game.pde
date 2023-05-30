@@ -131,15 +131,8 @@ void mouseClicked() {
       if (map[row][column] == AERIAL || map[row][column] == GROUND) {
 
         if (!(charMap[row][column] > -1)) {
-
           opSelect = true;
-
-          //replace
-          println("Press #1-6 to select an operator");
-          //text display
-          textSize(25);
-          fill(color(0, 255, 0));
-          text("Press #1-6 to select an operator", 0, SQUARE_SIZE*map.length);
+          
         } else {
           opRemove = true;
         }
@@ -153,7 +146,7 @@ void mouseClicked() {
 void keyPressed() {
   if (directionSelect) {
     int index = charMap[selectedY][selectedX];
-    while (keyPressed = false) {
+    while (keyPressed == false) {
     }
     if (key == 'w') {
       inventory[index].setDirection(T);
@@ -172,11 +165,11 @@ void keyPressed() {
   }
 
   if (opSelect) {
-    while (keyPressed == false) {
+    while (keyPressed == false || key == ENTER) {
       //text display
-      //textSize(25);
-      //fill(color(0, 255, 0));
-      //text("Press #1-6 to select an operator", 0, SQUARE_SIZE*map.length);
+      textSize(25);
+      fill(color(0, 255, 0));
+      text("Press #1-6 to select an operator", 0, SQUARE_SIZE*map.length);
     }
     String inputs = "123456";
     boolean equal = false;
