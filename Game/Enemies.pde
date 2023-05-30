@@ -71,4 +71,24 @@ public class Enemies extends LivingObjects{
     other.setHealth(other.getHealth() - this.getAttack());
   }
   
+      public int checkRange(){ //returns first value of blocked
+    if(this.getRange() == 1){
+      rangeOne();
+    }
+    if(this.getRange() == 2){
+      rangeTwo();
+    }
+    return 0;
+  }
+  
+  void rangeOne(){
+    
+  }
+  
+  void rangeTwo(){
+ 
+  }
+  
+  
+
 }
