@@ -37,8 +37,8 @@ private int selectedY;
 private int levelSelect = 0;
 
 private PImage slug;
-private Enemies bob;
 int delay = 10;
+private Enemies sluggy;
 
 void setup() {
   //menu screen
@@ -56,11 +56,12 @@ void setup() {
 
   //Enemies(int hp, int spd, int atk, int hit, int[] position, String img)
 
-  Enemies slug = new Enemies(10, 10, 0, 0, new int[]{2, 8}, "originium_slug.png" );
+  sluggy = new Enemies(10, 10, 0, 0, new int[]{2, 8}, "originium_slug.png" );
+  slug = loadImage("originium_slug.png");
 
   //SETUP ENEMYLIST
   enemyList = new ArrayList<Enemies>();
-  enemyList.add(slug);
+  enemyList.add(sluggy);
 
   //TowerCharacters(int hp, int spd, int atk, int hit, String img, int blk, String type, int dp){
   TowerCharacters op0 = new TowerCharacters(50, 20, 5, 1, "ayer.png", 1, GROUND, 2);
@@ -91,16 +92,15 @@ void draw() {
     display.limits();
     charAction();
   }
-  //if (!onMenu) {
-  //  lvlOneEnemyPath();
-  //  slug = loadImage("originium_slug.png");
-  //  if (enemyPath.size() > 1) {
-  //    int sqSize = (int)(SQUARE_SIZE);
-  //    bob.movePath(enemyPath, 10, sqSize);
-  //    int[] coords = enemyPath.get(enemyPath.size() - 1);
-  //    image(slug, coords[1] * SQUARE_SIZE, coords[0] * SQUARE_SIZE);
-  //  }
-  //}
+  if (!onMenu) {
+    lvlOneEnemyPath();
+    if (enemyPath.size() > 1) {
+      int sqSize = (int)(SQUARE_SIZE);
+      sluggy.movePath(enemyPath, 10, sqSize);
+      int[] coords = enemyPath.get(enemyPath.size() - 1);
+      image(slug, coords[1] * SQUARE_SIZE, coords[0] * SQUARE_SIZE);
+    }
+  }
 }
 
 Maps level = new Maps();
