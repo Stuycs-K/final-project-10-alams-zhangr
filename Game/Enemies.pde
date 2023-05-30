@@ -70,47 +70,62 @@ public class Enemies extends LivingObjects{
     return sprite;
   }
   
+  public int getXCoord(){
+    return xCoord;
+  }
+   
+  public void setXCoord(int newX){
+    xCoord = newX;
+  }
+  
+  public int getYCoord(){
+    return yCoord;
+  }
+   
+  public void setYCoord(int newY){
+    xCoord = newY;
+  }
+  
+  
   ////////////////////////////////////////////
   public void toAttack(LivingObjects other){
     other.setHealth(other.getHealth() - this.getAttack());
   }
   
   public void move(int step){
-    int[] coords = this.getLocation();
     if (this.getDirection() == 1){ //up
-      this.setLocation(new int[]{coords[0] - step, coords[1]});
+      this.setYCoord(this.getYCoord() - step);
     }
     else if (this.getDirection() == 2){ //right
-      this.setLocation(new int[]{coords[0], coords[1] + step});
+      this.setXCoord(this.getXCoord() + step);
     }
     else if (this.getDirection() == 3){ //down
-      this.setLocation(new int[]{coords[0] + step, coords[1]});
+      this.setYCoord(this.getYCoord() + step);
     }
     else if (this.getDirection() == 4){ //left
-      this.setLocation(new int[]{coords[0], coords[1] - step});
+      this.setXCoord(this.getXCoord() - step);
     }
   }
   
   public boolean nextStepOnPath(ArrayList<int[]> path, int step, int SQUARE_SIZE){
     int[] block = path.get(path.size() - 1);
-    int[] coords = this.getLocation();
     if (this.getDirection() == 1){ //up
-      if ((coords[0] - step)/SQUARE_SIZE != block[1]){
+      if ((this.getYCoord() - step)/SQUARE_SIZE != block[1]){
         return false;
       }
     }
     else if (this.getDirection() == 2){ //right
-      if ((coords[1] + step)/SQUARE_SIZE != block[0]){
+      if ((this.getXCoord() + step)/SQUARE_SIZE != block[0]){
         return false;
       }
     }
     else if (this.getDirection() == 3){ //down
-      if ((coords[0] + step)/SQUARE_SIZE != block[1]){
+      if ((this.getYCoord() + step)/SQUARE_SIZE != block[1]){
         return false;
       }
     }
     else if (this.getDirection() == 4){ //left
-      if ((coords[1] - step)/SQUARE_SIZE != block[0]){
+      if ((this.getXCoord() - step)/SQUARE_SIZE != block[0]){
         return false;
       }
     }
@@ -122,11 +137,8 @@ public class Enemies extends LivingObjects{
     if (path.size() == 0){
       int[] coords = path.get(path.size() - 1);
       this.setDirection(coords[3]);
-      float imgX = this.getLocation()[1];
-      float imgY = this.getLocation()[0];
       if (this.getDirection() == coords[3] && nextStepOnPath(path, step, SQUARE_SIZE)){
         move(step);
-        image(this.getSprite(), imgX, imgY);
       }
       else {
         path.remove(path.size() - 1);
