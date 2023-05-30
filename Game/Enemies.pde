@@ -87,7 +87,7 @@ public class Enemies extends LivingObjects{
     }
   }
   
-  public void boolean nextStepOnPath(ArrayList<int[]> path, int step, int SQUARE_SIZE){
+  public boolean nextStepOnPath(ArrayList<int[]> path, int step, int SQUARE_SIZE){
     int[] block = path.get(path.size() - 1);
     int[] coords = this.getLocation();
     if (this.getDirection() == 1){ //up
@@ -110,6 +110,7 @@ public class Enemies extends LivingObjects{
         return false;
       }
     }
+    return true;
   }
      
   
@@ -122,7 +123,6 @@ public class Enemies extends LivingObjects{
       }
       else {
         path.remove(path.size() - 1);
-        int[] coords = path.get(path.size() - 1);
         this.setDirection(coords[3]);
         if (this.getDirection() == coords[3] && nextStepOnPath(path, step, SQUARE_SIZE)){
           move(step);
