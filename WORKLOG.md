@@ -73,6 +73,22 @@ REMINDERS
 ISSUES
 - text indicators for selection not working
 
+### 5/29/23
+- added character attacking enemies and rangezero
+
+ISSUES
+- text indicators
+
+reminders
+- add rangeone & range two
+
+WHAT NEEDS TO BE DONE B4 DEMO:
+- test character attacking MOVING enemies : safika
+- enemies attacking characters : raymond
+- how many enemies & lp stats : safika
+- hp bars for enemies & characters : raymond
+- set up map one with all correct characters & enemies with proper diverse stats : both
+
 
 ## GROUP MEMBER 2 //RAYMOND
 
