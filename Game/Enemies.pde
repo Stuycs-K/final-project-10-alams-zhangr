@@ -71,6 +71,7 @@ public class Enemies extends LivingObjects{
     other.setHealth(other.getHealth() - this.getAttack());
   }
   
+<<<<<<< HEAD
   public void move(int step){
     int[] coords = this.getLocation();
     if (this.getDirection() == 1){ //up
@@ -130,4 +131,24 @@ public class Enemies extends LivingObjects{
       }
     }
   } 
+  public int checkRange(){ //returns first value of blocked
+    if(this.getRange() == 1){
+      rangeOne();
+    }
+    if(this.getRange() == 2){
+      rangeTwo();
+    }
+    return 0;
+  }
+  
+  void rangeOne(){
+    
+  }
+  
+  void rangeTwo(){
+ 
+  }
+  
+  
+
 }
