@@ -1,5 +1,4 @@
 import java.util.*;
-
 private float SQUARE_SIZE;
 
 private int cost;
@@ -37,6 +36,7 @@ private int selectedY;
 private int levelSelect = 0;
 
 private PImage slug;
+private Enemies bob;
 int delay = 10;
 
 void setup() {
@@ -59,7 +59,8 @@ void setup() {
 
   //Enemies(int hp, int spd, int atk, int hit, int[] position, String img)
   Enemies brr = new Enemies(1, 2, 3, 4, new int[]{5, 5}, "hi");
-
+  bob = new Enemies(100, 100, 100, 100, new int[]{250, 950}, "hi");
+  
   //TowerCharacters(int hp, int spd, int atk, int hit, String img, int blk, String type, int dp){
   TowerCharacters op0 = new TowerCharacters(50, 0, 1, 1, "ayer.png", 1, GROUND, 2);
   TowerCharacters op1 = new TowerCharacters(50, 0, 1, 1, "meterorite.png", 1, AERIAL, 2);
@@ -87,13 +88,16 @@ void draw() {
     displayChar();
     limits();
   }
-  //if (!onMenu) {
-  //  slug = loadImage("originium_slug.png");
-  //  if (enemyPath.size() > 1) {
-  //    int[] coords = enemyPath.remove(enemyPath.size() - 1);
-  //    image(slug, coords[1] * SQUARE_SIZE, coords[0] * SQUARE_SIZE);
-  //  }
-  //}
+  if (!onMenu) {
+    lvlOneEnemyPath();
+    slug = loadImage("originium_slug.png");
+    if (enemyPath.size() > 1) {
+      int sqSize = (int)(SQUARE_SIZE);
+      bob.movePath(enemyPath, 10, sqSize);
+      int[] coords = enemyPath.get(enemyPath.size() - 1);
+      image(slug, coords[1] * SQUARE_SIZE, coords[0] * SQUARE_SIZE);
+    }
+  }
 }
 
 ////////////////////////////////////////////////////
