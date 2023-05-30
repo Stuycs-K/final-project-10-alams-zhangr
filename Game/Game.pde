@@ -302,6 +302,7 @@ void lvlOneEnemyPath() {
   enemyPath.add(new int[]{2, 6, 1});
   enemyPath.add(new int[]{2, 7, 4});
   enemyPath.add(new int[]{2, 8, 4});
+  //rely on x and y coordinates
 }
 
 void charAction() {
