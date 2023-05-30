@@ -111,5 +111,12 @@ public class Display {
     fill(color(0, 0, 0));
     text("Cost: " + cost, (map[0].length - 2)*SQUARE_SIZE + 20, map.length*SQUARE_SIZE + 30);
     text("Unit Limit: " + unitLimit, (map[0].length - 2)*SQUARE_SIZE + 20, map.length*SQUARE_SIZE + 90);
+     
+    fill(color(255, 255, 255));
+    rect(map[0].length*SQUARE_SIZE/2, 10, 10, 10);
+    textSize(20);
+    fill(0);
+    text("Life Points: " + lp, map[0].length*SQUARE_SIZE/2, 10);
+    
   }
 }
