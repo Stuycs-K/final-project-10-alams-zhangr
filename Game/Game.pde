@@ -61,12 +61,12 @@ void setup() {
   enemyList.add(slug);
 
   //TowerCharacters(int hp, int spd, int atk, int hit, String img, int blk, String type, int dp){
-  TowerCharacters op0 = new TowerCharacters(50, 20, 5, 1, "ayer.png", 1, GROUND, 2);
-  TowerCharacters op1 = new TowerCharacters(50, 0, 1, 1, "meterorite.png", 1, AERIAL, 2);
-  TowerCharacters op2 = new TowerCharacters(50, 0, 1, 1, "purestream.png", 1, AERIAL, 2);
-  TowerCharacters op3 = new TowerCharacters(50, 0, 1, 1, "kaltsit.png", 1, AERIAL, 2);
-  TowerCharacters op4 = new TowerCharacters(50, 0, 1, 1, "mudrock.png", 1, GROUND, 2);
-  TowerCharacters op5 = new TowerCharacters(50, 0, 1, 1, "mizuki.png", 1, GROUND, 2);
+  TowerCharacters op0 = new TowerCharacters(50, 10, 5, 1, "ayer.png", 1, GROUND, 2);
+  TowerCharacters op1 = new TowerCharacters(50, 10, 1, 1, "meterorite.png", 1, AERIAL, 2);
+  TowerCharacters op2 = new TowerCharacters(50, 1, 1, 1, "purestream.png", 1, AERIAL, 2);
+  TowerCharacters op3 = new TowerCharacters(50, 1, 1, 1, "kaltsit.png", 1, AERIAL, 2);
+  TowerCharacters op4 = new TowerCharacters(50, 1, 1, 1, "mudrock.png", 1, GROUND, 2);
+  TowerCharacters op5 = new TowerCharacters(50, 1, 1, 1, "mizuki.png", 1, GROUND, 2);
 
   //SETUP INVENTORY
   inventory = new TowerCharacters[6];
@@ -101,8 +101,8 @@ void mouseClicked() {
       level.lvlOne();
 
       //testing
-      eneMap[2][3] = 0;
-      enemyList.get(0).setLocation(new int[]{2, 3});
+      eneMap[1][3] = 0;
+      enemyList.get(0).setLocation(new int[]{1, 3});
 
 
       onMenu = false;
@@ -141,6 +141,7 @@ void mouseClicked() {
 
         if (!(charMap[row][column] > -1)) {
           opSelect = true;
+
         } else {
           opRemove = true;
         }
@@ -182,7 +183,7 @@ void keyPressed() {
   }
 
   if (opSelect) {
-    while (keyPressed == false) {
+    while (keyPressed == false || key == ENTER) {
       //text display
       textSize(25);
       fill(color(0, 255, 0));
@@ -228,19 +229,14 @@ void keyPressed() {
 
 void charAction() {
   for (int i = 0; i < inventory.length; i++) { //array of enemies must start at index 1 if peek = 0 hp then remove
-    if (inventory[i].getDeployed()) {
+    if (inventory[i].getDeployed() && !directionSelect) {
       if (inventory[i].checkRange() != null) {
-        println(inventory[i].checkRange());
         inventory[i].setAttacking(true);
-        //inventory[i].increaseTicks();
-        println ("move " + inventory[i].getTicks());
         if (inventory[i].getTicks()%inventory[i].getSpeed() == 0) {
           if (inventory[i].checkRange().getHealth() > 0) {
-            println(inventory[i].checkRange().getHealth());
             inventory[i].toAttack(inventory[i].checkRange());
             if (inventory[i].checkRange().getHealth() <= 0) {
               inventory[i].setAttacking(false);
-              //inventory[i].restartTicks();
               int[] position = inventory[i].checkRange().getLocation();
               eneMap[position[0]][position[1]] = map[position[0]][position[1]];
               enemyList.remove(0);

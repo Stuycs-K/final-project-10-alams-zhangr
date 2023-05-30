@@ -146,32 +146,41 @@ public class TowerCharacters extends LivingObjects{
   }
   
   void rangeOne(){
-    int x = this.getLocation()[1];
-    int y = this.getLocation()[0];
-    if(this.getDirection() == TOP){
+    int x = this.getLocation()[0];
+    int y = this.getLocation()[1];
+    if(this.getDirection() == T){
       if(y - 1 > 0){
         if(eneMap[y - 1][x] > -1){
+          if(!blocked.contains(enemyList.get(eneMap[y - 1][x]))){
+            blocked.add(enemyList.get(eneMap[y - 1][x]));
+          }
         }
       }
     }
-    if(this.getDirection() == RIGHT){
+    if(this.getDirection() == R){
       if(x + 1 < eneMap[0].length){
         if(eneMap[y][x+1] > -1){
-          
+          if(!blocked.contains(enemyList.get(eneMap[y][x + 1]))){
+            blocked.add(enemyList.get(eneMap[y][ x + 1]));
+          } 
         }
       }
     }
-    if(this.getDirection() == DOWN){
+   if(this.getDirection() == D){
       if(y + 1 < eneMap.length){
         if(eneMap[y +1][x] > -1){
-          
+          if(!blocked.contains(enemyList.get(eneMap[y + 1][x]))){
+            blocked.add(enemyList.get(eneMap[y + 1][x]));
+          }
         }
       }
     }
-    if(this.getDirection() == LEFT){
+    if(this.getDirection() == L){
       if(x - 1 > 0){
         if(eneMap[y][x - 1] > -1){
-          
+          if(!blocked.contains(enemyList.get(eneMap[y][x - 1]))){
+            blocked.add(enemyList.get(eneMap[y][ x - 1]));
+          } 
         }
       }
     }
