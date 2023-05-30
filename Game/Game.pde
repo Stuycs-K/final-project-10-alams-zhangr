@@ -56,8 +56,8 @@ void setup() {
 
   //Enemies(int hp, int spd, int atk, int hit, int[] position, String img)
 
-  sluggy = new Enemies(10, 10, 0, 0, new int[]{2, 8}, "originium_slug.png" );
-  slug = loadImage("originium_slug.png");
+  sluggy = new Enemies(10, 10, 0, 0, "originium_slug.png", 250, 950, (int)SQUARE_SIZE);
+  slug = loadImage(sluggy.getSprite());
 
   //SETUP ENEMYLIST
   enemyList = new ArrayList<Enemies>();
@@ -97,8 +97,7 @@ void draw() {
     if (enemyPath.size() > 1) {
       int sqSize = (int)(SQUARE_SIZE);
       sluggy.movePath(enemyPath, 10, sqSize);
-      int[] coords = enemyPath.get(enemyPath.size() - 1);
-      image(slug, coords[1] * SQUARE_SIZE, coords[0] * SQUARE_SIZE);
+      //image(slug, sluggy.getXCoord(), sluggy.getYCoord());
     }
   }
 }
