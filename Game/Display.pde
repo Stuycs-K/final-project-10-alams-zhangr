@@ -14,7 +14,7 @@ public class Display {
     for (int i = 0; i < grid.length || ( l < 950 && k < 600 ); i++) {
       k = 0;
       for (int j = 0; j < grid[i].length; j++) {
-        if (opSelect && i == selectedY && j == selectedX) {
+        if ((opSelect || opRemove) && i == selectedY && j == selectedX) {
           selectl = l;
           selectk = k;
         }
@@ -37,6 +37,31 @@ public class Display {
       strokeWeight(10);
       stroke(color(0, 255, 0));
       rect(selectk, selectl, SQUARE_SIZE, SQUARE_SIZE);
+      //text display
+      textSize(25);
+      fill(color(0, 255, 0));
+      text("Press #1-6 to select an operator.", 0, SQUARE_SIZE*map.length);
+      strokeWeight(1);
+      stroke(255, 255, 255);
+      
+    }
+    if(opRemove){
+      strokeWeight(10);
+      stroke(color(0, 255, 0));
+      rect(selectk, selectl, SQUARE_SIZE, SQUARE_SIZE);
+      //text display
+      textSize(25);
+      fill(color(0, 255, 0));
+      text("press enter to confirm removal of operator", 0, SQUARE_SIZE*map.length);
+      strokeWeight(1);
+      stroke(255, 255, 255);
+    }
+    if(directionSelect){
+      textSize(25);
+      fill(color(0, 255, 0));
+      text("Press wasd to select operator's direction.", 0, SQUARE_SIZE*map.length);
+      strokeWeight(1);
+      stroke(255, 255, 255);
     }
   }
 

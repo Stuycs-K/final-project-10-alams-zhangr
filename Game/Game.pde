@@ -184,10 +184,6 @@ void keyPressed() {
 
   if (opSelect) {
     while (keyPressed == false || key == ENTER) {
-      //text display
-      textSize(25);
-      fill(color(0, 255, 0));
-      text("Press #1-6 to select an operator", 0, SQUARE_SIZE*map.length);
     }
     String inputs = "123456";
     boolean equal = false;
@@ -220,6 +216,7 @@ void keyPressed() {
       inventory[index].setDeployed(false);
       unitLimit++;
       println("removed character");
+      opRemove = false;
     } else {
       opRemove = false;
     }
