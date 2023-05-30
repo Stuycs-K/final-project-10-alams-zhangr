@@ -57,7 +57,7 @@ REMINDERS
 ### 5/26/23
 - Fixed issues with directselect
 - added indicators for selection
-- added cost, global timer, & unit limit 
+- added cost, global timer, & unit limit
 - display ops better
 
 ISSUES
@@ -67,7 +67,7 @@ REMINDERS
 - test ranges (work on ranges & individual object timers)
 
 ### 5/27/23
-- changed range & tested 
+- changed range & tested
 - working on character and enemy interaction
 
 ISSUES
@@ -125,3 +125,9 @@ reminders:
 - working on enemy movement
 - revamped enemyPath in game (new parameter in the int array elements)
 - new move method (have not tested yet)
+
+### 5/29/23
+
+- still working on enemy movement (still need to test movement)
+- updated Enemy class to include new variables to help with coding enemy movement
+- added ticks to Enemy class
