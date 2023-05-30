@@ -6,19 +6,23 @@ public class Enemies extends LivingObjects{
   private int range;
   private int[] location;
   private String sprite;
-  
+  private int xCoord;
+  private int yCoord;
+  private int ticks;
+  private float sqSize;
   public Enemies(){ //default
     
   }
   
-  public Enemies(int hp, int spd, int atk, int hit, int[] position, String img){
+  public Enemies(int hp, int spd, int atk, int hit, String img, int xCoord, int yCoord, int sqSize){
     health = hp;
     speed = spd;
     attack = atk;
     direction = 1;
     range = hit;
-    location = position;
+    location = new int[]{xCoord/sqSize, yCoord/sqSize};
     sprite = img;
+    ticks = 0;
   }
   
   ////////////////////////////////////////////
@@ -71,7 +75,6 @@ public class Enemies extends LivingObjects{
     other.setHealth(other.getHealth() - this.getAttack());
   }
   
-<<<<<<< HEAD
   public void move(int step){
     int[] coords = this.getLocation();
     if (this.getDirection() == 1){ //up
@@ -119,8 +122,11 @@ public class Enemies extends LivingObjects{
     if (path.size() == 0){
       int[] coords = path.get(path.size() - 1);
       this.setDirection(coords[3]);
+      float imgX = this.getLocation()[1];
+      float imgY = this.getLocation()[0];
       if (this.getDirection() == coords[3] && nextStepOnPath(path, step, SQUARE_SIZE)){
         move(step);
+        image(this.getSprite(), imgX, imgY);
       }
       else {
         path.remove(path.size() - 1);
@@ -148,7 +154,4 @@ public class Enemies extends LivingObjects{
   void rangeTwo(){
  
   }
-  
-  
-
 }
