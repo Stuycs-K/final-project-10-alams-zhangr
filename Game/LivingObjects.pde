@@ -16,13 +16,7 @@ public abstract class LivingObjects{
   public abstract void setDirection(int newDirection);
   
   ////RANGE
-  //public int[] getRange(){
-  //  return range;
-  //}
-  
-  //public void setRange(int[] newRange){
-  //  range = newRange;
-  //}
+  public abstract int getRange();
   
   //LOCATION
   public abstract int[] getLocation();
@@ -39,9 +33,7 @@ public abstract class LivingObjects{
   ////////////////////////////////////////////////////
   public abstract void toAttack(LivingObjects other);
   
-  //public abstract void leftRange(int[][] map, location);
-  //public abstract void rightRange(int[][] map, location);
-  //public abstract void topRange(int[][] map, location);
-  //public abstract void bottomRange(int[][] map, location);
-
+  public abstract void rangeOne();
+  
+  public abstract void rangeTwo();
 }
