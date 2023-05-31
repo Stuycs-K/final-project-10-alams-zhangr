@@ -14,13 +14,12 @@ public class Enemies extends LivingObjects{
     
   }
   
-  public Enemies(int hp, int spd, int atk, int hit, String img, int xCoord, int yCoord, int sqSize){
+  public Enemies(int hp, int spd, int atk, int hit, String img){
     health = hp;
     speed = spd;
     attack = atk;
     direction = 1;
     range = hit;
-    location = new int[]{xCoord/sqSize, yCoord/sqSize};
     sprite = img;
     ticks = 0;
   }
@@ -83,7 +82,7 @@ public class Enemies extends LivingObjects{
   }
    
   public void setYCoord(int newY){
-    xCoord = newY;
+    yCoord = newY;
   }
   
   
@@ -107,48 +106,52 @@ public class Enemies extends LivingObjects{
     }
   }
   
-  public boolean nextStepOnPath(ArrayList<int[]> path, int step, int SQUARE_SIZE){
-    int[] block = path.get(path.size() - 1);
-    if (this.getDirection() == 1){ //up
-      if ((this.getYCoord() - step)/SQUARE_SIZE != block[1]){
-        return false;
-      }
-    }
-    else if (this.getDirection() == 2){ //right
-      if ((this.getXCoord() + step)/SQUARE_SIZE != block[0]){
-        return false;
-      }
-    }
-    else if (this.getDirection() == 3){ //down
-      if ((this.getYCoord() + step)/SQUARE_SIZE != block[1]){
-        return false;
-      }
-    }
-    else if (this.getDirection() == 4){ //left
-      if ((this.getXCoord() - step)/SQUARE_SIZE != block[0]){
-        return false;
-      }
-    }
-    return true;
-  }
+  //public boolean nextStepOnPath(ArrayList<int[]> path, int step, int SQUARE_SIZE){
+  //  int[] block = path.get(path.size() - 1);
+  //  if (this.getDirection() == 1){ //up
+  //    if ((this.getYCoord() - step)/SQUARE_SIZE != block[1]){
+  //      return false;
+  //    }
+  //  }
+  //  else if (this.getDirection() == 2){ //right
+  //    if ((this.getXCoord() + step)/SQUARE_SIZE != block[0]){
+  //      return false;
+  //    }
+  //  }
+  //  else if (this.getDirection() == 3){ //down
+  //    if ((this.getYCoord() + step)/SQUARE_SIZE != block[1]){
+  //      return false;
+  //    }
+  //  }
+  //  else if (this.getDirection() == 4){ //left
+  //    if ((this.getXCoord() - step)/SQUARE_SIZE != block[0]){
+  //      return false;
+  //    }
+  //  }
+  //  return true;
+  //}
      
   
-  public void movePath(ArrayList<int[]> path, int step, int SQUARE_SIZE){
-    if (path.size() == 0){
-      int[] coords = path.get(path.size() - 1);
-      this.setDirection(coords[3]);
-      if (this.getDirection() == coords[3] && nextStepOnPath(path, step, SQUARE_SIZE)){
-        move(step);
-      }
-      else {
-        path.remove(path.size() - 1);
-        this.setDirection(coords[3]);
-        if (this.getDirection() == coords[3] && nextStepOnPath(path, step, SQUARE_SIZE)){
-          move(step);
-        }
-      }
-    }
-  } 
+  //public void movePath(ArrayList<int[]> path, int step, int SQUARE_SIZE){
+  //  if (path.size() == 0){
+  //    int[] coords = path.get(path.size() - 1);
+  //    this.setDirection(coords[3]);
+  //    if (this.getDirection() == coords[3] && nextStepOnPath(path, step, SQUARE_SIZE)){
+  //      move(step);
+  //    }
+  //    else {
+  //      path.remove(path.size() - 1);
+  //      this.setDirection(coords[3]);
+  //      if (this.getDirection() == coords[3] && nextStepOnPath(path, step, SQUARE_SIZE)){
+  //        move(step);
+  //      }
+  //    }
+  //  }
+  //} 
+  
+  //public void movePath(String path, float SQUARE_SIZE, int step, int stepCounter){
+    
+  //}
   public int checkRange(){ //returns first value of blocked
     if(this.getRange() == 1){
       rangeOne();

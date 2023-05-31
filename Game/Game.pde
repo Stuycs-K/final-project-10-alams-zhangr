@@ -12,7 +12,8 @@ private int[][]eneMap;
 //private ArrayList<int[]> enemyPath;//just to make it work at the moment
 //int[] inside is in the format [row, col, direction of next block]
 //next block: 1 = up, 2 = right, 3 = down, 4 = left, 0 = none (last element)
-private String enemyPath = "LLTCLLDLLTL";
+private String enemyPath = "44144434414";
+private int stepsPerSquare = 10;
 
 private TowerCharacters[]inventory;
 private ArrayList<Enemies>enemyList;
@@ -95,13 +96,29 @@ void draw() {
     sluggy.setXCoord(950);
     sluggy.setYCoord(250);
     sluggy.setLocation(new int[]{sluggy.getXCoord()/(int)SQUARE_SIZE, sluggy.getYCoord()/(int)SQUARE_SIZE});
+    sluggy.setDirection(Integer.parseInt(enemyPath.substring(0,1)));
   }
   if (!onMenu) {
-    lvlOneEnemyPath();
-    if (enemyPath.size() > 1) {
-      int sqSize = (int)(SQUARE_SIZE);
-      sluggy.movePath(enemyPath, 10, sqSize);
-      image(slug, sluggy.getXCoord(), sluggy.getYCoord());
+    //lvlOneEnemyPath();
+    //if (enemyPath.size() > 1) {
+    //  int sqSize = (int)(SQUARE_SIZE);
+    //  sluggy.movePath(enemyPath, 10, sqSize);
+    //  image(slug, sluggy.getXCoord(), sluggy.getYCoord());
+    //}
+    if (enemyPath.length() > 1){
+       if (stepsPerSquare != 0){
+         sluggy.move(10);
+         image(slug, sluggy.getXCoord(), sluggy.getYCoord());
+         stepsPerSquare--;
+       }
+       else {
+         enemyPath = enemyPath.substring(1);
+         sluggy.setDirection(Integer.parseInt(enemyPath.substring(0,1)));
+         stepsPerSquare = 10;
+         sluggy.move(10);
+         image(slug, sluggy.getXCoord(), sluggy.getYCoord());
+         stepsPerSquare--;
+       }
     }
   }
 }
