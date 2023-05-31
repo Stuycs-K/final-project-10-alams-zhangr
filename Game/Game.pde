@@ -9,9 +9,10 @@ private int[][]map; //NOT USELESS CHECK LVL SETUP OPTIMIZE LATER
 private int[][]ogmap; //for displaying inventory with map DO NOT TOUCH
 private int[][]charMap;
 private int[][]eneMap;
-private ArrayList<int[]> enemyPath;//just to make it work at the moment
+//private ArrayList<int[]> enemyPath;//just to make it work at the moment
 //int[] inside is in the format [row, col, direction of next block]
 //next block: 1 = up, 2 = right, 3 = down, 4 = left, 0 = none (last element)
+private String enemyPath = "LLTCLLDLLTL";
 
 private TowerCharacters[]inventory;
 private ArrayList<Enemies>enemyList;
@@ -56,7 +57,7 @@ void setup() {
 
   //Enemies(int hp, int spd, int atk, int hit, int[] position, String img)
 
-  sluggy = new Enemies(10, 10, 0, 0, "originium_slug.png", 250, 950, (int)SQUARE_SIZE);
+  sluggy = new Enemies(10, 10, 0, 0, "originium_slug.png");
   slug = loadImage(sluggy.getSprite());
 
   //SETUP ENEMYLIST
@@ -91,13 +92,16 @@ void draw() {
     display.displayChar();
     display.limits();
     charAction();
+    sluggy.setXCoord(950);
+    sluggy.setYCoord(250);
+    sluggy.setLocation(new int[]{sluggy.getXCoord()/(int)SQUARE_SIZE, sluggy.getYCoord()/(int)SQUARE_SIZE});
   }
   if (!onMenu) {
     lvlOneEnemyPath();
     if (enemyPath.size() > 1) {
       int sqSize = (int)(SQUARE_SIZE);
       sluggy.movePath(enemyPath, 10, sqSize);
-      //image(slug, sluggy.getXCoord(), sluggy.getYCoord());
+      image(slug, sluggy.getXCoord(), sluggy.getYCoord());
     }
   }
 }
@@ -288,22 +292,22 @@ void lvlOne() {
   map[1][0] = WALL;
 }
 
-void lvlOneEnemyPath() {
-  enemyPath = new ArrayList<int[]>();
-  enemyPath.add(new int[]{1, 0, 0});
-  enemyPath.add(new int[]{1, 1, 4});
-  enemyPath.add(new int[]{2, 1, 1});
-  enemyPath.add(new int[]{2, 2, 4});
-  enemyPath.add(new int[]{2, 3, 4});
-  enemyPath.add(new int[]{1, 3, 3});
-  enemyPath.add(new int[]{1, 4, 4});
-  enemyPath.add(new int[]{1, 5, 4});
-  enemyPath.add(new int[]{1, 6, 4});
-  enemyPath.add(new int[]{2, 6, 1});
-  enemyPath.add(new int[]{2, 7, 4});
-  enemyPath.add(new int[]{2, 8, 4});
-  //rely on x and y coordinates
-}
+//void lvlOneEnemyPath() {
+//  enemyPath = new ArrayList<int[]>();
+//  enemyPath.add(new int[]{1, 0, 0});
+//  enemyPath.add(new int[]{1, 1, 4});
+//  enemyPath.add(new int[]{2, 1, 1});
+//  enemyPath.add(new int[]{2, 2, 4});
+//  enemyPath.add(new int[]{2, 3, 4});
+//  enemyPath.add(new int[]{1, 3, 3});
+//  enemyPath.add(new int[]{1, 4, 4});
+//  enemyPath.add(new int[]{1, 5, 4});
+//  enemyPath.add(new int[]{1, 6, 4});
+//  enemyPath.add(new int[]{2, 6, 1});
+//  enemyPath.add(new int[]{2, 7, 4});
+//  enemyPath.add(new int[]{2, 8, 4});
+//  //rely on x and y coordinates
+//}
 
 void charAction() {
   for (int i = 0; i < inventory.length; i++) { //array of enemies must start at index 1 if peek = 0 hp then remove
