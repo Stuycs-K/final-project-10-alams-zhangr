@@ -7,6 +7,7 @@ private int timer;
 private int unitLimit;
 private int lp;
 private int totalenemies;
+private int enemiesleft;
 
 private int[][]map; //NOT USELESS CHECK LVL SETUP OPTIMIZE LATER
 private int[][]ogmap; //for displaying inventory with map DO NOT TOUCH
