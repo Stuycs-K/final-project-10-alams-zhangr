@@ -91,7 +91,7 @@ WHAT NEEDS TO BE DONE B4 DEMO:
 - results screens: safika
 
 ### 5/30/2023
-- fixed ranges and added rangeone 
+- fixed ranges and added rangeone
 - fixed text indicators
 - added lp & enemies left stats
 
@@ -143,3 +143,12 @@ reminders:
 - still working on enemy movement (still need to test movement)
 - updated Enemy class to include new variables to help with coding enemy movement
 - added ticks to Enemy class
+
+### 5/30/23
+
+- second revamp of enemy move method (succeeded!)
+- tested and worked
+- commented out useless variables and methods
+
+NEED TO DO:
+- adjust image displaying (not synced with squares)
