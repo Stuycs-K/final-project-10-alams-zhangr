@@ -30,6 +30,7 @@ static final int L = 4;
 
 private boolean onMenu = true;
 private boolean onMap = false;
+private boolean onResults = false;
 private boolean opSelect = false;
 private boolean directionSelect = false;
 private boolean opRemove = false;
@@ -42,17 +43,12 @@ private int levelSelect = 0;
 private PImage slug;
 int delay = 10;
 
+Screens screen = new Screens();
+
 void setup() {
   //menu screen
   size(1000, 550);
-  rect(325, 175, 350, 50);
-  rect(325, 250, 350, 50);
-  rect(325, 325, 350, 50);
-  textSize(20);
-  fill(0);
-  text("Level One", 450, 210);
-  text("Level Two", 450, 285);
-  text("Level Three", 450, 360);
+  screen.menu();
 
   //////////////////SETUP LIVING OBJECTS//////////////////
 
@@ -91,6 +87,8 @@ void draw() {
     display.displayChar();
     display.limits();
     charAction();
+    screen.win();
+
   }
 }
 
@@ -152,6 +150,10 @@ void mouseClicked() {
         opSelect = false;
       }
     }
+  }
+  
+  else if(onResults){
+    
   }
 }
 
