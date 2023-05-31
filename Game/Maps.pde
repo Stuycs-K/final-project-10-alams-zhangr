@@ -6,6 +6,10 @@ public class Maps {
     //MAP1 for placement purposes
     cost = 5;
     unitLimit = 3;
+    lp = 3;
+    totalenemies = 3;
+    enemiesleft = 3;
+    
     map = new int[4][9];
     for (int i = 0; i < 4; i++) {
       for (int j = 0; j < 9; j++) {
@@ -54,19 +58,19 @@ public class Maps {
     map[1][0] = WALL;
   }
 
-  void lvlOneEnemyPath() {
-    enemyPath = new ArrayList<int[]>();
-    enemyPath.add(new int[]{1, 0});
-    enemyPath.add(new int[]{1, 1});
-    enemyPath.add(new int[]{2, 1});
-    enemyPath.add(new int[]{2, 2});
-    enemyPath.add(new int[]{2, 3});
-    enemyPath.add(new int[]{1, 3});
-    enemyPath.add(new int[]{1, 4});
-    enemyPath.add(new int[]{1, 5});
-    enemyPath.add(new int[]{1, 6});
-    enemyPath.add(new int[]{2, 6});
-    enemyPath.add(new int[]{2, 7});
-    enemyPath.add(new int[]{2, 8});
-  }
+  //void lvlOneEnemyPath() {
+  //  enemyPath = new ArrayList<int[]>();
+  //  enemyPath.add(new int[]{1, 0});
+  //  enemyPath.add(new int[]{1, 1});
+  //  enemyPath.add(new int[]{2, 1});
+  //  enemyPath.add(new int[]{2, 2});
+  //  enemyPath.add(new int[]{2, 3});
+  //  enemyPath.add(new int[]{1, 3});
+  //  enemyPath.add(new int[]{1, 4});
+  //  enemyPath.add(new int[]{1, 5});
+  //  enemyPath.add(new int[]{1, 6});
+  //  enemyPath.add(new int[]{2, 6});
+  //  enemyPath.add(new int[]{2, 7});
+  //  enemyPath.add(new int[]{2, 8});
+  //}
 }
