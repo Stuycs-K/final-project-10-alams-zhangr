@@ -15,8 +15,8 @@ private int[][]eneMap;
 //private ArrayList<int[]> enemyPath;//just to make it work at the moment
 //int[] inside is in the format [row, col, direction of next block]
 //next block: 1 = up, 2 = right, 3 = down, 4 = left, 0 = none (last element)
-private String enemyPath = "44144434414";
-private int stepsPerSquare = 10;
+private String enemyPath = "444144434414";
+private int stepsPerSquare = 100;
 private TowerCharacters[]inventory;
 private ArrayList<Enemies>enemyList;
 
@@ -52,7 +52,7 @@ void setup() {
   size(1000, 550);
   screen.menu();
 
-  frameRate(1);
+  frameRate(100);
 
   
   //////////////////SETUP LIVING OBJECTS//////////////////
@@ -110,17 +110,17 @@ void draw() {
     //}
     if (enemyPath.length() > 1){
        if (stepsPerSquare != 0){
-         sluggy.move(10);
-         image(slug, sluggy.getXCoord(), sluggy.getYCoord());
+         sluggy.move(1);
+         image(slug, sluggy.getXCoord() - 50, sluggy.getYCoord() - 50, 100, 100);
          stepsPerSquare--;
        }
        else {
          enemyPath = enemyPath.substring(1);
          sluggy.setDirection(Integer.parseInt(enemyPath.substring(0,1)));
-         stepsPerSquare = 10;
-         sluggy.move(10);
-         image(slug, sluggy.getXCoord(), sluggy.getYCoord());
-         stepsPerSquare--;
+         stepsPerSquare = 100;
+         //sluggy.move(10);
+         image(slug, sluggy.getXCoord() - 50, sluggy.getYCoord() - 50, 100, 100);
+         //stepsPerSquare--;
        }
        println(sluggy.getXCoord());
        println(sluggy.getYCoord());
