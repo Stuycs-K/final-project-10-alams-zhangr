@@ -9,7 +9,7 @@ public class Maps {
     lp = 3;
     totalenemies = 3;
     enemiesleft = 3;
-    
+
     map = new int[4][9];
     for (int i = 0; i < 4; i++) {
       for (int j = 0; j < 9; j++) {
