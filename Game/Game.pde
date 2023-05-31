@@ -55,7 +55,7 @@ void setup() {
 
   //Enemies(int hp, int spd, int atk, int hit, int[] position, String img)
 
-  Enemies sluggy = new Enemies(10, 10, 0, 0, new int[]{2, 8}, 300, 250, "originium_slug.png");
+  Enemies sluggy = new Enemies(10, 10, 0, 0, new int[]{2, 8}, 950, 250, "originium_slug.png");
   //sluggy.setDirection(Integer.parseInt(enemyPath.substring(0, 1)));
 
   //SETUP ENEMYLIST
@@ -254,14 +254,12 @@ void eneMove() {
   for (int i = 0; i < enemyList.size(); i++) {
     for (int j = 0; j < enemyPath.length(); j++) {
       if (steps == SQUARE_SIZE) {
+        
         eneMap[enemyList.get(0).getYCoord()/(int)SQUARE_SIZE][enemyList.get(0).getXCoord()/(int)SQUARE_SIZE] = 0;
         steps = 0;
       }
-
       enemyList.get(0).setDirection(Integer.parseInt(enemyPath.substring(i, i + 1)));
-
-      if (timer%3 == 0) {
-
+      if (timer% 2 == 0) {
         enemyList.get(0).move();
         steps++;
       }

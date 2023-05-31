@@ -34,9 +34,9 @@ public class Enemies extends LivingObjects {
   public void setHealth(int newHealth) {
     health = newHealth;
   }
-  
+
   //SPEED
-  public int getSpeed(){
+  public int getSpeed() {
     return speed;
   }
 
@@ -99,43 +99,45 @@ public class Enemies extends LivingObjects {
   }
 
   public void move() {
-    if (this.getDirection() == 1) { //up
-      this.setYCoord(this.getYCoord() - 1);
-      if (yCoord/SQUARE_SIZE != location[1]) {
-        int x = location[0];
-        int y = location[1];
-        eneMap[y][x] = map[y][x];
-        setLocation(new int[]{location[0], location[1] - 1});
-      }
-    } else if (this.getDirection() == 2) { //right
-      this.setXCoord(this.getXCoord() + 1);
-      if (xCoord/SQUARE_SIZE < eneMap[0].length && xCoord/SQUARE_SIZE != location[0]) {
-        int x = location[0];
-        int y = location[1];
-        eneMap[y][x] = map[y][x];
-        setLocation(new int[]{location[0] + 1, location[1]});
-      }
-    } else if (this.getDirection() == 3) { //down
-      this.setYCoord(this.getYCoord() + 1);
-      if (yCoord/SQUARE_SIZE < eneMap.length && yCoord/SQUARE_SIZE != location[1]) {
-        int x = location[0];
-        int y = location[1];
-        eneMap[y][x] = map[y][x];
-        setLocation(new int[]{location[0], location[1] + 1});
-      }
-    } else if (this.getDirection() == 4) { //left
+    //if (this.getDirection() == 1) { //up
+    //  this.setYCoord(this.getYCoord() - 1);
+    //  if (yCoord/SQUARE_SIZE != location[1]) {
+    //    int x = location[0];
+    //    int y = location[1];
+    //    eneMap[y][x] = map[y][x];
+    //    setLocation(new int[]{location[0], location[1] - 1});
+    //  }
+    //} else if (this.getDirection() == 2) { //right
+    //  this.setXCoord(this.getXCoord() + 1);
+    //  if (xCoord/SQUARE_SIZE < eneMap[0].length && xCoord/SQUARE_SIZE != location[0]) {
+    //    int x = location[0];
+    //    int y = location[1];
+    //    eneMap[y][x] = map[y][x];
+    //    setLocation(new int[]{location[0] + 1, location[1]});
+    //  }
+    //} else if (this.getDirection() == 3) { //down
+    //  this.setYCoord(this.getYCoord() + 1);
+    //  if (yCoord/SQUARE_SIZE < eneMap.length && yCoord/SQUARE_SIZE != location[1]) {
+    //    int x = location[0];
+    //    int y = location[1];
+    //    eneMap[y][x] = map[y][x];
+    //    setLocation(new int[]{location[0], location[1] + 1});
+    //  }
+    //} else
+    if (this.getDirection() == 4) { //left
       this.setXCoord(this.getXCoord() - 1);
-      if (xCoord/SQUARE_SIZE > 0 && xCoord/SQUARE_SIZE != location[0]) {
-        println("cord/ss is " + (xCoord/SQUARE_SIZE));
+      if (xCoord/(int)SQUARE_SIZE > 0 && xCoord/SQUARE_SIZE != location[0]) {
+        //println("cord/ss is " + (xCoord/(int)SQUARE_SIZE));
+        //println("location0 is " + location[0]);
+
         int x = location[0];
         int y = location[1];
-        println("x is " + x);
-        println("y is " + y);
-        println("blep " + eneMap[y][x]);
-        println("boop " + map[y][x]);
+        //println("x is " + x);
+        //println("y is " + y);
+        //println("blep " + eneMap[y][x]);
+        //println("boop " + map[y][x]);
         eneMap[y][x] = map[y][x];
-        setLocation(new int[]{location[0] - 1, location[1]});
-        
+        setLocation(new int[]{xCoord/(int)SQUARE_SIZE, location[1]});
       }
     }
   }
