@@ -23,14 +23,8 @@ public abstract class LivingObjects{
   
   public abstract void setLocation(int[] newLocation);
   
-  //public int getDefense(){
-  //  return defense;
-  //}
-  //public void setDefense(int newDefense){
-  //  defense = newDefense;
-  //}
   
-  ////////////////////////////////////////////////////
+  ////////////////METHODS////////////////////////////////////
   public abstract void toAttack(LivingObjects other);
   
   public abstract void rangeOne();

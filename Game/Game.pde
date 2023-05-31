@@ -8,15 +8,18 @@ private int lp;
 private int totalenemies;
 private int enemiesleft;
 
+private int steps;
+
 private int[][]map; //NOT USELESS CHECK LVL SETUP OPTIMIZE LATER
 private int[][]ogmap; //for displaying inventory with map DO NOT TOUCH
 private int[][]charMap;
 private int[][]eneMap;
-//private ArrayList<int[]> enemyPath;//just to make it work at the moment
-//int[] inside is in the format [row, col, direction of next block]
+
 //next block: 1 = up, 2 = right, 3 = down, 4 = left, 0 = none (last element)
-private String enemyPath = "44144434414";
-private int stepsPerSquare = 10;
+//private String enemyPath = "44144434414";
+private String enemyPath = "4";
+
+
 private TowerCharacters[]inventory;
 private ArrayList<Enemies>enemyList;
 
@@ -41,10 +44,6 @@ private int selectedY;
 
 private int levelSelect = 0;
 
-private PImage slug;
-int delay = 10;
-private Enemies sluggy;
-
 Screens screen = new Screens();
 
 void setup() {
@@ -52,19 +51,12 @@ void setup() {
   size(1000, 550);
   screen.menu();
 
-  frameRate(1);
-
-  
   //////////////////SETUP LIVING OBJECTS//////////////////
 
   //Enemies(int hp, int spd, int atk, int hit, int[] position, String img)
 
-  sluggy = new Enemies(10, 10, 0, 0, "originium_slug.png");
-  slug = loadImage(sluggy.getSprite());
-  sluggy.setXCoord(950);
-  sluggy.setYCoord(250);
-  //sluggy.setLocation(new int[]{sluggy.getXCoord()/(int)SQUARE_SIZE, sluggy.getYCoord()/(int)SQUARE_SIZE});
-  sluggy.setDirection(Integer.parseInt(enemyPath.substring(0,1)));
+  Enemies sluggy = new Enemies(10, 10, 0, 0, new int[]{2, 8}, 300, 250, "originium_slug.png");
+  //sluggy.setDirection(Integer.parseInt(enemyPath.substring(0, 1)));
 
   //SETUP ENEMYLIST
   enemyList = new ArrayList<Enemies>();
@@ -96,40 +88,15 @@ void draw() {
     timer++;
     display.inventory();
     display.displayChar();
+    display.displayEne();
     display.limits();
     charAction();
-    screen.win();
-
-  }
-  if (!onMenu) {
-    //lvlOneEnemyPath();
-    //if (enemyPath.size() > 1) {
-    //  int sqSize = (int)(SQUARE_SIZE);
-    //  sluggy.movePath(enemyPath, 10, sqSize);
-    //  image(slug, sluggy.getXCoord(), sluggy.getYCoord());
-    //}
-    if (enemyPath.length() > 1){
-       if (stepsPerSquare != 0){
-         sluggy.move(10);
-         image(slug, sluggy.getXCoord(), sluggy.getYCoord());
-         stepsPerSquare--;
-       }
-       else {
-         enemyPath = enemyPath.substring(1);
-         sluggy.setDirection(Integer.parseInt(enemyPath.substring(0,1)));
-         stepsPerSquare = 10;
-         sluggy.move(10);
-         image(slug, sluggy.getXCoord(), sluggy.getYCoord());
-         stepsPerSquare--;
-       }
-       println(sluggy.getXCoord());
-       println(sluggy.getYCoord());
-       println(enemyPath);
-    }
+    eneMove();
   }
 }
 
 Maps level = new Maps();
+Controls control = new Controls();
 
 void mouseClicked() {
   //menu select
@@ -174,12 +141,10 @@ void mouseClicked() {
       }
       selectedX = column;
       selectedY = row;
-      println(row + " " + column);
       if (map[row][column] == AERIAL || map[row][column] == GROUND) {
 
         if (!(charMap[row][column] > -1)) {
           opSelect = true;
-
         } else {
           opRemove = true;
         }
@@ -187,10 +152,7 @@ void mouseClicked() {
         opSelect = false;
       }
     }
-  }
-  
-  else if(onResults){
-    
+  } else if (onResults) {
   }
 }
 
@@ -265,74 +227,6 @@ void keyPressed() {
   }
 }
 
-void lvlOne() {
-  //MAP1 for placement purposes
-  cost = 5;
-  unitLimit = 3;
-  map = new int[4][9];
-  for (int i = 0; i < 4; i++) {
-    for (int j = 0; j < 9; j++) {
-      map[i][j] = GROUND;
-    }
-  }
-  for (int i = 0; i < 9; i++) {
-    if (i != 0 || i != 8) {
-      map[0][i] = AERIAL;
-      map[3][i] = AERIAL;
-    } else {
-      map[0][i] = WALL;
-      map[3][i] = WALL;
-    }
-  }
-  for (int i = 0; i < 4; i++) {
-    map[i][0] = WALL;
-    map[i][8] = WALL;
-  }
-  map[1][0] = GROUND;
-  map[2][8] = GROUND;
-  map[1][2] = AERIAL;
-  map[2][4] = AERIAL;
-
-  charMap = new int[4][9];
-  eneMap = new int[4][9];
-
-  for (int i = 0; i < 4; i++) {
-    for (int j = 0; j < 9; j++) {
-      charMap[i][j] = map[i][j];
-      eneMap[i][j] = map[i][j];
-    }
-  }
- 
-  //maybe combine later***
-  ogmap = new int[5][9]; //for display purposes INCLUDES INVENTORY
-  for (int i = 0; i < 5; i++) {
-    for (int j = 0; j < 9; j++) {
-      if (i != 4) {
-        ogmap[i][j] = map[i][j];
-      }
-    }
-  }
-  
-  map[2][8] = WALL;
-  map[1][0] = WALL;
-}
-
-//void lvlOneEnemyPath() {
-//  enemyPath = new ArrayList<int[]>();
-//  enemyPath.add(new int[]{1, 0, 0});
-//  enemyPath.add(new int[]{1, 1, 4});
-//  enemyPath.add(new int[]{2, 1, 1});
-//  enemyPath.add(new int[]{2, 2, 4});
-//  enemyPath.add(new int[]{2, 3, 4});
-//  enemyPath.add(new int[]{1, 3, 3});
-//  enemyPath.add(new int[]{1, 4, 4});
-//  enemyPath.add(new int[]{1, 5, 4});
-//  enemyPath.add(new int[]{1, 6, 4});
-//  enemyPath.add(new int[]{2, 6, 1});
-//  enemyPath.add(new int[]{2, 7, 4});
-//  enemyPath.add(new int[]{2, 8, 4});
-//  //rely on x and y coordinates
-//}
 
 void charAction() {
   for (int i = 0; i < inventory.length; i++) { //array of enemies must start at index 1 if peek = 0 hp then remove
@@ -351,6 +245,25 @@ void charAction() {
             }
           }
         }
+      }
+    }
+  }
+}
+
+void eneMove() {
+  for (int i = 0; i < enemyList.size(); i++) {
+    for (int j = 0; j < enemyPath.length(); j++) {
+      if (steps == SQUARE_SIZE) {
+        eneMap[enemyList.get(0).getYCoord()/(int)SQUARE_SIZE][enemyList.get(0).getXCoord()/(int)SQUARE_SIZE] = 0;
+        steps = 0;
+      }
+
+      enemyList.get(0).setDirection(Integer.parseInt(enemyPath.substring(i, i + 1)));
+
+      if (timer%3 == 0) {
+
+        enemyList.get(0).move();
+        steps++;
       }
     }
   }
