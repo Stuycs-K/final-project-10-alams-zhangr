@@ -88,6 +88,18 @@ WHAT NEEDS TO BE DONE B4 DEMO:
 - how many enemies & lp stats : safika
 - hp bars for enemies & characters : raymond
 - set up map one with all correct characters & enemies with proper diverse stats : both
+- results screens: safika
+
+### 5/30/2023
+- fixed ranges and added rangeone 
+- fixed text indicators
+- added lp & enemies left stats
+
+working on
+- rangetwo
+- results screen
+
+
 
 
 ## GROUP MEMBER 2 //RAYMOND
