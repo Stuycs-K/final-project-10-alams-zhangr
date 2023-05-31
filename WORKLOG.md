@@ -57,7 +57,7 @@ REMINDERS
 ### 5/26/23
 - Fixed issues with directselect
 - added indicators for selection
-- added cost, global timer, & unit limit 
+- added cost, global timer, & unit limit
 - display ops better
 
 ISSUES
@@ -67,11 +67,39 @@ REMINDERS
 - test ranges (work on ranges & individual object timers)
 
 ### 5/27/23
-- changed range & tested 
+- changed range & tested
 - working on character and enemy interaction
 
 ISSUES
 - text indicators for selection not working
+
+### 5/29/23
+- added character attacking enemies and rangezero
+
+ISSUES
+- text indicators
+
+reminders
+- add rangeone & range two
+
+WHAT NEEDS TO BE DONE B4 DEMO:
+- test character attacking MOVING enemies : safika
+- enemies attacking characters : raymond
+- how many enemies & lp stats : safika
+- hp bars for enemies & characters : raymond
+- set up map one with all correct characters & enemies with proper diverse stats : both
+- results screens: safika
+
+### 5/30/2023
+- fixed ranges and added rangeone 
+- fixed text indicators
+- added lp & enemies left stats
+
+working on
+- rangetwo
+- results screen
+
+
 
 
 ## GROUP MEMBER 2 //RAYMOND
@@ -109,3 +137,9 @@ reminders:
 - working on enemy movement
 - revamped enemyPath in game (new parameter in the int array elements)
 - new move method (have not tested yet)
+
+### 5/29/23
+
+- still working on enemy movement (still need to test movement)
+- updated Enemy class to include new variables to help with coding enemy movement
+- added ticks to Enemy class
