@@ -5,6 +5,9 @@ private float SQUARE_SIZE;
 private int cost;
 private int timer;
 private int unitLimit;
+private int lp;
+private int totalenemies;
+private int enemiesleft;
 
 private int[][]map; //NOT USELESS CHECK LVL SETUP OPTIMIZE LATER
 private int[][]ogmap; //for displaying inventory with map DO NOT TOUCH
@@ -184,10 +187,6 @@ void keyPressed() {
 
   if (opSelect) {
     while (keyPressed == false || key == ENTER) {
-      //text display
-      textSize(25);
-      fill(color(0, 255, 0));
-      text("Press #1-6 to select an operator", 0, SQUARE_SIZE*map.length);
     }
     String inputs = "123456";
     boolean equal = false;
@@ -220,6 +219,7 @@ void keyPressed() {
       inventory[index].setDeployed(false);
       unitLimit++;
       println("removed character");
+      opRemove = false;
     } else {
       opRemove = false;
     }
