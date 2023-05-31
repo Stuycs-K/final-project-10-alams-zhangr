@@ -259,7 +259,7 @@ void eneMove() {
         steps = 0;
       }
       enemyList.get(0).setDirection(Integer.parseInt(enemyPath.substring(i, i + 1)));
-      if (timer% 2 == 0) {
+      if (timer% 1 == 0) {
         enemyList.get(0).move();
         steps++;
       }
