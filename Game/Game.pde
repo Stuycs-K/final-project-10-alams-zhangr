@@ -14,7 +14,6 @@ private int[][]eneMap;
 //next block: 1 = up, 2 = right, 3 = down, 4 = left, 0 = none (last element)
 private String enemyPath = "44144434414";
 private int stepsPerSquare = 10;
-
 private TowerCharacters[]inventory;
 private ArrayList<Enemies>enemyList;
 
@@ -54,12 +53,19 @@ void setup() {
   text("Level Two", 450, 285);
   text("Level Three", 450, 360);
 
+  frameRate(1);
+
+  
   //////////////////SETUP LIVING OBJECTS//////////////////
 
   //Enemies(int hp, int spd, int atk, int hit, int[] position, String img)
 
   sluggy = new Enemies(10, 10, 0, 0, "originium_slug.png");
   slug = loadImage(sluggy.getSprite());
+  sluggy.setXCoord(950);
+  sluggy.setYCoord(250);
+  //sluggy.setLocation(new int[]{sluggy.getXCoord()/(int)SQUARE_SIZE, sluggy.getYCoord()/(int)SQUARE_SIZE});
+  sluggy.setDirection(Integer.parseInt(enemyPath.substring(0,1)));
 
   //SETUP ENEMYLIST
   enemyList = new ArrayList<Enemies>();
@@ -93,10 +99,6 @@ void draw() {
     display.displayChar();
     display.limits();
     charAction();
-    sluggy.setXCoord(950);
-    sluggy.setYCoord(250);
-    sluggy.setLocation(new int[]{sluggy.getXCoord()/(int)SQUARE_SIZE, sluggy.getYCoord()/(int)SQUARE_SIZE});
-    sluggy.setDirection(Integer.parseInt(enemyPath.substring(0,1)));
   }
   if (!onMenu) {
     //lvlOneEnemyPath();
@@ -119,6 +121,9 @@ void draw() {
          image(slug, sluggy.getXCoord(), sluggy.getYCoord());
          stepsPerSquare--;
        }
+       println(sluggy.getXCoord());
+       println(sluggy.getYCoord());
+       println(enemyPath);
     }
   }
 }
