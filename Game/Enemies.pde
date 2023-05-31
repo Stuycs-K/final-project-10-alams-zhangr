@@ -20,7 +20,13 @@ public class Enemies extends LivingObjects{
     attack = atk;
     direction = 1;
     range = hit;
+       println(xCoord);
+   println(yCoord);
+   println(sqSize);
     location = new int[]{xCoord/sqSize, yCoord/sqSize};
+   println(xCoord);
+   println(yCoord);
+   println(sqSize);
     sprite = img;
     ticks = 0;
   }
