@@ -10,11 +10,12 @@ public class Enemies extends LivingObjects{
   private int yCoord;
   private int ticks;
   private float sqSize;
+  private int ms;
   public Enemies(){ //default
     
   }
   
-  public Enemies(int hp, int spd, int atk, int hit, String img){
+  public Enemies(int hp, int spd, int atk, int hit, String img, int moveSpeed){
     health = hp;
     speed = spd;
     attack = atk;
@@ -22,6 +23,7 @@ public class Enemies extends LivingObjects{
     range = hit;
     sprite = img;
     ticks = 0;
+    ms = moveSpeed;
   }
   
   ////////////////////////////////////////////
@@ -85,6 +87,10 @@ public class Enemies extends LivingObjects{
     yCoord = newY;
   }
   
+  public int getMS(){
+    return ms;
+  }
+  
   
   ////////////////////////////////////////////
   public void toAttack(LivingObjects other){
@@ -105,6 +111,7 @@ public class Enemies extends LivingObjects{
       this.setXCoord(this.getXCoord() - step);
     }
   }
+  
   
   //public boolean nextStepOnPath(ArrayList<int[]> path, int step, int SQUARE_SIZE){
   //  int[] block = path.get(path.size() - 1);
