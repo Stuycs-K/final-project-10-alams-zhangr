@@ -124,7 +124,7 @@ public class Enemies extends LivingObjects {
         setLocation(new int[]{location[0], location[1] + 1});
       }
     } else if (this.getDirection() == 4) { //left
-      this.setXCoord(this.getXCoord() - 1);
+      this.setXCoord(this.getXCoord() - 2);
       if (xCoord/(int)SQUARE_SIZE > 0 && xCoord/SQUARE_SIZE != location[0]) {
         //println("cord/ss is " + (xCoord/(int)SQUARE_SIZE));
         //println("location0 is " + location[0]);
