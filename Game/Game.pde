@@ -16,7 +16,7 @@ private int[][]eneMap;
 //int[] inside is in the format [row, col, direction of next block]
 //next block: 1 = up, 2 = right, 3 = down, 4 = left, 0 = none (last element)
 private String enemyPath = "444144434414";
-private int stepsPerSquare = 100;
+private int stepsPerSquare = (int)SQUARE_SIZE;
 private TowerCharacters[]inventory;
 private ArrayList<Enemies>enemyList;
 
@@ -59,12 +59,13 @@ void setup() {
 
   //Enemies(int hp, int spd, int atk, int hit, int[] position, String img)
 
-  sluggy = new Enemies(10, 10, 0, 0, "originium_slug.png");
+  sluggy = new Enemies(10, 10, 0, 0, "originium_slug.png", 10);
   slug = loadImage(sluggy.getSprite());
   sluggy.setXCoord(950);
   sluggy.setYCoord(250);
   //sluggy.setLocation(new int[]{sluggy.getXCoord()/(int)SQUARE_SIZE, sluggy.getYCoord()/(int)SQUARE_SIZE});
   sluggy.setDirection(Integer.parseInt(enemyPath.substring(0,1)));
+  stepsPerSquare = stepsPerSquare/2;
 
   //SETUP ENEMYLIST
   enemyList = new ArrayList<Enemies>();
@@ -110,21 +111,21 @@ void draw() {
     //}
     if (enemyPath.length() > 1){
        if (stepsPerSquare != 0){
-         sluggy.move(1);
-         image(slug, sluggy.getXCoord() - 50, sluggy.getYCoord() - 50, 100, 100);
+         sluggy.move(sluggy.getMS());
+         image(slug, sluggy.getXCoord() - (int)SQUARE_SIZE/2, sluggy.getYCoord() - (int)SQUARE_SIZE/2, SQUARE_SIZE, SQUARE_SIZE);
          stepsPerSquare--;
        }
        else {
          enemyPath = enemyPath.substring(1);
          sluggy.setDirection(Integer.parseInt(enemyPath.substring(0,1)));
-         stepsPerSquare = 100;
-         //sluggy.move(10);
-         image(slug, sluggy.getXCoord() - 50, sluggy.getYCoord() - 50, 100, 100);
-         //stepsPerSquare--;
+         stepsPerSquare = (int)SQUARE_SIZE / sluggy.getMS();
+         image(slug, sluggy.getXCoord() - (int)SQUARE_SIZE/2, sluggy.getYCoord() - (int)SQUARE_SIZE/2, SQUARE_SIZE, SQUARE_SIZE);
        }
+       println(stepsPerSquare);
        println(sluggy.getXCoord());
        println(sluggy.getYCoord());
        println(enemyPath);
+       println(SQUARE_SIZE);
     }
   }
 }
