@@ -57,13 +57,10 @@ void setup() {
 
   //////////////////SETUP LIVING OBJECTS//////////////////
 
-  //Enemies(int hp, int spd, int atk, int hit, int[] position, String img)
-
   sluggy = new Enemies(10, 10, 0, 0, "originium_slug.png", 10);
   slug = loadImage(sluggy.getSprite());
   sluggy.setXCoord(950);
   sluggy.setYCoord(250);
-  //sluggy.setLocation(new int[]{sluggy.getXCoord()/(int)SQUARE_SIZE, sluggy.getYCoord()/(int)SQUARE_SIZE});
   sluggy.setDirection(Integer.parseInt(enemyPath.substring(0, 1)));
   stepsPerSquare = stepsPerSquare/2;
 
@@ -71,7 +68,7 @@ void setup() {
   enemyList = new ArrayList<Enemies>();
   enemyList.add(sluggy);
 
-  //TowerCharacters(int hp, int spd, int atk, int hit, String img, int blk, String type, int dp){
+//SETUP OPERATORS
   TowerCharacters op0 = new TowerCharacters(50, 10, 5, 1, "ayer.png", 1, GROUND, 2);
   TowerCharacters op1 = new TowerCharacters(50, 10, 1, 1, "meterorite.png", 1, AERIAL, 2);
   TowerCharacters op2 = new TowerCharacters(50, 1, 1, 1, "purestream.png", 1, AERIAL, 2);
@@ -100,8 +97,7 @@ void draw() {
     display.displayEne();
     display.limits();
     attacks.charAction();
-  }
-  if (!onMenu) {
+
     if (enemyPath.length() > 1) {
       if (stepsPerSquare != 0) {
         sluggy.move(sluggy.getMS());
@@ -121,6 +117,7 @@ void draw() {
       println(SQUARE_SIZE);
     }
   }
+
 }
 
 Maps level = new Maps();
@@ -146,21 +143,3 @@ void keyPressed() {
     control.operatorRemove();
   }
 }
-
-
-//void eneMove() {
-//  for (int i = 0; i < enemyList.size(); i++) {
-//    for (int j = 0; j < enemyPath.length(); j++) {
-//      if (steps == SQUARE_SIZE) {
-//        eneMap[enemyList.get(0).getYCoord()/(int)SQUARE_SIZE][enemyList.get(0).getXCoord()/(int)SQUARE_SIZE] = 0;
-//        steps = 0;
-//      }
-//      enemyList.get(0).setDirection(Integer.parseInt(enemyPath.substring(i, i + 1)));
-
-//      enemyList.get(0).move();
-
-//      //add a if statement to check if enemy is at base then subtract enemiesleft and life points
-//      steps++;
-//    }
-//  }
-//}
