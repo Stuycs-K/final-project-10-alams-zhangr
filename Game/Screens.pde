@@ -3,6 +3,8 @@ public class Screens {
   }
 
   void menu() {
+    background(0);
+    fill(255);
     rect(325, 175, 350, 50);
     rect(325, 250, 350, 50);
     rect(325, 325, 350, 50);
