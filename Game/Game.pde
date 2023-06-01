@@ -121,7 +121,6 @@ void draw() {
          stepsPerSquare = (int)SQUARE_SIZE / sluggy.getMS();
          image(slug, sluggy.getXCoord() - (int)SQUARE_SIZE/2, sluggy.getYCoord() - (int)SQUARE_SIZE/2, SQUARE_SIZE, SQUARE_SIZE);
        }
-       int[] coords = sluggy.getLocation();
        eneMap[sluggy.getYCoord() / (int)SQUARE_SIZE][sluggy.getXCoord()/ (int)SQUARE_SIZE] = enemyList.indexOf(sluggy); 
        println(stepsPerSquare); 
        println(sluggy.getXCoord());
