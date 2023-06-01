@@ -122,4 +122,8 @@ public class Controls {
     }
   }
   
+  void resultsExit(){
+    
+  }
+  
 }

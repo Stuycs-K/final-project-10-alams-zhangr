@@ -10,7 +10,7 @@ private int enemiesleft;
 
 private int steps;
 
-private int[][]map; //NOT USELESS CHECK LVL SETUP OPTIMIZE LATER
+private int[][]map; //CHECK LVL SETUP OPTIMIZE LATER
 private int[][]ogmap; //for displaying inventory with map DO NOT TOUCH
 private int[][]charMap;
 private int[][]eneMap;
@@ -88,6 +88,7 @@ void setup() {
 
 Display display = new Display();
 Interaction attacks = new Interaction();
+
 void draw() {
   if (levelSelect > 0) {
     display.gameMap(ogmap);
