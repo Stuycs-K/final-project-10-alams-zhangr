@@ -10,7 +10,7 @@ private int enemiesleft;
 
 private int steps;
 
-private int[][]map; //CHECK LVL SETUP OPTIMIZE LATER
+private int[][]map; //CHECK LVL SETUPS
 private int[][]ogmap; //for displaying inventory with map DO NOT TOUCH
 private int[][]charMap;
 private int[][]eneMap;
@@ -51,7 +51,6 @@ int delay = 10;
 private Enemies sluggy;
 
 void setup() {
-  //menu screen
   size(1000, 550);
   screen.menu();
 
@@ -68,7 +67,7 @@ void setup() {
   enemyList = new ArrayList<Enemies>();
   enemyList.add(sluggy);
 
-//SETUP OPERATORS
+  //SETUP OPERATORS
   TowerCharacters op0 = new TowerCharacters(50, 10, 5, 1, "ayer.png", 1, GROUND, 2);
   TowerCharacters op1 = new TowerCharacters(50, 10, 1, 1, "meterorite.png", 1, AERIAL, 2);
   TowerCharacters op2 = new TowerCharacters(50, 1, 1, 1, "purestream.png", 1, AERIAL, 2);
@@ -90,17 +89,32 @@ Display display = new Display();
 Interaction attacks = new Interaction();
 
 void draw() {
-  if (levelSelect > 0) {
-    display.gameMap(ogmap);
+  if (levelSelect > 0 ) {
     timer++;
+    display.gameMap(ogmap);
     display.inventory();
     display.displayChar();
     display.displayEne();
     display.limits();
-    attacks.charAction();
-    attacks.enemyMove();
+    if (!onResults) {
+      attacks.charAction();
+      attacks.enemyMove();
+    }
+  
+  if (lp == 0) {
+    onResults = true;
+    screen.lose();
+    
   }
-
+  if (enemiesleft == 0) {
+    onResults = true;
+    screen.win();
+  }
+  }
+  else if(!onMenu){
+    screen.menu();
+    onMenu = true;
+  }
 }
 
 Maps level = new Maps();
@@ -109,9 +123,11 @@ Controls control = new Controls();
 void mouseClicked() {
   if (onMenu) {
     control.menuSelect();
-  } else if (onMap) {
+  } else if (onMap && !onResults) {
     control.mapclicks();
   } else if (onResults) {
+    onResults = false;
+    levelSelect = 0;
   }
 }
 
