@@ -152,3 +152,9 @@ reminders:
 
 NEED TO DO:
 - adjust image displaying (not synced with squares)
+
+### 5/31/23
+
+- fixed image displaying
+- fixed path
+- implemented enemy speed

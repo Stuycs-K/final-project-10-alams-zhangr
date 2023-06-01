@@ -16,9 +16,9 @@ private int[][]charMap;
 private int[][]eneMap;
 
 //next block: 1 = up, 2 = right, 3 = down, 4 = left, 0 = none (last element)
-//private String enemyPath = "44144434414";
-private String enemyPath = "4";
 
+private String enemyPath = "444144434414";
+private int stepsPerSquare = (int)SQUARE_SIZE;
 
 private TowerCharacters[]inventory;
 private ArrayList<Enemies>enemyList;
@@ -46,6 +46,10 @@ private int levelSelect = 0;
 
 Screens screen = new Screens();
 
+private PImage slug;
+int delay = 10;
+private Enemies sluggy;
+
 void setup() {
   //menu screen
   size(1000, 550);
@@ -55,8 +59,13 @@ void setup() {
 
   //Enemies(int hp, int spd, int atk, int hit, int[] position, String img)
 
-  Enemies sluggy = new Enemies(10, 10, 0, 0, new int[]{2, 8}, 950, 250, "originium_slug.png");
-  //sluggy.setDirection(Integer.parseInt(enemyPath.substring(0, 1)));
+  sluggy = new Enemies(10, 10, 0, 0, "originium_slug.png", 10);
+  slug = loadImage(sluggy.getSprite());
+  sluggy.setXCoord(950);
+  sluggy.setYCoord(250);
+  //sluggy.setLocation(new int[]{sluggy.getXCoord()/(int)SQUARE_SIZE, sluggy.getYCoord()/(int)SQUARE_SIZE});
+  sluggy.setDirection(Integer.parseInt(enemyPath.substring(0, 1)));
+  stepsPerSquare = stepsPerSquare/2;
 
   //SETUP ENEMYLIST
   enemyList = new ArrayList<Enemies>();
@@ -92,6 +101,26 @@ void draw() {
     display.limits();
     attacks.charAction();
   }
+  if (!onMenu) {
+    if (enemyPath.length() > 1) {
+      if (stepsPerSquare != 0) {
+        sluggy.move(sluggy.getMS());
+        image(slug, sluggy.getXCoord() - (int)SQUARE_SIZE/2, sluggy.getYCoord() - (int)SQUARE_SIZE/2, SQUARE_SIZE, SQUARE_SIZE);
+        stepsPerSquare--;
+      } else {
+        enemyPath = enemyPath.substring(1);
+        sluggy.setDirection(Integer.parseInt(enemyPath.substring(0, 1)));
+        stepsPerSquare = (int)SQUARE_SIZE / sluggy.getMS();
+        image(slug, sluggy.getXCoord() - (int)SQUARE_SIZE/2, sluggy.getYCoord() - (int)SQUARE_SIZE/2, SQUARE_SIZE, SQUARE_SIZE);
+      }
+      eneMap[sluggy.getYCoord() / (int)SQUARE_SIZE][sluggy.getXCoord()/ (int)SQUARE_SIZE] = enemyList.indexOf(sluggy);
+      println(stepsPerSquare);
+      println(sluggy.getXCoord());
+      println(sluggy.getYCoord());
+      println(enemyPath);
+      println(SQUARE_SIZE);
+    }
+  }
 }
 
 Maps level = new Maps();
@@ -103,7 +132,6 @@ void mouseClicked() {
   } else if (onMap) {
     control.mapclicks();
   } else if (onResults) {
-    
   }
 }
 
@@ -120,19 +148,19 @@ void keyPressed() {
 }
 
 
-void eneMove() {
-  for (int i = 0; i < enemyList.size(); i++) {
-    for (int j = 0; j < enemyPath.length(); j++) {
-      if (steps == SQUARE_SIZE) {
-        eneMap[enemyList.get(0).getYCoord()/(int)SQUARE_SIZE][enemyList.get(0).getXCoord()/(int)SQUARE_SIZE] = 0;
-        steps = 0;
-      }
-      enemyList.get(0).setDirection(Integer.parseInt(enemyPath.substring(i, i + 1)));
+//void eneMove() {
+//  for (int i = 0; i < enemyList.size(); i++) {
+//    for (int j = 0; j < enemyPath.length(); j++) {
+//      if (steps == SQUARE_SIZE) {
+//        eneMap[enemyList.get(0).getYCoord()/(int)SQUARE_SIZE][enemyList.get(0).getXCoord()/(int)SQUARE_SIZE] = 0;
+//        steps = 0;
+//      }
+//      enemyList.get(0).setDirection(Integer.parseInt(enemyPath.substring(i, i + 1)));
 
-      enemyList.get(0).move();
+//      enemyList.get(0).move();
 
-      //add a if statement to check if enemy is at base then subtract enemiesleft and life points
-      steps++;
-    }
-  }
-}
+//      //add a if statement to check if enemy is at base then subtract enemiesleft and life points
+//      steps++;
+//    }
+//  }
+//}
