@@ -97,25 +97,7 @@ void draw() {
     display.displayEne();
     display.limits();
     attacks.charAction();
-
-    if (enemyPath.length() > 1) {
-      if (stepsPerSquare != 0) {
-        sluggy.move(sluggy.getMS());
-        image(slug, sluggy.getXCoord() - (int)SQUARE_SIZE/2, sluggy.getYCoord() - (int)SQUARE_SIZE/2, SQUARE_SIZE, SQUARE_SIZE);
-        stepsPerSquare--;
-      } else {
-        enemyPath = enemyPath.substring(1);
-        sluggy.setDirection(Integer.parseInt(enemyPath.substring(0, 1)));
-        stepsPerSquare = (int)SQUARE_SIZE / sluggy.getMS();
-        image(slug, sluggy.getXCoord() - (int)SQUARE_SIZE/2, sluggy.getYCoord() - (int)SQUARE_SIZE/2, SQUARE_SIZE, SQUARE_SIZE);
-      }
-      eneMap[sluggy.getYCoord() / (int)SQUARE_SIZE][sluggy.getXCoord()/ (int)SQUARE_SIZE] = enemyList.indexOf(sluggy);
-      println(stepsPerSquare);
-      println(sluggy.getXCoord());
-      println(sluggy.getYCoord());
-      println(enemyPath);
-      println(SQUARE_SIZE);
-    }
+    attacks.enemyMove();
   }
 
 }

@@ -1,7 +1,7 @@
 public class Interaction {
   public Interaction() {
   };
-
+  
   void charAction() {
     for (int i = 0; i < inventory.length; i++) {
       if (inventory[i].getDeployed() && !directionSelect) {
@@ -21,6 +21,22 @@ public class Interaction {
           }
         }
       }
+    }
+  }
+  
+  void enemyMove(){
+    if (enemyPath.length() > 1) {
+      if (stepsPerSquare != 0) {
+        sluggy.move(sluggy.getMS());
+        image(slug, sluggy.getXCoord() - (int)SQUARE_SIZE/2, sluggy.getYCoord() - (int)SQUARE_SIZE/2, SQUARE_SIZE, SQUARE_SIZE);
+        stepsPerSquare--;
+      } else {
+        enemyPath = enemyPath.substring(1);
+        sluggy.setDirection(Integer.parseInt(enemyPath.substring(0, 1)));
+        stepsPerSquare = (int)SQUARE_SIZE / sluggy.getMS();
+        image(slug, sluggy.getXCoord() - (int)SQUARE_SIZE/2, sluggy.getYCoord() - (int)SQUARE_SIZE/2, SQUARE_SIZE, SQUARE_SIZE);
+      }
+      eneMap[sluggy.getYCoord() / (int)SQUARE_SIZE][sluggy.getXCoord()/ (int)SQUARE_SIZE] = enemyList.indexOf(sluggy);
     }
   }
 }
