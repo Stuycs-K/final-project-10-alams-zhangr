@@ -100,7 +100,7 @@ public class Enemies extends LivingObjects {
   }
   
   
-  ////////////////////////////////////////////
+  ///////////////METHODS/////////////////////////////
   public void toAttack(LivingObjects other){
     other.setHealth(other.getHealth() - this.getAttack());
   }
@@ -119,54 +119,7 @@ public class Enemies extends LivingObjects {
       this.setXCoord(this.getXCoord() - step);
     }
   }
-  
-  
-  //public boolean nextStepOnPath(ArrayList<int[]> path, int step, int SQUARE_SIZE){
-  //  int[] block = path.get(path.size() - 1);
-  //  if (this.getDirection() == 1){ //up
-  //    if ((this.getYCoord() - step)/SQUARE_SIZE != block[1]){
-  //      return false;
-  //    }
-  //  }
-  //  else if (this.getDirection() == 2){ //right
-  //    if ((this.getXCoord() + step)/SQUARE_SIZE != block[0]){
-  //      return false;
-  //    }
-  //  }
-  //  else if (this.getDirection() == 3){ //down
-  //    if ((this.getYCoord() + step)/SQUARE_SIZE != block[1]){
-  //      return false;
-  //    }
-  //  }
-  //  else if (this.getDirection() == 4){ //left
-  //    if ((this.getXCoord() - step)/SQUARE_SIZE != block[0]){
-  //      return false;
-  //    }
-  //  }
-  //  return true;
-  //}
-     
-  
-  //public void movePath(ArrayList<int[]> path, int step, int SQUARE_SIZE){
-  //  if (path.size() == 0){
-  //    int[] coords = path.get(path.size() - 1);
-  //    this.setDirection(coords[3]);
-  //    if (this.getDirection() == coords[3] && nextStepOnPath(path, step, SQUARE_SIZE)){
-  //      move(step);
-  //    }
-  //    else {
-  //      path.remove(path.size() - 1);
-  //      this.setDirection(coords[3]);
-  //      if (this.getDirection() == coords[3] && nextStepOnPath(path, step, SQUARE_SIZE)){
-  //        move(step);
-  //      }
-  //    }
-  //  }
-  //} 
-  
-  //public void movePath(String path, float SQUARE_SIZE, int step, int stepCounter){
-    
-  //}
+
   public int checkRange(){ //returns first value of blocked
     if(this.getRange() == 1){
       rangeOne();

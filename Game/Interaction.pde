@@ -15,6 +15,7 @@ public class Interaction {
                 int[] position = inventory[i].checkRange().getLocation();
                 eneMap[position[0]][position[1]] = map[position[0]][position[1]];
                 enemyList.remove(0);
+                enemiesleft--;
                 inventory[i].blocked.remove();
               }
             }
