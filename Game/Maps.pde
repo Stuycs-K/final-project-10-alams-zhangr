@@ -8,7 +8,7 @@ public class Maps {
     unitLimit = 3;
     lp = 3;
     totalenemies = 3;
-    enemiesleft = 0;
+    enemiesleft = 3;
 
     map = new int[4][9];
     for (int i = 0; i < 4; i++) {
