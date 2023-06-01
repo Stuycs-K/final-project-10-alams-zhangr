@@ -99,7 +99,16 @@ working on
 - rangetwo
 - results screen
 
+### 5/31/2023
+- created backup enemy move method
 
+### 6/1/2023
+- organized code into different classes
+- added results screens
+
+DEMO
+- test character attacking MOVING enemies
+- 
 
 
 ## GROUP MEMBER 2 //RAYMOND
