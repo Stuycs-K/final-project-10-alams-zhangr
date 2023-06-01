@@ -8,15 +8,18 @@ private int lp;
 private int totalenemies;
 private int enemiesleft;
 
+private int steps;
+
 private int[][]map; //NOT USELESS CHECK LVL SETUP OPTIMIZE LATER
 private int[][]ogmap; //for displaying inventory with map DO NOT TOUCH
 private int[][]charMap;
 private int[][]eneMap;
-//private ArrayList<int[]> enemyPath;//just to make it work at the moment
-//int[] inside is in the format [row, col, direction of next block]
+
 //next block: 1 = up, 2 = right, 3 = down, 4 = left, 0 = none (last element)
+
 private String enemyPath = "444144434414";
 private int stepsPerSquare = (int)SQUARE_SIZE;
+
 private TowerCharacters[]inventory;
 private ArrayList<Enemies>enemyList;
 
@@ -41,20 +44,17 @@ private int selectedY;
 
 private int levelSelect = 0;
 
+Screens screen = new Screens();
+
 private PImage slug;
 int delay = 10;
 private Enemies sluggy;
-
-Screens screen = new Screens();
 
 void setup() {
   //menu screen
   size(1000, 550);
   screen.menu();
 
-  frameRate(100);
-
-  
   //////////////////SETUP LIVING OBJECTS//////////////////
 
   //Enemies(int hp, int spd, int atk, int hit, int[] position, String img)
@@ -64,7 +64,7 @@ void setup() {
   sluggy.setXCoord(950);
   sluggy.setYCoord(250);
   //sluggy.setLocation(new int[]{sluggy.getXCoord()/(int)SQUARE_SIZE, sluggy.getYCoord()/(int)SQUARE_SIZE});
-  sluggy.setDirection(Integer.parseInt(enemyPath.substring(0,1)));
+  sluggy.setDirection(Integer.parseInt(enemyPath.substring(0, 1)));
   stepsPerSquare = stepsPerSquare/2;
 
   //SETUP ENEMYLIST
@@ -90,270 +90,77 @@ void setup() {
 }
 
 Display display = new Display();
-
+Interaction attacks = new Interaction();
 void draw() {
   if (levelSelect > 0) {
     display.gameMap(ogmap);
     timer++;
     display.inventory();
     display.displayChar();
+    display.displayEne();
     display.limits();
-    charAction();
-    screen.win();
-
+    attacks.charAction();
   }
   if (!onMenu) {
-    //lvlOneEnemyPath();
-    //if (enemyPath.size() > 1) {
-    //  int sqSize = (int)(SQUARE_SIZE);
-    //  sluggy.movePath(enemyPath, 10, sqSize);
-    //  image(slug, sluggy.getXCoord(), sluggy.getYCoord());
-    //}
-    if (enemyPath.length() > 1){
-       if (stepsPerSquare != 0){
-         sluggy.move(sluggy.getMS());
-         image(slug, sluggy.getXCoord() - (int)SQUARE_SIZE/2, sluggy.getYCoord() - (int)SQUARE_SIZE/2, SQUARE_SIZE, SQUARE_SIZE);
-         stepsPerSquare--;
-       }
-       else {
-         enemyPath = enemyPath.substring(1);
-         sluggy.setDirection(Integer.parseInt(enemyPath.substring(0,1)));
-         stepsPerSquare = (int)SQUARE_SIZE / sluggy.getMS();
-         image(slug, sluggy.getXCoord() - (int)SQUARE_SIZE/2, sluggy.getYCoord() - (int)SQUARE_SIZE/2, SQUARE_SIZE, SQUARE_SIZE);
-       }
-       eneMap[sluggy.getYCoord() / (int)SQUARE_SIZE][sluggy.getXCoord()/ (int)SQUARE_SIZE] = enemyList.indexOf(sluggy); 
-       println(stepsPerSquare); 
-       println(sluggy.getXCoord());
-       println(sluggy.getYCoord());
-       println(enemyPath);
-       println(SQUARE_SIZE);
+    if (enemyPath.length() > 1) {
+      if (stepsPerSquare != 0) {
+        sluggy.move(sluggy.getMS());
+        image(slug, sluggy.getXCoord() - (int)SQUARE_SIZE/2, sluggy.getYCoord() - (int)SQUARE_SIZE/2, SQUARE_SIZE, SQUARE_SIZE);
+        stepsPerSquare--;
+      } else {
+        enemyPath = enemyPath.substring(1);
+        sluggy.setDirection(Integer.parseInt(enemyPath.substring(0, 1)));
+        stepsPerSquare = (int)SQUARE_SIZE / sluggy.getMS();
+        image(slug, sluggy.getXCoord() - (int)SQUARE_SIZE/2, sluggy.getYCoord() - (int)SQUARE_SIZE/2, SQUARE_SIZE, SQUARE_SIZE);
+      }
+      eneMap[sluggy.getYCoord() / (int)SQUARE_SIZE][sluggy.getXCoord()/ (int)SQUARE_SIZE] = enemyList.indexOf(sluggy);
+      println(stepsPerSquare);
+      println(sluggy.getXCoord());
+      println(sluggy.getYCoord());
+      println(enemyPath);
+      println(SQUARE_SIZE);
     }
   }
 }
 
 Maps level = new Maps();
+Controls control = new Controls();
 
 void mouseClicked() {
-  //menu select
   if (onMenu) {
-    if (mouseX >= 325 && mouseX <= 675 && mouseY >=175 && mouseY <= 225) {
-      levelSelect = 1;
-      level.lvlOne();
-
-      //testing
-      eneMap[1][3] = 0;
-      enemyList.get(0).setLocation(new int[]{1, 3});
-
-
-      onMenu = false;
-      onMap = true;
-    }
-    if (mouseX >= 325 && mouseX <= 675 && mouseY >=250 && mouseY <= 300) {
-      levelSelect = 2;
-      onMenu = false;
-      onMap = true;
-    }
-    if (mouseX >= 325 && mouseX <= 675 && mouseY >=325 && mouseY <= 375) {
-      levelSelect = 3;
-      onMenu = false;
-      onMap = true;
-    }
-
-    /////GAME PLAY////
+    control.menuSelect();
   } else if (onMap) {
-    if (mouseX <= 950 && mouseY <= 550 - SQUARE_SIZE && !(directionSelect)) {
-      int row = 0;
-      int column = 0;
-      int w = mouseX;
-      int h = mouseY;
-      while (w > SQUARE_SIZE) {
-        w -= SQUARE_SIZE;
-        column++;
-      }
-      while (h > SQUARE_SIZE) {
-        h -= SQUARE_SIZE;
-        row++;
-      }
-      selectedX = column;
-      selectedY = row;
-      println(row + " " + column);
-      if (map[row][column] == AERIAL || map[row][column] == GROUND) {
-
-        if (!(charMap[row][column] > -1)) {
-          opSelect = true;
-
-        } else {
-          opRemove = true;
-        }
-      } else {
-        opSelect = false;
-      }
-    }
-  }
-  
-  else if(onResults){
-    
+    control.mapclicks();
+  } else if (onResults) {
   }
 }
 
 void keyPressed() {
   if (directionSelect) {
-    int index = charMap[selectedY][selectedX];
-    while (keyPressed == false) {
-    }
-    String inputs = "wasd";
-    boolean equal = false;
-    for (int i = 0; i < inputs.length(); i++) {
-      if (key == inputs.charAt(i)) {
-        equal = true;
-      }
-    }
-    if (equal) {
-      if (key == 'w') {
-        inventory[index].setDirection(T);
-      }
-      if (key == 'd') {
-        inventory[index].setDirection(R);
-      }
-      if (key == 's') {
-        inventory[index].setDirection(D);
-      }
-      if (key == 'a') {
-        inventory[index].setDirection(L);
-      }
-      println("direction is " + inventory[index].getDirection());
-      directionSelect = false;
-    }
+    control.selectDirection();
   }
-
   if (opSelect) {
-    while (keyPressed == false || key == ENTER) {
-    }
-    String inputs = "123456";
-    boolean equal = false;
-    for (int i = 0; i < inputs.length(); i++) {
-      if (key == inputs.charAt(i)) {
-        equal = true;
-      }
-    }
-    if (equal) {
-      String keey = "" + key;
-      int index = Integer.parseInt(keey) - 1;
-      while (!inventory[index].getDeployed() && inventory[index].getType() == map[selectedY][selectedX] && ((cost - inventory[index].getDp()) >= 0) && unitLimit > 0) {
-        cost -= inventory[index].getDp();
-        charMap[selectedY][selectedX] = index;
-        inventory[index].setLocation(new int[]{selectedX, selectedY});
-        unitLimit--;
-        inventory[index].setDeployed(true);
-        directionSelect = true;
-        opSelect = false;
-      }
-    }
+    control.operatorSelect();
   }
-
   if (opRemove) {
-    while (keyPressed == false) {
-    }
-    if (key == ENTER && charMap[selectedY][selectedX] > -1) {
-      int index = charMap[selectedY][selectedX];
-      charMap[selectedY][selectedX] = map[selectedY][selectedX];
-      inventory[index].setDeployed(false);
-      unitLimit++;
-      println("removed character");
-      opRemove = false;
-    } else {
-      opRemove = false;
-    }
+    control.operatorRemove();
   }
 }
 
-void lvlOne() {
-  //MAP1 for placement purposes
-  cost = 5;
-  unitLimit = 3;
-  map = new int[4][9];
-  for (int i = 0; i < 4; i++) {
-    for (int j = 0; j < 9; j++) {
-      map[i][j] = GROUND;
-    }
-  }
-  for (int i = 0; i < 9; i++) {
-    if (i != 0 || i != 8) {
-      map[0][i] = AERIAL;
-      map[3][i] = AERIAL;
-    } else {
-      map[0][i] = WALL;
-      map[3][i] = WALL;
-    }
-  }
-  for (int i = 0; i < 4; i++) {
-    map[i][0] = WALL;
-    map[i][8] = WALL;
-  }
-  map[1][0] = GROUND;
-  map[2][8] = GROUND;
-  map[1][2] = AERIAL;
-  map[2][4] = AERIAL;
 
-  charMap = new int[4][9];
-  eneMap = new int[4][9];
+//void eneMove() {
+//  for (int i = 0; i < enemyList.size(); i++) {
+//    for (int j = 0; j < enemyPath.length(); j++) {
+//      if (steps == SQUARE_SIZE) {
+//        eneMap[enemyList.get(0).getYCoord()/(int)SQUARE_SIZE][enemyList.get(0).getXCoord()/(int)SQUARE_SIZE] = 0;
+//        steps = 0;
+//      }
+//      enemyList.get(0).setDirection(Integer.parseInt(enemyPath.substring(i, i + 1)));
 
-  for (int i = 0; i < 4; i++) {
-    for (int j = 0; j < 9; j++) {
-      charMap[i][j] = map[i][j];
-      eneMap[i][j] = map[i][j];
-    }
-  }
- 
-  //maybe combine later***
-  ogmap = new int[5][9]; //for display purposes INCLUDES INVENTORY
-  for (int i = 0; i < 5; i++) {
-    for (int j = 0; j < 9; j++) {
-      if (i != 4) {
-        ogmap[i][j] = map[i][j];
-      }
-    }
-  }
-  
-  map[2][8] = WALL;
-  map[1][0] = WALL;
-}
+//      enemyList.get(0).move();
 
-//void lvlOneEnemyPath() {
-//  enemyPath = new ArrayList<int[]>();
-//  enemyPath.add(new int[]{1, 0, 0});
-//  enemyPath.add(new int[]{1, 1, 4});
-//  enemyPath.add(new int[]{2, 1, 1});
-//  enemyPath.add(new int[]{2, 2, 4});
-//  enemyPath.add(new int[]{2, 3, 4});
-//  enemyPath.add(new int[]{1, 3, 3});
-//  enemyPath.add(new int[]{1, 4, 4});
-//  enemyPath.add(new int[]{1, 5, 4});
-//  enemyPath.add(new int[]{1, 6, 4});
-//  enemyPath.add(new int[]{2, 6, 1});
-//  enemyPath.add(new int[]{2, 7, 4});
-//  enemyPath.add(new int[]{2, 8, 4});
-//  //rely on x and y coordinates
+//      //add a if statement to check if enemy is at base then subtract enemiesleft and life points
+//      steps++;
+//    }
+//  }
 //}
-
-void charAction() {
-  for (int i = 0; i < inventory.length; i++) { //array of enemies must start at index 1 if peek = 0 hp then remove
-    if (inventory[i].getDeployed() && !directionSelect) {
-      if (inventory[i].checkRange() != null) {
-        inventory[i].setAttacking(true);
-        if (inventory[i].getTicks()%inventory[i].getSpeed() == 0) {
-          if (inventory[i].checkRange().getHealth() > 0) {
-            inventory[i].toAttack(inventory[i].checkRange());
-            if (inventory[i].checkRange().getHealth() <= 0) {
-              inventory[i].setAttacking(false);
-              int[] position = inventory[i].checkRange().getLocation();
-              eneMap[position[0]][position[1]] = map[position[0]][position[1]];
-              enemyList.remove(0);
-              inventory[i].blocked.remove();
-            }
-          }
-        }
-      }
-    }
-  }
-}

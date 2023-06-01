@@ -1,5 +1,6 @@
 public class Display {
-  public Display() {};
+  public Display() {
+  };
 
   void gameMap(int[][]grid) { //pass ogmap
     SQUARE_SIZE = width/map[0].length;
@@ -43,9 +44,8 @@ public class Display {
       text("Press #1-6 to select an operator.", 0, SQUARE_SIZE*map.length);
       strokeWeight(1);
       stroke(255, 255, 255);
-      
     }
-    if(opRemove){
+    if (opRemove) {
       strokeWeight(10);
       stroke(color(0, 255, 0));
       rect(selectk, selectl, SQUARE_SIZE, SQUARE_SIZE);
@@ -56,7 +56,7 @@ public class Display {
       strokeWeight(1);
       stroke(255, 255, 255);
     }
-    if(directionSelect){
+    if (directionSelect) {
       textSize(25);
       fill(color(0, 255, 0));
       text("Press wasd to select operator's direction.", 0, SQUARE_SIZE*map.length);
@@ -72,9 +72,16 @@ public class Display {
           PImage op0 = loadImage(inventory[charMap[i][j]].getSprite());
           image(op0, SQUARE_SIZE*j - 30, SQUARE_SIZE*i - 70, 175, 175);
         }
+      }
+    }
+  }
+
+  void displayEne() {
+    for (int i = 0; i < eneMap.length; i++) {
+      for (int j = 0; j < eneMap[i].length; j++) {
         if (eneMap[i][j] >= 0) {
           PImage op0 = loadImage(enemyList.get(eneMap[i][j]).getSprite());
-          image(op0, SQUARE_SIZE*j, SQUARE_SIZE*i + 30, 120, 120); //testing
+          image(op0, enemyList.get(eneMap[i][j]).getXCoord(), enemyList.get(eneMap[i][j]).getYCoord(), 175, 175);
         }
       }
     }
@@ -113,7 +120,5 @@ public class Display {
     text("Unit Limit: " + unitLimit, (map[0].length - 2)*SQUARE_SIZE + 90, map.length*SQUARE_SIZE + 30);
     text("Life Points: " + lp, (map[0].length - 2)*SQUARE_SIZE - 20, map.length*SQUARE_SIZE + 60);
     text("Enemies Left: " + enemiesleft + "/" + totalenemies, (map[0].length - 2)*SQUARE_SIZE - 20, map.length*SQUARE_SIZE + 90);
-
-    
   }
 }

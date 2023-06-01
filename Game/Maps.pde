@@ -57,20 +57,4 @@ public class Maps {
     map[2][8] = WALL;
     map[1][0] = WALL;
   }
-
-  //void lvlOneEnemyPath() {
-  //  enemyPath = new ArrayList<int[]>();
-  //  enemyPath.add(new int[]{1, 0});
-  //  enemyPath.add(new int[]{1, 1});
-  //  enemyPath.add(new int[]{2, 1});
-  //  enemyPath.add(new int[]{2, 2});
-  //  enemyPath.add(new int[]{2, 3});
-  //  enemyPath.add(new int[]{1, 3});
-  //  enemyPath.add(new int[]{1, 4});
-  //  enemyPath.add(new int[]{1, 5});
-  //  enemyPath.add(new int[]{1, 6});
-  //  enemyPath.add(new int[]{2, 6});
-  //  enemyPath.add(new int[]{2, 7});
-  //  enemyPath.add(new int[]{2, 8});
-  //}
 }
