@@ -81,7 +81,7 @@ void setup() {
 }
 
 Display display = new Display();
-
+Interaction attacks = new Interaction();
 void draw() {
   if (levelSelect > 0) {
     display.gameMap(ogmap);
@@ -90,8 +90,7 @@ void draw() {
     display.displayChar();
     display.displayEne();
     display.limits();
-    charAction();
-    eneMove();
+    attacks.charAction();
   }
 }
 
@@ -99,168 +98,40 @@ Maps level = new Maps();
 Controls control = new Controls();
 
 void mouseClicked() {
-  //menu select
   if (onMenu) {
-    if (mouseX >= 325 && mouseX <= 675 && mouseY >=175 && mouseY <= 225) {
-      levelSelect = 1;
-      level.lvlOne();
-
-      //testing
-      eneMap[1][3] = 0;
-      enemyList.get(0).setLocation(new int[]{1, 3});
-
-
-      onMenu = false;
-      onMap = true;
-    }
-    if (mouseX >= 325 && mouseX <= 675 && mouseY >=250 && mouseY <= 300) {
-      levelSelect = 2;
-      onMenu = false;
-      onMap = true;
-    }
-    if (mouseX >= 325 && mouseX <= 675 && mouseY >=325 && mouseY <= 375) {
-      levelSelect = 3;
-      onMenu = false;
-      onMap = true;
-    }
-
-    /////GAME PLAY////
+    control.menuSelect();
   } else if (onMap) {
-    if (mouseX <= 950 && mouseY <= 550 - SQUARE_SIZE && !(directionSelect)) {
-      int row = 0;
-      int column = 0;
-      int w = mouseX;
-      int h = mouseY;
-      while (w > SQUARE_SIZE) {
-        w -= SQUARE_SIZE;
-        column++;
-      }
-      while (h > SQUARE_SIZE) {
-        h -= SQUARE_SIZE;
-        row++;
-      }
-      selectedX = column;
-      selectedY = row;
-      if (map[row][column] == AERIAL || map[row][column] == GROUND) {
-
-        if (!(charMap[row][column] > -1)) {
-          opSelect = true;
-        } else {
-          opRemove = true;
-        }
-      } else {
-        opSelect = false;
-      }
-    }
+    control.mapclicks();
   } else if (onResults) {
+    
   }
 }
 
 void keyPressed() {
   if (directionSelect) {
-    int index = charMap[selectedY][selectedX];
-    while (keyPressed == false) {
-    }
-    String inputs = "wasd";
-    boolean equal = false;
-    for (int i = 0; i < inputs.length(); i++) {
-      if (key == inputs.charAt(i)) {
-        equal = true;
-      }
-    }
-    if (equal) {
-      if (key == 'w') {
-        inventory[index].setDirection(T);
-      }
-      if (key == 'd') {
-        inventory[index].setDirection(R);
-      }
-      if (key == 's') {
-        inventory[index].setDirection(D);
-      }
-      if (key == 'a') {
-        inventory[index].setDirection(L);
-      }
-      println("direction is " + inventory[index].getDirection());
-      directionSelect = false;
-    }
+    control.selectDirection();
   }
-
   if (opSelect) {
-    while (keyPressed == false || key == ENTER) {
-    }
-    String inputs = "123456";
-    boolean equal = false;
-    for (int i = 0; i < inputs.length(); i++) {
-      if (key == inputs.charAt(i)) {
-        equal = true;
-      }
-    }
-    if (equal) {
-      String keey = "" + key;
-      int index = Integer.parseInt(keey) - 1;
-      while (!inventory[index].getDeployed() && inventory[index].getType() == map[selectedY][selectedX] && ((cost - inventory[index].getDp()) >= 0) && unitLimit > 0) {
-        cost -= inventory[index].getDp();
-        charMap[selectedY][selectedX] = index;
-        inventory[index].setLocation(new int[]{selectedX, selectedY});
-        unitLimit--;
-        inventory[index].setDeployed(true);
-        directionSelect = true;
-        opSelect = false;
-      }
-    }
+    control.operatorSelect();
   }
-
   if (opRemove) {
-    while (keyPressed == false) {
-    }
-    if (key == ENTER && charMap[selectedY][selectedX] > -1) {
-      int index = charMap[selectedY][selectedX];
-      charMap[selectedY][selectedX] = map[selectedY][selectedX];
-      inventory[index].setDeployed(false);
-      unitLimit++;
-      println("removed character");
-      opRemove = false;
-    } else {
-      opRemove = false;
-    }
+    control.operatorRemove();
   }
 }
 
-
-void charAction() {
-  for (int i = 0; i < inventory.length; i++) { //array of enemies must start at index 1 if peek = 0 hp then remove
-    if (inventory[i].getDeployed() && !directionSelect) {
-      if (inventory[i].checkRange() != null) {
-        inventory[i].setAttacking(true);
-        if (inventory[i].getTicks()%inventory[i].getSpeed() == 0) {
-          if (inventory[i].checkRange().getHealth() > 0) {
-            inventory[i].toAttack(inventory[i].checkRange());
-            if (inventory[i].checkRange().getHealth() <= 0) {
-              inventory[i].setAttacking(false);
-              int[] position = inventory[i].checkRange().getLocation();
-              eneMap[position[0]][position[1]] = map[position[0]][position[1]];
-              enemyList.remove(0);
-              inventory[i].blocked.remove();
-            }
-          }
-        }
-      }
-    }
-  }
-}
 
 void eneMove() {
   for (int i = 0; i < enemyList.size(); i++) {
     for (int j = 0; j < enemyPath.length(); j++) {
       if (steps == SQUARE_SIZE) {
-
         eneMap[enemyList.get(0).getYCoord()/(int)SQUARE_SIZE][enemyList.get(0).getXCoord()/(int)SQUARE_SIZE] = 0;
         steps = 0;
       }
       enemyList.get(0).setDirection(Integer.parseInt(enemyPath.substring(i, i + 1)));
 
       enemyList.get(0).move();
+
+      //add a if statement to check if enemy is at base then subtract enemiesleft and life points
       steps++;
     }
   }
