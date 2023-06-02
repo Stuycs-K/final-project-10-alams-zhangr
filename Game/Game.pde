@@ -4,9 +4,9 @@ private float SQUARE_SIZE;
 private int cost;
 private int timer;
 private int unitLimit;
-private int lp;
+private int lp = 0;
 private int totalenemies;
-private int enemiesleft;
+private int enemiesleft = 0;
 
 private int steps;
 
@@ -99,6 +99,10 @@ void draw() {
     if (!onResults) {
       attacks.charAction();
       attacks.enemyMove();
+      if (enemyPath.length() == 0){
+        enemiesleft--;
+        lp--;
+      }
     }
   
   if (lp == 0) {
