@@ -33,6 +33,7 @@ public class Interaction {
         e.move(e.getMS());
         image(i, e.getXCoord() - (int)SQUARE_SIZE/2, e.getYCoord() - (int)SQUARE_SIZE/2, SQUARE_SIZE, SQUARE_SIZE);
         stepsPerSquare--;
+        e.setLocation(new int[]{e.getXCoord()/ (int)SQUARE_SIZE/2, e.getYCoord()/ (int)SQUARE_SIZE/2);
       } else {
         enemyPath = enemyPath.substring(1);
         e.setDirection(Integer.parseInt(enemyPath.substring(0, 1)));
