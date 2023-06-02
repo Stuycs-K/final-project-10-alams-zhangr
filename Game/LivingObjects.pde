@@ -30,6 +30,5 @@ public abstract class LivingObjects {
   ////////////////METHODS////////////////////////////////////
   public abstract void toAttack(LivingObjects other);
 
-  public abstract void rangeOne();
 
 }

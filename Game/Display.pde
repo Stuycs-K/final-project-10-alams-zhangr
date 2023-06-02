@@ -71,6 +71,7 @@ public class Display {
         if (charMap[i][j] >= 0) {
           PImage op0 = loadImage(inventory[charMap[i][j]].getSprite());
           image(op0, SQUARE_SIZE*j - 30, SQUARE_SIZE*i - 70, 175, 175);
+          healthBars(inventory[charMap[i][j]]);
         }
       }
     }
@@ -120,5 +121,10 @@ public class Display {
     text("Unit Limit: " + unitLimit, (map[0].length - 2)*SQUARE_SIZE + 90, map.length*SQUARE_SIZE + 30);
     text("Life Points: " + lp, (map[0].length - 2)*SQUARE_SIZE - 20, map.length*SQUARE_SIZE + 60);
     text("Enemies Left: " + enemiesleft + "/" + totalenemies, (map[0].length - 2)*SQUARE_SIZE - 20, map.length*SQUARE_SIZE + 90);
+  }
+  
+  void healthBars(LivingObjects other){
+    fill(color(0, 255, 0));
+    text(other.getHealth() + "/" + other.getMaxHP(), other.getLocation()[0]*SQUARE_SIZE, other.getLocation()[1]*SQUARE_SIZE);
   }
 }
