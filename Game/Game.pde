@@ -4,9 +4,9 @@ private float SQUARE_SIZE;
 private int cost;
 private int timer;
 private int unitLimit;
-private int lp;
+private int lp = 0;
 private int totalenemies;
-private int enemiesleft;
+private int enemiesleft = 0;
 
 private int steps;
 
@@ -46,26 +46,25 @@ private int levelSelect = 0;
 
 Screens screen = new Screens();
 
-//private PImage slug;
+private PImage slug;
 //int delay = 10;
-//private Enemies sluggy;
+private Enemies sluggy;
 
 void setup() {
   size(1000, 550);
   screen.menu();
 
   //////////////////SETUP LIVING OBJECTS//////////////////
-  //Enemies sluggy = new Enemies(10
-  //sluggy = new Enemies(10, 10, 0, 0, "originium_slug.png", 10);
-  //slug = loadImage(sluggy.getSprite());
-  //sluggy.setXCoord(950);
-  //sluggy.setYCoord(250);
-  //sluggy.setDirection(Integer.parseInt(enemyPath.substring(0, 1)));
-  //stepsPerSquare = stepsPerSquare/2;
+  sluggy = new Enemies(10, 10, 0, 0, "originium_slug.png", 10);
+  slug = loadImage(sluggy.getSprite());
+  sluggy.setXCoord(950);
+  sluggy.setYCoord(250);
+  sluggy.setDirection(Integer.parseInt(enemyPath.substring(0, 1)));
+  stepsPerSquare = stepsPerSquare/2;
 
   //SETUP ENEMYLIST
-  //enemyList = new ArrayList<Enemies>();
-  //enemyList.add(sluggy);
+  enemyList = new ArrayList<Enemies>();
+  enemyList.add(sluggy);
 
   //SETUP OPERATORS
   TowerCharacters op0 = new TowerCharacters(50, 10, 5, 1, "ayer.png", 1, GROUND, 2);
@@ -104,7 +103,16 @@ void draw() {
     display.limits();
     if (!onResults) {
       attacks.charAction();
-      //attacks.enemyMove();
+      if (charMap[sluggy.getYCoord()/ (int)SQUARE_SIZE][sluggy.getXCoord()/ (int)SQUARE_SIZE] >= 0){
+        display.displayEne();
+      }
+      else{
+        attacks.enemyMove(sluggy, slug);
+      }
+      if (enemyPath.length() == 0){
+        enemiesleft--;
+        lp--;
+      }
     }
   
   if (lp == 0) {
