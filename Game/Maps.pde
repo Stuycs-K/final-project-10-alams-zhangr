@@ -6,7 +6,7 @@ public class Maps {
     //MAP1 for placement purposes
     cost = 10;
     unitLimit = 3;
-    lp = 3;
+    lp = 1;
     totalenemies = 1;
     enemiesleft = 1;
 

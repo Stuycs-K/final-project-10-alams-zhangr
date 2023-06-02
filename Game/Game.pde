@@ -55,7 +55,7 @@ void setup() {
   screen.menu();
 
   //////////////////SETUP LIVING OBJECTS//////////////////
-  sluggy = new Enemies(10550, 1, 130, 0, "originium_slug.png", 10, 950, 250, new int[]{2, 8});
+  sluggy = new Enemies(550, 1, 130, 0, "originium_slug.png", 10, 950, 250, new int[]{2, 8});
   //slug = loadImage(sluggy.getSprite());
   sluggy.setDirection(Integer.parseInt(enemyPath.substring(0, 1)));
   //stepsPerSquare = stepsPerSquare/2;
