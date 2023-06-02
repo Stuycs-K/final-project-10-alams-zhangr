@@ -58,7 +58,7 @@ void setup() {
   sluggy = new Enemies(10, 10, 0, 0, "originium_slug.png", 10, 950, 250, new int[]{2, 8});
   //slug = loadImage(sluggy.getSprite());
   sluggy.setDirection(Integer.parseInt(enemyPath.substring(0, 1)));
-  stepsPerSquare = stepsPerSquare/2;
+  //stepsPerSquare = stepsPerSquare/2;
 
   //SETUP ENEMYLIST
   enemyList = new ArrayList<Enemies>();
