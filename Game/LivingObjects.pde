@@ -1,6 +1,9 @@
 public abstract class LivingObjects {
 
   //HEALTH
+  
+  public abstract int getMaxHP();
+  
   public abstract int getHealth();
 
   public abstract void setHealth(int newHealth);
@@ -29,5 +32,4 @@ public abstract class LivingObjects {
 
   public abstract void rangeOne();
 
-  public abstract void rangeTwo();
 }

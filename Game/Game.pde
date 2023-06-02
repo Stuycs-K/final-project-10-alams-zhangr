@@ -47,7 +47,7 @@ private int levelSelect = 0;
 Screens screen = new Screens();
 
 private PImage slug;
-int delay = 10;
+//int delay = 10;
 private Enemies sluggy;
 
 void setup() {
@@ -55,7 +55,6 @@ void setup() {
   screen.menu();
 
   //////////////////SETUP LIVING OBJECTS//////////////////
-
   sluggy = new Enemies(10, 10, 0, 0, "originium_slug.png", 10);
   slug = loadImage(sluggy.getSprite());
   sluggy.setXCoord(950);
@@ -70,10 +69,16 @@ void setup() {
   //SETUP OPERATORS
   TowerCharacters op0 = new TowerCharacters(50, 10, 5, 1, "ayer.png", 1, GROUND, 2);
   TowerCharacters op1 = new TowerCharacters(50, 10, 1, 1, "meterorite.png", 1, AERIAL, 2);
-  TowerCharacters op2 = new TowerCharacters(50, 1, 1, 1, "purestream.png", 1, AERIAL, 2);
-  TowerCharacters op3 = new TowerCharacters(50, 1, 1, 1, "kaltsit.png", 1, AERIAL, 2);
+  TowerCharacters op2 = new Medic(50, 1, 1, 1, "purestream.png", 1, AERIAL, 2);
+  TowerCharacters op3 = new Medic(50, 1, 1, 1, "kaltsit.png", 1, AERIAL, 2);
   TowerCharacters op4 = new TowerCharacters(50, 1, 1, 1, "mudrock.png", 1, GROUND, 2);
   TowerCharacters op5 = new TowerCharacters(50, 1, 1, 1, "mizuki.png", 1, GROUND, 2);
+
+//testing
+op0.setHealth(1);
+op3.setHealth(45);
+
+
 
   //SETUP INVENTORY
   inventory = new TowerCharacters[6];
@@ -98,7 +103,12 @@ void draw() {
     display.limits();
     if (!onResults) {
       attacks.charAction();
-      attacks.enemyMove();
+      if (charMap[sluggy.getYCoord()/ (int)SQUARE_SIZE][sluggy.getXCoord()/ (int)SQUARE_SIZE] >= 0){
+        display.displayEne();
+      }
+      else{
+        attacks.enemyMove(sluggy, slug);
+      }
       if (enemyPath.length() == 0){
         enemiesleft--;
         lp--;
