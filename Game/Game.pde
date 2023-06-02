@@ -70,7 +70,7 @@ void setup() {
   //SETUP OPERATORS
   TowerCharacters op0 = new TowerCharacters(50, 10, 5, 1, "ayer.png", 1, GROUND, 2);
   TowerCharacters op1 = new TowerCharacters(50, 10, 1, 1, "meterorite.png", 1, AERIAL, 2);
-  TowerCharacters op2 = new TowerCharacters(50, 1, 1, 1, "purestream.png", 1, AERIAL, 2);
+  TowerCharacters op2 = new Medic(50, 1, 1, 1, "purestream.png", 1, AERIAL, 2);
   TowerCharacters op3 = new Medic(50, 1, 1, 1, "kaltsit.png", 1, AERIAL, 2);
   TowerCharacters op4 = new TowerCharacters(50, 1, 1, 1, "mudrock.png", 1, GROUND, 2);
   TowerCharacters op5 = new TowerCharacters(50, 1, 1, 1, "mizuki.png", 1, GROUND, 2);

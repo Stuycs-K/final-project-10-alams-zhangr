@@ -24,7 +24,8 @@ public class Medic extends TowerCharacters {
 
   public LivingObjects checkRange() { //returns first value of blocked
     if (charMap[this.getLocation()[1]][this.getLocation()[0]] > -1) {
-      if (!blocked.contains(inventory[charMap[this.getLocation()[1]][this.getLocation()[0]]])) {
+      
+      if (!blocked.contains(inventory[charMap[this.getLocation()[1]][this.getLocation()[0]]]) && inventory[charMap[this.getLocation()[1]][this.getLocation()[0]]].getHealth() < inventory[charMap[this.getLocation()[1]][this.getLocation()[0]]].getMaxHP()  ) {
         blocked.add(inventory[charMap[this.getLocation()[1]][this.getLocation()[0]]]);
       }
     }
@@ -36,7 +37,6 @@ public class Medic extends TowerCharacters {
     }
 
     for (int i = 0; i < blocked.size(); i++) {
-
       if (blocked.peek().getHealth() == blocked.peek().getMaxHP()) {
         blocked.remove();
       }
@@ -49,7 +49,7 @@ public class Medic extends TowerCharacters {
     int y = this.getLocation()[1];
     if (this.getDirection() == T) {
       if (y - 1 > 0) {
-        if (charMap[y - 1][x] > -1) {
+        if (charMap[y - 1][x] > -1 && inventory[charMap[y-1][x]].getMaxHP() > inventory[charMap[y-1][x]].getHealth() ) {
           if (!blocked.contains(inventory[charMap[y - 1][x]])) {
             blocked.add(inventory[charMap[y - 1][x]]);
           }
@@ -59,7 +59,7 @@ public class Medic extends TowerCharacters {
     if (this.getDirection() == R) {
       if (x + 1 < charMap[0].length) {
         if (charMap[y][x+1] > -1) {
-          if (!blocked.contains(inventory[charMap[y][x + 1]])) {
+          if (!blocked.contains(inventory[charMap[y][x + 1]]) && inventory[charMap[y][x + 1]].getMaxHP() > inventory[charMap[y][x + 1]].getHealth() ) {
             blocked.add(inventory[charMap[y][ x + 1]]);
           }
         }
@@ -67,7 +67,7 @@ public class Medic extends TowerCharacters {
     }
     if (this.getDirection() == D) {
       if (y + 1 < charMap.length) {
-        if (charMap[y +1][x] > -1) {
+        if (charMap[y +1][x] > -1 && inventory[charMap[y+1][x]].getMaxHP() > inventory[charMap[y+1][x]].getHealth() ) {
           if (!blocked.contains(inventory[charMap[y + 1][x]])) {
             blocked.add(inventory[charMap[y + 1][x]]);
           }
@@ -77,7 +77,7 @@ public class Medic extends TowerCharacters {
     if (this.getDirection() == L) {
       if (x - 1 > 0) {
         if (charMap[y][x - 1] > -1) {
-          if (!blocked.contains(inventory[charMap[y][x - 1]])) {
+          if (!blocked.contains(inventory[charMap[y][x - 1]]) && inventory[charMap[y][x - 1]].getMaxHP() > inventory[charMap[y][x - 1]].getHealth()) {
             blocked.add(inventory[charMap[y][ x - 1]]);
           }
         }
