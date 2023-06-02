@@ -58,7 +58,7 @@ void setup() {
   screen.menu();
 
   //////////////////SETUP LIVING OBJECTS//////////////////
-  sluggy = new Enemies(10, 10, 0, 0, "originium_slug.png", 10, 950, 250, new int[]{2, 8});
+  sluggy = new Enemies(10, 10, 0, 0, "originium_slug.png", 10, 950, 250, new int[]{2, 8});  //to give sluggy winning advantage simply change first & third parameter to 100
   //slug = loadImage(sluggy.getSprite());
   sluggy.setDirection(Integer.parseInt(enemyPath.substring(0, 1)));
   //stepsPerSquare = stepsPerSquare/2;
@@ -104,7 +104,7 @@ void draw() {
     display.limits();
     if (!onResults) {
       attacks.charAction();
-      //attacks.enemyAction();
+      attacks.enemyAction();
       if (!dead){
         attacks.enemyMove(sluggy, slug);
       }
@@ -113,12 +113,12 @@ void draw() {
         lp--;
       }
     }
-
+    
     if (lp == 0) {
       onResults = true;
       screen.lose();
     }
-    if (enemiesleft == 0) {
+    else if (enemiesleft == 0) {
       onResults = true;
       screen.win();
     }

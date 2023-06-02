@@ -80,8 +80,6 @@ public class Display {
     for (int i = 0; i < eneMap.length; i++) {
       for (int j = 0; j < eneMap[i].length; j++) {
         if (eneMap[i][j] >= 0) {
-          println(i + " " + j);
-          println(enemyList.size());
           PImage op0 = loadImage(enemyList.get(eneMap[i][j]).getSprite());
           image(op0, enemyList.get(eneMap[i][j]).getXCoord() - (int)SQUARE_SIZE/2, enemyList.get(eneMap[i][j]).getYCoord() - (int)SQUARE_SIZE/2, 111, 111);
         }
