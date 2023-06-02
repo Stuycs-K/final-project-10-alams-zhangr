@@ -55,7 +55,7 @@ void setup() {
   screen.menu();
 
   //////////////////SETUP LIVING OBJECTS//////////////////
-  sluggy = new Enemies(10, 10, 0, 0, "originium_slug.png", 10);
+  sluggy = new Enemies(10, 10, 0, 0, "originium_slug.png", 10, 10, 1, 1);
   slug = loadImage(sluggy.getSprite());
   sluggy.setXCoord(950);
   sluggy.setYCoord(250);
@@ -99,12 +99,12 @@ void draw() {
     display.gameMap(ogmap);
     display.inventory();
     display.displayChar();
-    display.displayEne();
+    //display.displayEne();
     display.limits();
     if (!onResults) {
       attacks.charAction();
       if (charMap[sluggy.getYCoord()/ (int)SQUARE_SIZE][sluggy.getXCoord()/ (int)SQUARE_SIZE] >= 0){
-        display.displayEne();
+        //display.displayEne();
       }
       else{
         attacks.enemyMove(sluggy, slug);

@@ -77,16 +77,16 @@ public class Display {
     }
   }
 
-  void displayEne() {
-    for (int i = 0; i < eneMap.length; i++) {
-      for (int j = 0; j < eneMap[i].length; j++) {
-        if (eneMap[i][j] >= 0) {
-          PImage op0 = loadImage(enemyList.get(eneMap[i][j]).getSprite());
-          image(op0, enemyList.get(eneMap[i][j]).getXCoord(), enemyList.get(eneMap[i][j]).getYCoord(), 175, 175);
-        }
-      }
-    }
-  }
+  //void displayEne() {
+  //  for (int i = 0; i < eneMap.length; i++) {
+  //    for (int j = 0; j < eneMap[i].length; j++) {
+  //      if (eneMap[i][j] >= 0) {
+  //        PImage op0 = loadImage(enemyList.get(eneMap[i][j]).getSprite());
+  //        image(op0, enemyList.get(eneMap[i][j]).getXCoord(), enemyList.get(eneMap[i][j]).getYCoord(), 175, 175);
+  //      }
+  //    }
+  //  }
+  //}
 
   void inventory() {
     //display inventory
