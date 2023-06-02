@@ -1,4 +1,5 @@
 public class Enemies extends LivingObjects {
+  private int maxHealth;
   private int health;
   private int speed;
   private int attack;
@@ -12,12 +13,11 @@ public class Enemies extends LivingObjects {
   private float sqSize;
 
   private int ms;
-  public Enemies(){ //default
-    
+  public Enemies() { //default
   }
-  
-  public Enemies(int hp, int spd, int atk, int hit, String img, int moveSpeed){
 
+  public Enemies(int hp, int spd, int atk, int hit, String img, int moveSpeed) {
+    maxHealth = hp;
     health = hp;
     speed = spd;
     attack = atk;
@@ -29,6 +29,10 @@ public class Enemies extends LivingObjects {
   }
 
   ////////////////////////////////////////////
+  public int getMaxHP() {
+    return maxHealth;
+  }
+
   public int getHealth() {
     return health;
   }
@@ -94,34 +98,31 @@ public class Enemies extends LivingObjects {
     yCoord = newY;
   }
 
-  
-  public int getMS(){
+
+  public int getMS() {
     return ms;
   }
-  
-  
+
+
   ///////////////METHODS/////////////////////////////
-  public void toAttack(LivingObjects other){
+  public void toAttack(LivingObjects other) {
     other.setHealth(other.getHealth() - this.getAttack());
   }
 
-  public void move(int step){
-    if (this.getDirection() == 1){ //up
+  public void move(int step) {
+    if (this.getDirection() == 1) { //up
       this.setYCoord(this.getYCoord() - step);
-    }
-    else if (this.getDirection() == 2){ //right
+    } else if (this.getDirection() == 2) { //right
       this.setXCoord(this.getXCoord() + step);
-    }
-    else if (this.getDirection() == 3){ //down
+    } else if (this.getDirection() == 3) { //down
       this.setYCoord(this.getYCoord() + step);
-    }
-    else if (this.getDirection() == 4){ //left
+    } else if (this.getDirection() == 4) { //left
       this.setXCoord(this.getXCoord() - step);
     }
   }
 
-  public int checkRange(){ //returns first value of blocked
-    if(this.getRange() == 1){
+  public int checkRange() { //returns first value of blocked
+    if (this.getRange() == 1) {
       rangeOne();
     }
     if (this.getRange() == 2) {
