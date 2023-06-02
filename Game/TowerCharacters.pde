@@ -1,4 +1,5 @@
 public class TowerCharacters extends LivingObjects {
+  private int maxHealth;
   private int health;
   private int speed;
   private int attack;
@@ -19,6 +20,7 @@ public class TowerCharacters extends LivingObjects {
   }
 
   public TowerCharacters(int hp, int spd, int atk, int hit, String img, int blk, int optype, int deploymentCost) {
+    maxHealth = hp;
     health = hp;
     speed = spd;
     attack = atk;
@@ -35,6 +37,9 @@ public class TowerCharacters extends LivingObjects {
   }
 
   //////////////////////////////////////////
+  public int getMaxHP() {
+    return maxHealth;
+  }
   public int getHealth() {
     return health;
   }
@@ -130,7 +135,7 @@ public class TowerCharacters extends LivingObjects {
     other.setHealth(other.getHealth() - this.getAttack());
   }
 
-  public Enemies checkRange() { //returns first value of blocked
+  public LivingObjects checkRange() { //returns first value of blocked
     if (eneMap[location[1]][location[0]] > -1) {
       if (!blocked.contains(enemyList.get(eneMap[location[1]][location[0]]))) {
         blocked.add(enemyList.get(eneMap[location[1]][location[0]]));
@@ -185,7 +190,13 @@ public class TowerCharacters extends LivingObjects {
       }
     }
   }
+  
+  void rangeTwo(){
+  }
 
-  void rangeTwo() {
+  void rangeSix() {
+    int[][]six = new int[2][6];
+    int x = this.getLocation()[0];
+    int y = this.getLocation()[1];
   }
 }
