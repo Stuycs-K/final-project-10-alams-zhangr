@@ -1,81 +1,105 @@
 import java.util.*;
-private int[][]map;
-private int[][]ogmap; //for displaying inventory with map DO NOT TOUCH
+private float SQUARE_SIZE;
 
+private int cost;
+private int timer;
+private int unitLimit;
+private int lp = 0;
+private int totalenemies;
+private int enemiesleft = 0;
+
+private int steps;
+
+private int[][]map; //CHECK LVL SETUPS
+private int[][]ogmap; //for displaying inventory with map DO NOT TOUCH
 private int[][]charMap;
 private int[][]eneMap;
-private ArrayList<int[]> enemyPath;//just to make it work at the moment
 
+//next block: 1 = up, 2 = right, 3 = down, 4 = left, 0 = none (last element)
+
+private String enemyPath = "444144434414";
+private int stepsPerSquare = (int)SQUARE_SIZE; // initially 0 b/c square_size instantiated in draw
 
 private TowerCharacters[]inventory;
+private ArrayList<Enemies>enemyList;
 
 static final int WALL = -1;
 static final int AERIAL = -2;
 static final int GROUND = -3;
 
-private float SQUARE_SIZE;
+static final int T = 1;
+static final int R = 2;
+static final int D = 3;
+static final int L = 4;
+
 private boolean onMenu = true;
 private boolean onMap = false;
+private boolean onResults = false;
+private boolean opSelect = false;
+private boolean directionSelect = false;
+private boolean opRemove = false;
+
+private int selectedX;
+private int selectedY;
 
 private int levelSelect = 0;
-private PImage slug;
-int delay = 10;
-private boolean pause = false;
 
-void setup(){
-  //menu screen *ray*
+Screens screen = new Screens();
+
+private PImage slug;
+private boolean pause = false;
+//int delay = 10;
+private Enemies sluggy;
+
+void setup() {
   size(1000, 550);
-  rect(325, 175, 350, 50);
-  rect(325, 250, 350, 50);
-  rect(325, 325, 350, 50);
-  textSize(20);
-  fill(0);
-  text("Level One", 450, 210);
-  text("Level Two", 450, 285);
-  text("Level Three", 450, 360);
-  lvlOne();
-  lvlOneEnemyPath();
-  frameRate(10);
-  //testing purpose
-  //size(1000, 550);
-  //lvlOne();
-  //gameMap(ogmap);
-  
-  //Enemies(int hp, int spd, int atk, int hit, int[] position, String img)
-  Enemies brr = new Enemies(1, 2, 3, 4, new int[]{5, 5}, "hi");
-  println(brr.getHealth());
-  
-  //OPS
-  //public TowerCharacters(int hp, int spd, int atk, int hit, String img, int blk, String type){
-  TowerCharacters op0 = new TowerCharacters(50, 0, 1, 1, "ayer.png", 1, "AERIAL");
-  TowerCharacters op1 = new TowerCharacters(50, 0, 1, 1, "ayer.png", 1, "AERIAL");
-  
+  screen.menu();
+
+  //////////////////SETUP LIVING OBJECTS//////////////////
+  sluggy = new Enemies(10, 10, 0, 0, "originium_slug.png", 10, 950, 250, new int[]{2, 8});
+  //slug = loadImage(sluggy.getSprite());
+  sluggy.setDirection(Integer.parseInt(enemyPath.substring(0, 1)));
+  //stepsPerSquare = stepsPerSquare/2;
+
+  //SETUP ENEMYLIST
+  enemyList = new ArrayList<Enemies>();
+  enemyList.add(sluggy);
+
+  //SETUP OPERATORS
+  TowerCharacters op0 = new TowerCharacters(50, 10, 5, 1, "ayer.png", 1, GROUND, 2);
+  TowerCharacters op1 = new TowerCharacters(50, 10, 1, 1, "meterorite.png", 1, AERIAL, 2);
+  TowerCharacters op2 = new Medic(50, 1, 1, 1, "purestream.png", 1, AERIAL, 2);
+  TowerCharacters op3 = new Medic(50, 1, 1, 1, "kaltsit.png", 1, AERIAL, 2);
+  TowerCharacters op4 = new TowerCharacters(50, 1, 1, 1, "mudrock.png", 1, GROUND, 2);
+  TowerCharacters op5 = new TowerCharacters(50, 1, 1, 1, "mizuki.png", 1, GROUND, 2);
+
+//testing
+op0.setHealth(1);
+op3.setHealth(45);
+
+
+
+  //SETUP INVENTORY
   inventory = new TowerCharacters[6];
-  inventory[0] = op1;
-  inventory[1] = op0;
-  inventory[2] = op0;
-  inventory[3] = op0;
-  inventory[4] = op0;
-  inventory[5] = op0;
-  
- 
+  inventory[0] = op0;
+  inventory[1] = op1;
+  inventory[2] = op2;
+  inventory[3] = op3;
+  inventory[4] = op4;
+  inventory[5] = op5;
 }
 
-void draw(){
-  if (levelSelect == 1){
-    //lvlOne();
-    gameMap(ogmap);
-    inventory();
-  }
-  if (levelSelect == 2){
-    //lvlTwo();
-    gameMap(ogmap);
-  }
-  if (levelSelect == 3){
-    //lvlThree();
-    gameMap(ogmap);
-  }
-  if (!onMenu){  
+Display display = new Display();
+Interaction attacks = new Interaction();
+
+void draw() {
+  if (levelSelect > 0 ) {
+    timer++;
+    display.gameMap(ogmap);
+    display.inventory();
+    display.displayChar();
+    display.displayEne();
+    display.limits();
     fill(#7D7D7D);
     rect(960, 0, 40, 40);
     fill(0);
@@ -86,19 +110,21 @@ void draw(){
       int[] coords = enemyPath.remove(enemyPath.size() - 1);
       image(slug, coords[1] * SQUARE_SIZE, coords[0] * SQUARE_SIZE);
     }
-  }
-  if (pause){
-    noLoop();
-  }
-}
-
-void mouseClicked(){
-//menu select
-  if (onMenu){
-    if (mouseX >= 325 && mouseX <= 675 && mouseY >=175 && mouseY <= 225){
-      levelSelect = 1;
-      onMenu = false;
-      onMap = true;
+    if (pause){
+      noLoop();
+    }
+    if (!onResults) {
+      attacks.charAction();
+      if (charMap[sluggy.getYCoord()/ (int)SQUARE_SIZE][sluggy.getXCoord()/ (int)SQUARE_SIZE] >= 0){
+        display.displayEne();
+      }
+      else{
+        attacks.enemyMove(sluggy, slug);
+      }
+      if (enemyPath.length() == 0){
+        enemiesleft--;
+        lp--;
+      }
     }
     if (mouseX >= 325 && mouseX <= 675 && mouseY >=250 && mouseY <= 300){
       levelSelect = 2;
@@ -115,135 +141,45 @@ void mouseClicked(){
     }
   }
   
-  else if(onMap){
-    if(mouseX <= 950 && mouseY <= 550){
-      int row = 0;
-      int column = 0;
-      int w = mouseX;
-      int h = mouseY;
-      while(w > SQUARE_SIZE){
-        w -= SQUARE_SIZE;
-        column++;
-      }
-      while(h > SQUARE_SIZE){
-        h -= SQUARE_SIZE;
-        row++;
-      }
-      println(row + " " + column);
-      
-    }
+  if (lp == 0) {
+    onResults = true;
+    screen.lose();
     
   }
-//grid select (no character)
-//keypressed
-//if numerical # select character from inventory & place ->
-//directional keys
-
-//grid select (character)
-//if CHARBLK then remove?: set char hp = 0
-
-}
-
-void lvlOne(){
-  //MAP1 for placement purposes 
-  map = new int[4][9];
-  for(int i = 0 ; i < 4 ; i++){
-    for(int j = 0 ; j < 9 ; j++){
-      map[i][j] = GROUND;
-    }
+  if (enemiesleft == 0) {
+    onResults = true;
+    screen.win();
   }
-  for(int i = 0 ; i < 9 ; i++){
-    if(i != 0 || i != 8){  
-      map[0][i] = AERIAL;
-      map[3][i] = AERIAL;
-    }
-    else{
-      map[0][i] = WALL;
-      map[3][i] = WALL;
-    }
   }
-  for(int i = 0; i < 4 ; i++){
-    map[i][0] = WALL;
-    map[i][8] = WALL;
-  }
-  map[1][0] = GROUND;
-  map[2][8] = GROUND;
-  map[1][2] = AERIAL;
-  map[2][4] = AERIAL;
-   
-  charMap = new int[4][9];
-  eneMap = new int[4][9];
-  
-  for(int i = 0 ; i < 4 ; i++){
-    for(int j = 0 ; j < 9 ; j++){
-      charMap[i][j] = map[i][j];
-      eneMap[i][j] = map[i][j];
-    }
-  }
-  //maybe combine later***
-  ogmap = new int[5][9]; //for display purposes INCLUDES INVENTORY
-  for(int i = 0 ; i < 5 ; i++){
-    for(int j = 0 ; j < 9 ; j++){
-      if(i != 4){
-        ogmap[i][j] = map[i][j];
-      }
-    }
+  else if(!onMenu){
+    screen.menu();
+    onMenu = true;
   }
 }
 
-void lvlOneEnemyPath(){
-  enemyPath = new ArrayList<int[]>();
-  enemyPath.add(new int[]{1, 0});
-  enemyPath.add(new int[]{1, 1});
-  enemyPath.add(new int[]{2, 1});
-  enemyPath.add(new int[]{2, 2});
-  enemyPath.add(new int[]{2, 3});
-  enemyPath.add(new int[]{1, 3});
-  enemyPath.add(new int[]{1, 4});
-  enemyPath.add(new int[]{1, 5});
-  enemyPath.add(new int[]{1, 6});
-  enemyPath.add(new int[]{2, 6});
-  enemyPath.add(new int[]{2, 7});
-  enemyPath.add(new int[]{2, 8});
+Maps level = new Maps();
+Controls control = new Controls();
 
+void mouseClicked() {
+  if (onMenu) {
+    control.menuSelect();
+  } else if (onMap && !onResults) {
+    control.mapclicks();
+  } else if (onResults) {
+    onResults = false;
+    levelSelect = 0;
+  }
 }
 
-  
-
-
-void gameMap(int[][]grid){ //pass ogmap
-  SQUARE_SIZE = width/map[0].length;
-  stroke(255,255,255);
-    float l = 0;
-    float k = 0;
-    for(int i = 0; i < grid.length || ( l < 950 && k < 600 )  ; i++){
-      k = 0;
-      for(int j = 0 ; j < grid[i].length ; j++){
-        if(grid[i][j] == WALL){
-          fill(color(51));
-        } else if(grid[i][j] == GROUND) {
-          fill(color(0, 0, 255));
-        }
-        else if(grid[i][j] == AERIAL){
-          fill(color(255, 0 , 0));
-        }
-        else{ //INVENTORY
-          fill(color(0,150,150));
-        }
-        rect(k,l, SQUARE_SIZE, SQUARE_SIZE);
-        k += SQUARE_SIZE;
-      }
-      l += SQUARE_SIZE;
-    }
-}
-
-void inventory(){
-  //display inventory
-  for(int i = 0 ; i < 6 ; i++){
-    if(!inventory[i].getDeployed()){
-      PImage op0 = loadImage(inventory[i].getSprite());
-      image(op0, SQUARE_SIZE*i,SQUARE_SIZE*3.5, 150, 150);
-    }
+void keyPressed() {
+  if (directionSelect) {
+    control.selectDirection();
+  }
+  if (opSelect) {
+    control.operatorSelect();
+  }
+  if (opRemove) {
+    control.operatorRemove();
   }
 }
 
