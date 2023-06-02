@@ -4,11 +4,11 @@ public class Maps {
 
   void lvlOne() {
     //MAP1 for placement purposes
-    cost = 5;
+    cost = 10;
     unitLimit = 3;
     lp = 3;
-    totalenemies = 3;
-    enemiesleft = 3;
+    totalenemies = 1;
+    enemiesleft = 1;
 
     map = new int[4][9];
     for (int i = 0; i < 4; i++) {
