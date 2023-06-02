@@ -16,7 +16,7 @@ public class Enemies extends LivingObjects {
   public Enemies() { //default
   }
 
-  public Enemies(int hp, int spd, int atk, int hit, String img, int moveSpeed) {
+  public Enemies(int hp, int spd, int atk, int hit, String img, int moveSpeed, int x, int y, int sqSize) {
     maxHealth = hp;
     health = hp;
     speed = spd;
@@ -26,6 +26,9 @@ public class Enemies extends LivingObjects {
     sprite = img;
     ticks = 0;
     ms = moveSpeed;
+    xCoord = x;
+    yCoord = y;
+    location = new int[]{xCoord/sqSize, yCoord/sqSize};
   }
 
   ////////////////////////////////////////////
