@@ -99,12 +99,12 @@ void draw() {
     display.gameMap(ogmap);
     display.inventory();
     display.displayChar();
-    display.displayEne();
+    //display.displayEne();
     display.limits();
     if (!onResults) {
       attacks.charAction();
       if (charMap[sluggy.getYCoord()/ (int)SQUARE_SIZE][sluggy.getXCoord()/ (int)SQUARE_SIZE] >= 0){
-        //display.displayEne();
+        display.displayEne();
       }
       else{
         attacks.enemyMove(sluggy, slug);
