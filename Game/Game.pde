@@ -4,7 +4,7 @@ private float SQUARE_SIZE;
 private int cost;
 private int timer;
 private int unitLimit;
-private int lp = 0;
+private int lp;
 private int totalenemies;
 private int enemiesleft = 0;
 
@@ -47,6 +47,9 @@ private int levelSelect = 0;
 Screens screen = new Screens();
 
 private PImage slug;
+
+private boolean pause = false;
+private boolean dead = false;
 //int delay = 10;
 private Enemies sluggy;
 
@@ -72,9 +75,9 @@ void setup() {
   TowerCharacters op4 = new TowerCharacters(50, 1, 1, 1, "mudrock.png", 1, GROUND, 2);
   TowerCharacters op5 = new TowerCharacters(50, 1, 1, 1, "mizuki.png", 1, GROUND, 2);
 
-//testing
-op0.setHealth(1);
-op3.setHealth(45);
+  //testing
+  op0.setHealth(1);
+  op3.setHealth(45);
 
 
 
@@ -97,33 +100,29 @@ void draw() {
     display.gameMap(ogmap);
     display.inventory();
     display.displayChar();
-    display.displayEne();
+    //display.displayEne();
     display.limits();
     if (!onResults) {
       attacks.charAction();
-      if (charMap[sluggy.getYCoord()/ (int)SQUARE_SIZE][sluggy.getXCoord()/ (int)SQUARE_SIZE] >= 0){
-        display.displayEne();
-      }
-      else{
+      //attacks.enemyAction();
+      if (!dead){
         attacks.enemyMove(sluggy, slug);
       }
-      if (enemyPath.length() == 0){
+      if (enemyPath.length() == 0) {
         enemiesleft--;
         lp--;
       }
     }
-  
-  if (lp == 0) {
-    onResults = true;
-    screen.lose();
-    
-  }
-  if (enemiesleft == 0) {
-    onResults = true;
-    screen.win();
-  }
-  }
-  else if(!onMenu){
+
+    if (lp == 0) {
+      onResults = true;
+      screen.lose();
+    }
+    if (enemiesleft == 0) {
+      onResults = true;
+      screen.win();
+    }
+  } else if (!onMenu) {
     screen.menu();
     onMenu = true;
   }

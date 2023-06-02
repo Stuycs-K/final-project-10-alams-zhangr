@@ -14,10 +14,11 @@ public class Interaction {
                 if (inventory[i].checkRange().getHealth() <= 0) {
                   inventory[i].setAttacking(false);
                   int[] position = inventory[i].checkRange().getLocation();
-                  eneMap[position[0]][position[1]] = map[position[0]][position[1]];
+                  eneMap[position[1]][position[0]] = map[position[1]][position[0]];
                   enemyList.remove(0);
                   enemiesleft--;
                   inventory[i].blocked.remove();
+                  dead = true;
                 }
               }
             }
@@ -27,12 +28,14 @@ public class Interaction {
     }
   }
 
-  void enemyMove(Enemies e, PImage i){
+  void enemyMove(Enemies e, PImage i) {
     if (enemyPath.length() > 1) {
       if (stepsPerSquare != 0) {
         e.move(e.getMS());
         //image(i, e.getXCoord() - (int)SQUARE_SIZE/2, e.getYCoord() - (int)SQUARE_SIZE/2, SQUARE_SIZE, SQUARE_SIZE);
-        display.displayEne();
+        if (!dead) {
+          display.displayEne();
+        }
         stepsPerSquare--;
         e.setLocation(new int[]{e.getXCoord()/ (int)SQUARE_SIZE, e.getYCoord()/ (int)SQUARE_SIZE});
       } else {
@@ -40,9 +43,29 @@ public class Interaction {
         e.setDirection(Integer.parseInt(enemyPath.substring(0, 1)));
         stepsPerSquare = (int)SQUARE_SIZE / e.getMS();
         //image(i, e.getXCoord() - (int)SQUARE_SIZE/2, e.getYCoord() - (int)SQUARE_SIZE/2, SQUARE_SIZE, SQUARE_SIZE);
-        display.displayEne();
+        if (!dead) {
+          display.displayEne();
+        }
       }
       eneMap[e.getYCoord() / (int)SQUARE_SIZE][e.getXCoord()/ (int)SQUARE_SIZE] = enemyList.indexOf(sluggy);
+    }
+  }
+
+  void enemyAction() {
+    for (int row = 0; row < eneMap.length; row++) {
+      for (int col = 0; col < eneMap[0].length; col++) {
+        if (eneMap[row][col] >= 0 && charMap[row][col] >= 0) {
+          int atkingEnemy = eneMap[row][col];
+          int atkingChar = charMap[row][col];
+          if (enemyList.get(atkingEnemy).getHealth() > 0 && inventory[atkingChar].getHealth() > 0) {
+            enemyList.get(atkingEnemy).toAttack(inventory[atkingChar]);
+          } else if (inventory[atkingChar].getHealth() <= 0) {
+            charMap[row][col] = map[row][col];
+            inventory[atkingChar].setDeployed(false);
+            unitLimit++;
+          }
+        }
+      }
     }
   }
 }
