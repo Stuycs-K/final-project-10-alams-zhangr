@@ -18,7 +18,7 @@ private int[][]eneMap;
 //next block: 1 = up, 2 = right, 3 = down, 4 = left, 0 = none (last element)
 
 private String enemyPath = "444144434414";
-private int stepsPerSquare = (int)SQUARE_SIZE;
+private int stepsPerSquare = (int)SQUARE_SIZE; // initially 0 b/c square_size instantiated in draw
 
 private TowerCharacters[]inventory;
 private ArrayList<Enemies>enemyList;
@@ -55,10 +55,8 @@ void setup() {
   screen.menu();
 
   //////////////////SETUP LIVING OBJECTS//////////////////
-  sluggy = new Enemies(10, 10, 0, 0, "originium_slug.png", 10);
-  slug = loadImage(sluggy.getSprite());
-  sluggy.setXCoord(950);
-  sluggy.setYCoord(250);
+  sluggy = new Enemies(10, 10, 0, 0, "originium_slug.png", 10, 950, 250, new int[]{2, 8});
+  //slug = loadImage(sluggy.getSprite());
   sluggy.setDirection(Integer.parseInt(enemyPath.substring(0, 1)));
   stepsPerSquare = stepsPerSquare/2;
 
