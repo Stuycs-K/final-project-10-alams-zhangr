@@ -58,7 +58,9 @@ void setup() {
   screen.menu();
 
   //////////////////SETUP LIVING OBJECTS//////////////////
-  sluggy = new Enemies(10, 10, 0, 0, "originium_slug.png", 10, 950, 250, new int[]{2, 8});  //to give sluggy winning advantage simply change first & third parameter to 100
+
+  sluggy = new Enemies(550, 20, 30, 0, "originium_slug.png", 10, 950, 250, new int[]{2, 8});
+
   //slug = loadImage(sluggy.getSprite());
   sluggy.setDirection(Integer.parseInt(enemyPath.substring(0, 1)));
   //stepsPerSquare = stepsPerSquare/2;
@@ -68,18 +70,18 @@ void setup() {
   enemyList.add(sluggy);
 
   //SETUP OPERATORS
-  TowerCharacters op0 = new TowerCharacters(50, 10, 5, 1, "ayer.png", 1, GROUND, 2);
-  TowerCharacters op1 = new TowerCharacters(50, 10, 1, 1, "meterorite.png", 1, AERIAL, 2);
-  TowerCharacters op2 = new Medic(50, 1, 1, 1, "purestream.png", 1, AERIAL, 2);
-  TowerCharacters op3 = new Medic(50, 1, 1, 1, "kaltsit.png", 1, AERIAL, 2);
-  TowerCharacters op4 = new TowerCharacters(50, 1, 1, 1, "mudrock.png", 1, GROUND, 2);
-  TowerCharacters op5 = new TowerCharacters(50, 1, 1, 1, "mizuki.png", 1, GROUND, 2);
 
-  //testing
-  op0.setHealth(1);
-  op3.setHealth(45);
+  TowerCharacters op0 = new TowerCharacters(742, 30, 157, 1, "ayer.png", 2, GROUND, 9);
+  TowerCharacters op1 = new TowerCharacters(250, 10, 180, 1, "meterorite.png", 0, AERIAL, 8);
+  TowerCharacters op2 = new Medic(500, 30, 100, 1, "purestream.png", 0, AERIAL, 10);
+  TowerCharacters op3 = new Medic(500, 30, 100, 1, "kaltsit.png", 0, AERIAL, 8);
+  TowerCharacters op4 = new TowerCharacters(530, 30, 200, 1, "mudrock.png", 1, GROUND, 7);
+  TowerCharacters op5 = new TowerCharacters(850, 10, 80, 1, "mizuki.png", 1, GROUND, 10);
 
 
+  ////testing
+  //op0.setHealth(1);
+  //op3.setHealth(45);
 
   //SETUP INVENTORY
   inventory = new TowerCharacters[6];
@@ -105,7 +107,7 @@ void draw() {
     if (!onResults) {
       attacks.charAction();
       attacks.enemyAction();
-      if (!dead){
+      if (!dead) {
         attacks.enemyMove(sluggy, slug);
       }
       if (enemyPath.length() == 0) {
@@ -113,12 +115,11 @@ void draw() {
         lp--;
       }
     }
-    
+
     if (lp == 0) {
       onResults = true;
       screen.lose();
-    }
-    else if (enemiesleft == 0) {
+    } else if (enemiesleft == 0) {
       onResults = true;
       screen.win();
     }

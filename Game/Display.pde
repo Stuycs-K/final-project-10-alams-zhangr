@@ -71,6 +71,7 @@ public class Display {
         if (charMap[i][j] >= 0) {
           PImage op0 = loadImage(inventory[charMap[i][j]].getSprite());
           image(op0, SQUARE_SIZE*j - 30, SQUARE_SIZE*i - 70, 175, 175);
+          healthBarsT(inventory[charMap[i][j]]);
         }
       }
     }
@@ -79,9 +80,11 @@ public class Display {
   void displayEne() {
     for (int i = 0; i < eneMap.length; i++) {
       for (int j = 0; j < eneMap[i].length; j++) {
-        if (eneMap[i][j] >= 0) {
+        if (eneMap[i][j] >= 0 && enemyList.size() != 0) {
           PImage op0 = loadImage(enemyList.get(eneMap[i][j]).getSprite());
-          image(op0, enemyList.get(eneMap[i][j]).getXCoord() - (int)SQUARE_SIZE/2, enemyList.get(eneMap[i][j]).getYCoord() - (int)SQUARE_SIZE/2, 111, 111);
+          image(op0, enemyList.get(eneMap[i][j]).getXCoord(), enemyList.get(eneMap[i][j]).getYCoord(), 175, 175);
+          healthBarsE(enemyList.get(eneMap[i][j]));
+
         }
       }
     }
@@ -101,7 +104,7 @@ public class Display {
             tint(255, 0, 0);
           }
         }
-        image(op0, SQUARE_SIZE*i, SQUARE_SIZE*3.5, 150, 150);
+        image(op0, SQUARE_SIZE*i - 10, SQUARE_SIZE*3.5, 150, 150);
         noTint();
       }
     }
@@ -110,7 +113,9 @@ public class Display {
   void limits() {
     //display cost
     if (timer%20 == 0) {
+      if(cost < 99){
       cost++;
+      }
     }
     fill(color(255, 255, 255));
     rect((map[0].length - 2)*SQUARE_SIZE - 30, (map.length)*SQUARE_SIZE, SQUARE_SIZE*2 + 30, SQUARE_SIZE);
@@ -122,4 +127,14 @@ public class Display {
     text("Enemies Left: " + enemiesleft + "/" + totalenemies, (map[0].length - 2)*SQUARE_SIZE - 20, map.length*SQUARE_SIZE + 90);
   }
   
+  void healthBarsT(LivingObjects other){
+    fill(color(0, 255, 0));
+    text(other.getHealth() + "/" + other.getMaxHP(), other.getLocation()[0]*SQUARE_SIZE, other.getLocation()[1]*SQUARE_SIZE);
+  }
+  
+  void healthBarsE(Enemies other){
+    fill(color(0, 255, 0));
+    text(other.getHealth() + "/" + other.getMaxHP(), other.getXCoord(), other.getYCoord());
+  }
+
 }
