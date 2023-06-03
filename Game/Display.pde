@@ -84,6 +84,7 @@ public class Display {
           PImage op0 = loadImage(enemyList.get(eneMap[i][j]).getSprite());
           image(op0, enemyList.get(eneMap[i][j]).getXCoord(), enemyList.get(eneMap[i][j]).getYCoord(), 175, 175);
           healthBarsE(enemyList.get(eneMap[i][j]));
+
         }
       }
     }
@@ -135,4 +136,5 @@ public class Display {
     fill(color(0, 255, 0));
     text(other.getHealth() + "/" + other.getMaxHP(), other.getXCoord(), other.getYCoord());
   }
+
 }

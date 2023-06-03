@@ -4,8 +4,10 @@ public class Maps {
 
   void lvlOne() {
     //MAP1 for placement purposes
+
     cost = 10;
     unitLimit = 3;
+
     lp = 1;
     totalenemies = 1;
     enemiesleft = 1;
