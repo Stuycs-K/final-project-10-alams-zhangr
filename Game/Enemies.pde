@@ -16,7 +16,7 @@ public class Enemies extends LivingObjects {
   public Enemies() { //default
   }
 
-  public Enemies(int hp, int spd, int atk, int hit, String img, int moveSpeed, int x, int y, int[] spawn) {
+  public Enemies(int hp, int spd, int atk, int hit, String img, int moveSpeed, int x, int y, int[] spawn, int DIRECTION) {
     maxHealth = hp;
     health = hp;
     speed = spd;
@@ -29,6 +29,7 @@ public class Enemies extends LivingObjects {
     xCoord = x;
     yCoord = y;
     location = spawn;
+    direction = DIRECTION;
   }
 
   ////////////////////////////////////////////

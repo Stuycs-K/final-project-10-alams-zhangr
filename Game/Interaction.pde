@@ -59,6 +59,13 @@ public class Interaction {
   }
 
   void enemyAction() {
+    if (!dead) {
+      attacks.enemyMove(sluggy, slug);
+    }
+    if (enemyPath.length() == 0) {
+      enemiesleft--;
+      lp--;
+    }
     for (int row = 0; row < eneMap.length; row++) {
       for (int col = 0; col < eneMap[0].length; col++) {
         if (eneMap[row][col] >= 0 && charMap[row][col] >= 0) {

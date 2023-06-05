@@ -59,10 +59,10 @@ void setup() {
 
   //////////////////SETUP LIVING OBJECTS//////////////////
 
-  sluggy = new Enemies(550, 20, 30, 0, "originium_slug.png", 10, 950, 250, new int[]{2, 8});
+  sluggy = new Enemies(550, 20, 30, 0, "originium_slug.png", 10, 950, 250, new int[]{2, 8}, Integer.parseInt(enemyPath.substring(0, 1)));
 
   //slug = loadImage(sluggy.getSprite());
-  sluggy.setDirection(Integer.parseInt(enemyPath.substring(0, 1)));
+  //sluggy.setDirection(Integer.parseInt(enemyPath.substring(0, 1)));
   //stepsPerSquare = stepsPerSquare/2;
 
   //SETUP ENEMYLIST
@@ -107,22 +107,15 @@ void draw() {
     if (!onResults) {
       attacks.charAction();
       attacks.enemyAction();
-      if (!dead) {
-        attacks.enemyMove(sluggy, slug);
-      }
-      if (enemyPath.length() == 0) {
-        enemiesleft--;
-        lp--;
-      }
     }
 
-    if (lp == 0) {
-      onResults = true;
-      screen.lose();
-    } else if (enemiesleft == 0) {
-      onResults = true;
-      screen.win();
-    }
+    //if (lp == 0) {
+    //  onResults = true;
+    //  screen.lose();
+    //} else if (enemiesleft == 0) {
+    //  onResults = true;
+    //  screen.win();
+    //}
   } else if (!onMenu) {
     screen.menu();
     onMenu = true;
