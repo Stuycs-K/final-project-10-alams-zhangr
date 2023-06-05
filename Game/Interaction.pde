@@ -62,13 +62,16 @@ public class Interaction {
         if (eneMap[row][col] >= 0 && charMap[row][col] >= 0) {
           int atkingEnemy = eneMap[row][col];
           int atkingChar = charMap[row][col];
-          if (enemyList.get(atkingEnemy).getHealth() > 0 && inventory[atkingChar].getHealth() > 0) {
-            enemyList.get(atkingEnemy).toAttack(inventory[atkingChar]);
-          } else if (inventory[atkingChar].getHealth() <= 0) {
-            charMap[row][col] = map[row][col];
-            inventory[atkingChar].setDeployed(false);
-            inventory[atkingChar].setAttacking(false);
-            unitLimit++;
+          if (inventory[atkingChar].getBlocked().size() < inventory[atkingChar].getBlock()) {
+            inventory[atkingChar].checkRange();
+            if (enemyList.get(atkingEnemy).getHealth() > 0 && inventory[atkingChar].getHealth() > 0) {
+              enemyList.get(atkingEnemy).toAttack(inventory[atkingChar]);
+            } else if (inventory[atkingChar].getHealth() <= 0) {
+              charMap[row][col] = map[row][col];
+              inventory[atkingChar].setDeployed(false);
+              inventory[atkingChar].setAttacking(false);
+              unitLimit++;
+            }
           }
         }
       }
