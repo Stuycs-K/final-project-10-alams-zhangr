@@ -3,7 +3,6 @@ public class Interaction {
   };
 
   void charAction() {
-
     if (enemyList.size() != 0) {
       for (int i = 0; i < inventory.length; i++) {
         if (inventory[i].getDeployed() && !directionSelect) {
@@ -30,8 +29,7 @@ public class Interaction {
     }
   }
 
-  void enemyMove(Enemies e, PImage i) {
-
+  void enemyMove(Enemies e) {
     if (enemyPath.length() > 0) {
 
       if (stepsPerSquare != 0) {

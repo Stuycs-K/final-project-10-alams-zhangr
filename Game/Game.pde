@@ -58,14 +58,13 @@ void setup() {
   screen.menu();
 
   //////////////////SETUP LIVING OBJECTS//////////////////
-
+  
+  //SETUP ENEMIES
   sluggy = new Enemies(550, 20, 30, 0, "originium_slug.png", 10, 950, 250, new int[]{2, 8});
-
-  //slug = loadImage(sluggy.getSprite());
   sluggy.setDirection(Integer.parseInt(enemyPath.substring(0, 1)));
-  //stepsPerSquare = stepsPerSquare/2;
 
-  //SETUP ENEMYLIST
+
+  //SETUP ENEMYLIST 
   enemyList = new ArrayList<Enemies>();
   enemyList.add(sluggy);
 
@@ -78,10 +77,6 @@ void setup() {
   TowerCharacters op4 = new TowerCharacters(530, 30, 200, 1, "mudrock.png", 1, GROUND, 7);
   TowerCharacters op5 = new TowerCharacters(850, 10, 80, 1, "mizuki.png", 1, GROUND, 10);
 
-
-  ////testing
-  //op0.setHealth(1);
-  //op3.setHealth(45);
 
   //SETUP INVENTORY
   inventory = new TowerCharacters[6];
@@ -102,13 +97,12 @@ void draw() {
     display.gameMap(ogmap);
     display.inventory();
     display.displayChar();
-    //display.displayEne();
     display.limits();
     if (!onResults) {
       attacks.charAction();
       attacks.enemyAction();
       if (!dead) {
-        attacks.enemyMove(sluggy, slug);
+        attacks.enemyMove(sluggy);
       }
       if (enemyPath.length() == 0) {
         enemiesleft--;

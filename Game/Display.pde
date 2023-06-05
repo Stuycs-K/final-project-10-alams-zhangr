@@ -82,7 +82,7 @@ public class Display {
       for (int j = 0; j < eneMap[i].length; j++) {
         if (eneMap[i][j] >= 0 && enemyList.size() != 0) {
           PImage op0 = loadImage(enemyList.get(eneMap[i][j]).getSprite());
-          image(op0, enemyList.get(eneMap[i][j]).getXCoord(), enemyList.get(eneMap[i][j]).getYCoord(), 175, 175);
+          image(op0, enemyList.get(eneMap[i][j]).getXCoord(), enemyList.get(eneMap[i][j]).getYCoord(), 111, 111);
           healthBarsE(enemyList.get(eneMap[i][j]));
 
         }
