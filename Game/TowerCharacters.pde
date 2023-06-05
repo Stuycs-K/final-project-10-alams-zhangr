@@ -103,6 +103,10 @@ public class TowerCharacters extends LivingObjects {
   public int getBlock() {
     return block;
   }
+  
+  public Queue<Enemies> getBlocked(){
+    return blocked;
+  }
 
   public boolean getDeployed() {
     return deployed;
