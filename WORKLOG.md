@@ -108,7 +108,7 @@ working on
 
 DEMO
 - test character attacking MOVING enemies
-- 
+-
 
 
 ## GROUP MEMBER 2 //RAYMOND
@@ -167,3 +167,17 @@ NEED TO DO:
 - fixed image displaying
 - fixed path
 - implemented enemy speed
+
+### 6/1/23
+
+- fixed problem of displaying 2 enemies instead of 1
+- enemy can attack character now
+- demo finalized and pushed
+
+### 6/4/23
+
+-completed enemy block (not tested)
+-rearranged code to make it look nicer in main final
+
+Found Bug:
+- life points keep decreasing after enemy reaches end
