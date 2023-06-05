@@ -4,7 +4,7 @@ public class Maps {
 
   void lvlOne() {
     //MAP1 for placement purposes
-
+      
     cost = 10;
     unitLimit = 3;
 
@@ -59,4 +59,13 @@ public class Maps {
     map[2][8] = WALL;
     map[1][0] = WALL;
   }
+  
+  void reset(){
+    for(int i = 0 ; i < inventory.length ; i++){
+      if(inventory[i].getDeployed()){
+        
+      }
+    }
+  }
+  
 }
