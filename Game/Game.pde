@@ -91,15 +91,22 @@ void draw() {
     display.displayChar();
     display.limits();
     charAction();
-  }
-  if (!onMenu) {
-    lvlOneEnemyPath();
+        lvlOneEnemyPath();
     if (enemyPath.size() > 1) {
       int sqSize = (int)(SQUARE_SIZE);
+      println(sqSize);
       sluggy.movePath(enemyPath, 10, sqSize);
-      //image(slug, sluggy.getXCoord(), sluggy.getYCoord());
-    }
   }
+  //if (!onMenu) {
+  //  lvlOneEnemyPath();
+  //  if (enemyPath.size() > 1) {
+  //    int sqSize = (int)(SQUARE_SIZE);
+  //    println(sqSize);
+  //    sluggy.movePath(enemyPath, 10, sqSize);
+  //    //image(slug, sluggy.getXCoord(), sluggy.getYCoord());
+  //  }
+  //}
+}
 }
 
 Maps level = new Maps();
