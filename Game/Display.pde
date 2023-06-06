@@ -2,7 +2,7 @@ public class Display {
   public Display() {};
 
   void gameMap(int[][]grid) { //pass ogmap
-    SQUARE_SIZE = width/map[0].length;
+    SQUARE_SIZE = width/map[0].length; //<>//
     strokeWeight(1);
     stroke(255, 255, 255);
     float l = 0;
