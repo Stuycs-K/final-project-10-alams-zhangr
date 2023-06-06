@@ -49,6 +49,10 @@ public class Controls {
         opSelect = false;
       }
     }
+    if (mouseX >= 960 && mouseX <= width && mouseY >= 0 && mouseY <= 40){
+      pause = !pause;
+    }
+    
   }
 
   //keypressed methods
