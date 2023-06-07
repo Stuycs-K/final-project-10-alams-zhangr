@@ -120,7 +120,7 @@ public class Display {
   void limits() {
     //display cost
     if (timer%20 == 0) {
-      if(cost < 99){
+      if(cost < 99 && !pause){
       cost++;
       }
     }

@@ -7,18 +7,20 @@ public class Interaction {
       for (int i = 0; i < inventory.length; i++) {
         if (inventory[i].getDeployed() && !directionSelect) {
           if (inventory[i].checkRange() != null) {
-            inventory[i].setAttacking(true);
-            if (inventory[i].getTicks()%inventory[i].getSpeed() == 0) {
-              if (inventory[i].checkRange().getHealth() > 0) {
-                inventory[i].toAttack(inventory[i].checkRange());
-                if (inventory[i].checkRange() != null) {
-                  if (inventory[i].checkRange().getHealth() <= 0) {
-                    inventory[i].setAttacking(false);
-                    int[] position = inventory[i].checkRange().getLocation();
-                    eneMap[position[1]][position[0]] = map[position[1]][position[0]];
-                    enemyList.remove(0);
-                    enemiesleft--;
-                    inventory[i].blocked.remove();
+            if (!pause) {
+              inventory[i].setAttacking(true);
+              if (inventory[i].getTicks()%inventory[i].getSpeed() == 0) {
+                if (inventory[i].checkRange().getHealth() > 0) {
+                  inventory[i].toAttack(inventory[i].checkRange());
+                  if (inventory[i].checkRange() != null) {
+                    if (inventory[i].checkRange().getHealth() <= 0) {
+                      inventory[i].setAttacking(false);
+                      int[] position = inventory[i].checkRange().getLocation();
+                      eneMap[position[1]][position[0]] = map[position[1]][position[0]];
+                      enemyList.remove(0);
+                      enemiesleft--;
+                      inventory[i].blocked.remove();
+                    }
                   }
                 }
               }
@@ -37,7 +39,7 @@ public class Interaction {
         if (!dead) {
           display.displayEne();
         }
-        if (!pause){
+        if (!pause) {
           e.move(e.getMS());
           stepsPerSquare--;
         }
@@ -60,7 +62,7 @@ public class Interaction {
 
   void enemyAction() {
 
-    if (!dead && !pause) {
+    if (!dead) {
       attacks.enemyMove(enemyList.get(0));
     }
     if (enemyPath.length() == 0) {
