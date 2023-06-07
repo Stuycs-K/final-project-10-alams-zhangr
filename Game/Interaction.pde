@@ -58,7 +58,7 @@ public class Interaction {
 
   void enemyAction() {
     if (!dead) {
-      attacks.enemyMove(sluggy, slug);
+      attacks.enemyMove(sluggy);
     }
     if (enemyPath.length() == 0) {
       enemiesleft--;
