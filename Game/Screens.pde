@@ -34,4 +34,20 @@ public class Screens {
     fill(255);
     text("MISSION FAILED", width/2 - SQUARE_SIZE/2 - 10, 285);
   }
+
+  void results() {
+    if (!onResults) {
+      if (!pause) {
+        attacks.charAction();
+      }
+      attacks.enemyAction();
+    }
+    if (lp == 0) {
+      onResults = true;
+      screen.lose();
+    } else if (enemiesleft == 0) {
+      onResults = true;
+      screen.win();
+    }
+  }
 }

@@ -108,7 +108,7 @@ public class Enemies extends LivingObjects {
   }
 
 
-  ///////////////METHODS/////////////////////////////
+  //METHODS
   public void toAttack(LivingObjects other) {
     other.setHealth(other.getHealth() - this.getAttack());
   }

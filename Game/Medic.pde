@@ -1,5 +1,4 @@
 public class Medic extends TowerCharacters {
-
   public Queue<TowerCharacters> blocked;
 
   public Medic() {
@@ -33,6 +32,7 @@ public class Medic extends TowerCharacters {
       rangeOne();
     }
     if (this.getRange() == 2) {
+      rangeOne();
       rangeTwo();
     }
 

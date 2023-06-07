@@ -59,7 +59,6 @@ public class Interaction {
   }
 
   void enemyAction() {
-
     if (!dead && !pause) {
       attacks.enemyMove(enemyList.get(0));
     }
@@ -84,6 +83,14 @@ public class Interaction {
             }
           }
         }
+      }
+    }
+  }
+  
+  void coolDown(){
+    for(int i = 0 ; i < coolDowns.length ; i++){
+      if(coolDowns[i] != 0){
+        coolDowns[i]--;
       }
     }
   }

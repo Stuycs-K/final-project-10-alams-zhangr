@@ -14,9 +14,9 @@ public class TowerCharacters extends LivingObjects {
   private boolean attacking;
   private int type;
   private int dp;
-  //public int defense;
+  private int cd;
 
-  public TowerCharacters() { //default
+  public TowerCharacters() {
   }
 
   public TowerCharacters(int hp, int spd, int atk, int hit, String img, int blk, int optype, int deploymentCost) {
@@ -134,7 +134,7 @@ public class TowerCharacters extends LivingObjects {
     return dp;
   }
 
-  ///////////////////////////////METHODS/////////////////////////////////////////
+  //METHODS
   public void toAttack(LivingObjects other) {
     other.setHealth(other.getHealth() - this.getAttack());
   }
