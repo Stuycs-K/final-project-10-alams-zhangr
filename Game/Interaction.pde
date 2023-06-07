@@ -67,7 +67,9 @@ public class Interaction {
     }
     if (enemyPath.length() == 0) {
       enemiesleft--;
-      lp--;
+      if (lostLP) {
+        lp--;
+      }
     }
     for (int row = 0; row < eneMap.length; row++) {
       for (int col = 0; col < eneMap[0].length; col++) {

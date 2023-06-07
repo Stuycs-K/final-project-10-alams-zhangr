@@ -52,6 +52,7 @@ private boolean pause = false;
 private boolean dead = false;
 //int delay = 10;
 private Enemies sluggy;
+private boolean lostLP = false;
 
 void setup() {
   size(1000, 550);
