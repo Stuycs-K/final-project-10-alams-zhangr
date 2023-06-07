@@ -54,6 +54,61 @@ REMINDERS
 - Fix display of characters to fit in squares
 - Organize code
 
+### 5/26/23
+- Fixed issues with directselect
+- added indicators for selection
+- added cost, global timer, & unit limit
+- display ops better
+
+ISSUES
+- text indicators for selection are not working
+
+REMINDERS
+- test ranges (work on ranges & individual object timers)
+
+### 5/27/23
+- changed range & tested
+- working on character and enemy interaction
+
+ISSUES
+- text indicators for selection not working
+
+### 5/29/23
+- added character attacking enemies and rangezero
+
+ISSUES
+- text indicators
+
+reminders
+- add rangeone & range two
+
+WHAT NEEDS TO BE DONE B4 DEMO:
+- test character attacking MOVING enemies : safika
+- enemies attacking characters : raymond
+- how many enemies & lp stats : safika
+- hp bars for enemies & characters : raymond
+- set up map one with all correct characters & enemies with proper diverse stats : both
+- results screens: safika
+
+### 5/30/2023
+- fixed ranges and added rangeone
+- fixed text indicators
+- added lp & enemies left stats
+
+working on
+- rangetwo
+- results screen
+
+### 5/31/2023
+- created backup enemy move method
+
+### 6/1/2023
+- organized code into different classes
+- added results screens
+
+DEMO
+- test character attacking MOVING enemies
+-
 
 
 ## GROUP MEMBER 2 //RAYMOND
@@ -85,3 +140,49 @@ reminders:
 
 - got enemy path to work
 - attempted to implement pause, but does not work as intended
+
+### 5/26/23
+
+- working on enemy movement
+- revamped enemyPath in game (new parameter in the int array elements)
+- new move method (have not tested yet)
+
+### 5/29/23
+
+- still working on enemy movement (still need to test movement)
+- updated Enemy class to include new variables to help with coding enemy movement
+- added ticks to Enemy class
+
+### 5/30/23
+
+- second revamp of enemy move method (succeeded!)
+- tested and worked
+- commented out useless variables and methods
+
+NEED TO DO:
+- adjust image displaying (not synced with squares)
+
+### 5/31/23
+
+- fixed image displaying
+- fixed path
+- implemented enemy speed
+
+### 6/1/23
+
+- fixed problem of displaying 2 enemies instead of 1
+- enemy can attack character now
+- demo finalized and pushed
+
+### 6/4/23
+
+-completed enemy block (not tested)
+-rearranged code to make it look nicer in main final
+
+Found Bug:
+- life points keep decreasing after enemy reaches end
+
+### 6/6/23
+
+-tried to work on pause, I would say around ~60 percent done
+-had to revamp it because previous method did not work as intended
