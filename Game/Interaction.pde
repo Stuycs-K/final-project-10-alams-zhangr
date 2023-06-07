@@ -33,12 +33,14 @@ public class Interaction {
     if (enemyPath.length() > 0) {
 
       if (stepsPerSquare != 0) {
-        e.move(e.getMS());
         //image(i, e.getXCoord() - (int)SQUARE_SIZE/2, e.getYCoord() - (int)SQUARE_SIZE/2, SQUARE_SIZE, SQUARE_SIZE);
         if (!dead) {
           display.displayEne();
         }
-        stepsPerSquare--;
+        if (!pause){
+          e.move(e.getMS());
+          stepsPerSquare--;
+        }
 
         e.setLocation(new int[]{e.getXCoord()/ (int)SQUARE_SIZE, e.getYCoord()/ (int)SQUARE_SIZE});
       } else {
@@ -48,7 +50,7 @@ public class Interaction {
         }
         stepsPerSquare = (int)SQUARE_SIZE / e.getMS();
         //image(i, e.getXCoord() - (int)SQUARE_SIZE/2, e.getYCoord() - (int)SQUARE_SIZE/2, SQUARE_SIZE, SQUARE_SIZE);
-        if (!dead) {
+        if (!dead && !pause) {
           display.displayEne();
         }
       }
@@ -57,8 +59,9 @@ public class Interaction {
   }
 
   void enemyAction() {
-    if (!dead) {
-      attacks.enemyMove(sluggy);
+
+    if (!dead && !pause) {
+      attacks.enemyMove(enemyList.get(0));
     }
     if (enemyPath.length() == 0) {
       enemiesleft--;

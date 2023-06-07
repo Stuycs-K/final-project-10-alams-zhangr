@@ -102,7 +102,9 @@ void draw() {
     display.displayChar();
     display.limits();
     if (!onResults) {
-      attacks.charAction();
+      if (!pause){
+        attacks.charAction();
+      }
       attacks.enemyAction();
     }
 

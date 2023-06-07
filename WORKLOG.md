@@ -181,3 +181,8 @@ NEED TO DO:
 
 Found Bug:
 - life points keep decreasing after enemy reaches end
+
+### 6/6/23
+
+-tried to work on pause, I would say around ~60 percent done
+-had to revamp it because previous method did not work as intended

@@ -34,6 +34,13 @@ public class Display {
       }
       l += SQUARE_SIZE;
     }
+    
+    fill(#7D7D7D);
+    rect(960, 0, 40, 40);
+    fill(0);
+    rect(968, 10, 8, 20);
+    rect(984, 10, 8, 20);
+    
     if (opSelect) {
       strokeWeight(10);
       stroke(color(0, 255, 0));
