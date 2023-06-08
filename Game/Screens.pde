@@ -37,10 +37,8 @@ public class Screens {
 
   void results() {
     if (!onResults) {
-      if (!pause) {
         attacks.charAction();
-      }
-      attacks.enemyAction();
+        //attacks.enemyAction();
     }
     if (lp == 0) {
       onResults = true;
@@ -50,4 +48,5 @@ public class Screens {
       screen.win();
     }
   }
+
 }

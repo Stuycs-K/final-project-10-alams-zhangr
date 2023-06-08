@@ -6,7 +6,7 @@ public class TowerCharacters extends LivingObjects {
   private int direction;
   private int range;
   private int[] location;
-  private String sprite;
+  private String[] sprite;
   public int ticks = 0;
   private int block;
   public Queue<Enemies> blocked;
@@ -19,7 +19,7 @@ public class TowerCharacters extends LivingObjects {
   public TowerCharacters() {
   }
 
-  public TowerCharacters(int hp, int spd, int atk, int hit, String img, int blk, int optype, int deploymentCost) {
+  public TowerCharacters(int hp, int spd, int atk, int hit, String[] img, int blk, int optype, int deploymentCost) {
     maxHealth = hp;
     health = hp;
     speed = spd;
@@ -84,7 +84,7 @@ public class TowerCharacters extends LivingObjects {
     location = newLocation;
   }
 
-  public String getSprite() {
+  public String[] getSprite() {
     return sprite;
   }
 
@@ -114,6 +114,9 @@ public class TowerCharacters extends LivingObjects {
 
   public void setDeployed(boolean deploy) {
     deployed = deploy;
+    if(deploy){
+      health = maxHealth;
+    }
   }
 
   public boolean getAttacking() {

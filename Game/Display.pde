@@ -35,12 +35,6 @@ public class Display {
       l += SQUARE_SIZE;
     }
 
-    fill(#7D7D7D);
-    rect(960, 0, 40, 40);
-    fill(0);
-    rect(968, 10, 8, 20);
-    rect(984, 10, 8, 20);
-
     if (opSelect) {
       strokeWeight(10);
       stroke(color(0, 255, 0));
@@ -70,13 +64,19 @@ public class Display {
       strokeWeight(1);
       stroke(255, 255, 255);
     }
+
+    fill(#7D7D7D);
+    rect(960, 0, 40, 40);
+    fill(0);
+    rect(968, 10, 8, 20);
+    rect(984, 10, 8, 20);
   }
 
   void displayChar() {
     for (int i = 0; i < charMap.length; i++) {
       for (int j = 0; j < charMap[i].length; j++) {
         if (charMap[i][j] >= 0) {
-          PImage op0 = loadImage(inventory[charMap[i][j]].getSprite());
+          PImage op0 = loadImage(inventory[charMap[i][j]].getSprite()[0]);
           image(op0, SQUARE_SIZE*j - 30, SQUARE_SIZE*i - 70, 175, 175);
           healthBarsT(inventory[charMap[i][j]]);
         }
@@ -98,9 +98,9 @@ public class Display {
 
   void inventory() {
     //display inventory
-    for (int i = 0; i < 6; i++) {
+    for (int i = 0; i < inventory.length; i++) {
       if (!inventory[i].getDeployed()) {
-        PImage op0 = loadImage(inventory[i].getSprite());
+        PImage op0 = loadImage(inventory[i].getSprite()[0]);
         if (cost < inventory[i].getDp() || unitLimit == 0) {
           tint(150, 150, 150);
         }
@@ -110,15 +110,14 @@ public class Display {
             tint(255, 0, 0);
           }
         }
-
         if (coolDowns[i] > 0) {
           tint(150, 150, 150);
           fill(255);
           textSize(30);
-          image(op0, SQUARE_SIZE*i - 10, SQUARE_SIZE*3.5, 150, 150);
+          image(op0, SQUARE_SIZE*i - 10, SQUARE_SIZE*3.5, SQUARE_SIZE, SQUARE_SIZE);
           text(coolDowns[i], SQUARE_SIZE*i+(SQUARE_SIZE/2), SQUARE_SIZE*4.5);
         } else {
-          image(op0, SQUARE_SIZE*i - 10, SQUARE_SIZE*3.5, 150, 150);
+          image(op0, SQUARE_SIZE*i, SQUARE_SIZE*(map.length), SQUARE_SIZE, SQUARE_SIZE);
         }
         noTint();
       }
@@ -128,7 +127,7 @@ public class Display {
   void limits() {
     //display cost
     if (timer%20 == 0) {
-      if (cost < 99) {
+      if (cost < 99 && !onResults) {
         cost++;
       }
     }

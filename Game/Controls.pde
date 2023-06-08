@@ -12,11 +12,13 @@ public class Controls {
     }
     if (mouseX >= 325 && mouseX <= 675 && mouseY >=250 && mouseY <= 300) {
       levelSelect = 2;
+      level.lvlTwo();
       onMenu = false;
       onMap = true;
     }
     if (mouseX >= 325 && mouseX <= 675 && mouseY >=325 && mouseY <= 375) {
       levelSelect = 3;
+      level.lvlTwo();
       onMenu = false;
       onMap = true;
     }
