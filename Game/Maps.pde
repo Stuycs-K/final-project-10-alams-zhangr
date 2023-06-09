@@ -4,7 +4,7 @@ public class Maps {
 
   void lvlOne() {
     //MAP1 for placement purposes
-    cost = 75;
+    cost = 10;
     unitLimit = 3;
 
     lp = 1;
