@@ -53,6 +53,8 @@ private boolean pause = false;
 private boolean dead = false;
 
 private Enemies sluggy;
+private Enemies sluggy2;
+
 private boolean lostLP = false;
 
 PImage lvlone;
@@ -62,16 +64,6 @@ void setup() {
   screen.menu();
 
   //SETUP LIVING OBJECTS
-
-  //SET UP ENEMIES & MOVEMENT IN MAPS
-
-  sluggy = new Enemies(500, 1, 1, 0, "slug/slugA-0.png", 1, 950, 250, new int[]{2, 8}, Integer.parseInt(enemyPath.substring(0, 1)));
-
-  //SETUP ENEMYLIST
-  enemyList = new ArrayList<Enemies>();
-
-  //THIS TOO
-  enemyList.add(sluggy);
 
   //SETUP OPERATORS
   

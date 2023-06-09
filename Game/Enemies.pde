@@ -16,7 +16,7 @@ public class Enemies extends LivingObjects {
   public Enemies() { //default
   }
 
-  public Enemies(int hp, int spd, int atk, int hit, String img, int moveSpeed, int x, int y, int[] spawn, int DIRECTION) {
+  public Enemies(int hp, int spd, int atk, int hit, String img, int moveSpeed, int x, int y, int[] spawn, int DIRECTION, int tix) {
     maxHealth = hp;
     health = hp;
     speed = spd;
@@ -24,7 +24,7 @@ public class Enemies extends LivingObjects {
     direction = 1;
     range = hit;
     sprite = img;
-    ticks = 0;
+    ticks = tix;
     ms = moveSpeed;
     xCoord = x;
     yCoord = y;
@@ -110,7 +110,9 @@ public class Enemies extends LivingObjects {
     yCoord = newY;
   }
 
-
+  public int getTicks(){
+    return ticks;
+  }
 
   //METHODS
   public void toAttack(LivingObjects other) {

@@ -56,8 +56,12 @@ public class Interaction {
   void enemyAction() {
     if (enemyList.size() != 0) {
       if ( !dead && !pause && enemyList.get(0).getMS() != 0) {
-
-        attacks.enemyMove(enemyList.get(0));
+        if (timer >= enemyList.get(0).getTicks()){
+          attacks.enemyMove(enemyList.get(0));
+        }
+        if (timer >= enemyList.get(1).getTicks()){
+          attacks.enemyMove(enemyList.get(1));
+        }
       }
       if (enemyPath.length() == 0) {
         enemiesleft--;
