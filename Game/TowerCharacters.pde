@@ -95,10 +95,10 @@ public class TowerCharacters extends LivingObjects {
   }
 
   public void increaseFrame() {
-    if (!attacking && (frame >= 10)) {
+    if (!attacking && (frame >= 6)) {
       frame = 1;
-    } else if (attacking && (frame < 10 || frame >= 20 )) {
-      frame = 11;
+    } else if (attacking && (frame < 7 || frame >= 15 )) {
+      frame = 7;
     } else {
       frame++;
     }
