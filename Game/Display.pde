@@ -78,7 +78,7 @@ public class Display {
         if (charMap[i][j] >= 0) {
           int frame = inventory[charMap[i][j]].getFrame();
           PImage op0 = loadImage(inventory[charMap[i][j]].getSprite()[frame]);
-          image(op0, SQUARE_SIZE*j - SQUARE_SIZE/6, SQUARE_SIZE*i - (SQUARE_SIZE/3), SQUARE_SIZE*5/4,SQUARE_SIZE*5/4);
+          image(op0, SQUARE_SIZE*j - SQUARE_SIZE/3, SQUARE_SIZE*i - (SQUARE_SIZE/2), SQUARE_SIZE*11/6,SQUARE_SIZE*11/6);
           healthBarsT(inventory[charMap[i][j]]);
         }
       }
@@ -129,7 +129,7 @@ public class Display {
   void animate(){
     for(int i = 0 ; i < inventory.length ; i++){
       if(inventory[i].getDeployed()){
-        if(timer%3== 0){
+        if(timer%4== 0){
           inventory[i].increaseFrame();
         }
       }

@@ -65,7 +65,7 @@ void setup() {
 
   //SET UP ENEMIES & MOVEMENT IN MAPS
 
-  sluggy = new Enemies(500, 4, 1, 0, "originium_slug.png", 4, 950, 250, new int[]{2, 8}, Integer.parseInt(enemyPath.substring(0, 1)));
+  sluggy = new Enemies(500, 1, 1, 0, "slugA-0.png", 1, 950, 250, new int[]{2, 8}, Integer.parseInt(enemyPath.substring(0, 1)));
 
   //SETUP ENEMYLIST
   enemyList = new ArrayList<Enemies>();
@@ -75,11 +75,9 @@ void setup() {
 
   //SETUP OPERATORS
   
-  String[] frostl = new String[]{"frostl-0.png", "frostlI-1.png","frostlI-2.png", "frostlI-3.png", "frostlI-4.png",
-  "frostlI-5.png", "frostlI-6.png", "frostlI-5.png", "frostlI-4.png", "frostlI-3.png", "frostlI-2.png", 
-  "frostlA-1.png", "frostlA-2.png", "frostlA-3.png", "frostlA-4.png", "frostlA-5.png", 
-"frostlA-6.png", "frostlA-7.png", "frostlA-8.png", "frostlA-9.png", "frostlA-10.png"};
-  TowerCharacters op0 = new TowerCharacters(742, 30, 157, 1, frostl, 2, GROUND, 9);
+  String[] frostl = new String[]{"frostl-0.png", "frostlI-1.png","frostlI-2.png", "frostlI-3.png", "frostlI-4.png","frostlI-5.png", "frostlI-6.png",
+  "frostlA-1.png", "frostlA-2.png", "frostlA-3.png", "frostlA-4.png", "frostlA-5.png", "frostlA-6.png", "frostlA-7.png", "frostlA-8.png", "frostlA-9.png"};
+  TowerCharacters op0 = new TowerCharacters(742, 10, 157, 1, frostl, 2, GROUND, 9);
   //TowerCharacters op1 = new TowerCharacters(250, 10, 180, 1, "meterorite.png", 0, AERIAL, 8);
   //TowerCharacters op2 = new Medic(500, 30, 100, 1, "purestream.png", 0, AERIAL, 10);
   //TowerCharacters op3 = new Medic(500, 30, 100, 1, "kaltsit.png", 0, AERIAL, 8);

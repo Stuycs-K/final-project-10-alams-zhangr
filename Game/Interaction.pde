@@ -9,7 +9,7 @@ public class Interaction {
           if (inventory[i].checkRange() != null) {
             if (!pause) {
               inventory[i].setAttacking(true);
-              if (inventory[i].getTicks()%inventory[i].getSpeed() == 0) {
+              if (inventory[i].getTicks()%(inventory[i].getSpeed()*3.3) == 0) {
                 if (inventory[i].checkRange().getHealth() > 0) {
                   inventory[i].toAttack(inventory[i].checkRange());
                   if (inventory[i].checkRange() != null) {
@@ -35,7 +35,6 @@ public class Interaction {
     if (enemyPath.length() > 0) {
 
       if (stepsPerSquare != 0) {
-        //image(i, e.getXCoord() - (int)SQUARE_SIZE/2, e.getYCoord() - (int)SQUARE_SIZE/2, SQUARE_SIZE, SQUARE_SIZE);
         if (!pause) {
 
           e.move(e.getMS());
@@ -49,7 +48,6 @@ public class Interaction {
           e.setDirection(Integer.parseInt(enemyPath.substring(0, 1)));
         }
         stepsPerSquare = (int)SQUARE_SIZE / e.getMS();
-        //image(i, e.getXCoord() - (int)SQUARE_SIZE/2, e.getYCoord() - (int)SQUARE_SIZE/2, SQUARE_SIZE, SQUARE_SIZE);
       }
       eneMap[e.getYCoord() / (int)SQUARE_SIZE][e.getXCoord()/ (int)SQUARE_SIZE] = enemyList.indexOf(sluggy);
     }
