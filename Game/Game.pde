@@ -65,7 +65,7 @@ void setup() {
 
   //SET UP ENEMIES & MOVEMENT IN MAPS
 
-  sluggy = new Enemies(20, 4, 1, 0, "originium_slug.png", 4, 950, 250, new int[]{2, 8}, Integer.parseInt(enemyPath.substring(0, 1)));
+  sluggy = new Enemies(500, 4, 1, 0, "originium_slug.png", 4, 950, 250, new int[]{2, 8}, Integer.parseInt(enemyPath.substring(0, 1)));
 
   //SETUP ENEMYLIST
   enemyList = new ArrayList<Enemies>();

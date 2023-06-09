@@ -160,9 +160,13 @@ public class TowerCharacters extends LivingObjects {
 
   public LivingObjects checkRange() { //returns first value of blocked
     if (eneMap[location[1]][location[0]] > -1) {
-      if (!blocked.contains(enemyList.get(eneMap[location[1]][location[0]])) && !(blocked.size() > block)) {
+      if (enemyList.size() != 0 && !blocked.contains(enemyList.get(eneMap[location[1]][location[0]])) && !(blocked.size() > block)) {
         blocked.add(enemyList.get(eneMap[location[1]][location[0]]));
-        enemyList.get(eneMap[location[1]][location[0]]).setMS(0);
+      }
+      else if(blocked.contains(enemyList.get(eneMap[location[1]][location[0]]))){
+        if(enemyList.get(eneMap[location[1]][location[0]]).getMS() != 0){
+          enemyList.get(eneMap[location[1]][location[0]]).setMS(0);
+        }
       }
     }
     if (this.getRange() == 1) {
@@ -171,6 +175,7 @@ public class TowerCharacters extends LivingObjects {
     if (this.getRange() == 2) {
       rangeTwo();
     }
+    
     return blocked.peek();
   }
 
@@ -180,9 +185,8 @@ public class TowerCharacters extends LivingObjects {
     if (this.getDirection() == T) {
       if (y - 1 > 0) {
         if (eneMap[y - 1][x] > -1) {
-          if (!blocked.contains(enemyList.get(eneMap[y - 1][x])) && !(blocked.size() > block)) {
+          if (enemyList.size() != 0 &&!blocked.contains(enemyList.get(eneMap[y - 1][x])) && !(blocked.size() > block)) {
             blocked.add(enemyList.get(eneMap[y - 1][x]));
-            enemyList.get(eneMap[y - 1][x]).setMS(0);
           }
         }
       }
@@ -190,9 +194,8 @@ public class TowerCharacters extends LivingObjects {
     if (this.getDirection() == R) {
       if (x + 1 < eneMap[0].length) {
         if (eneMap[y][x+1] > -1) {
-          if (!blocked.contains(enemyList.get(eneMap[y][x + 1])) && !(blocked.size() > block)) {
+          if (enemyList.size() != 0 &&!blocked.contains(enemyList.get(eneMap[y][x + 1])) && !(blocked.size() > block)) {
             blocked.add(enemyList.get(eneMap[y][ x + 1]));
-            enemyList.get(eneMap[y][ x + 1]).setMS(0);
           }
         }
       }
@@ -200,9 +203,8 @@ public class TowerCharacters extends LivingObjects {
     if (this.getDirection() == D) {
       if (y + 1 < eneMap.length) {
         if (eneMap[y +1][x] > -1) {
-          if (!blocked.contains(enemyList.get(eneMap[y + 1][x])) && !(blocked.size() > block)) {
+          if (enemyList.size() != 0 &&!blocked.contains(enemyList.get(eneMap[y + 1][x])) && !(blocked.size() > block)) {
             blocked.add(enemyList.get(eneMap[y + 1][x]));
-            enemyList.get(eneMap[y + 1][x]).setMS(0);
           }
         }
       }
@@ -210,9 +212,8 @@ public class TowerCharacters extends LivingObjects {
     if (this.getDirection() == L) {
       if (x - 1 > 0) {
         if (eneMap[y][x - 1] > -1) {
-          if (!blocked.contains(enemyList.get(eneMap[y][x - 1])) && !(blocked.size() > block)) {
+          if (enemyList.size() != 0 &&!blocked.contains(enemyList.get(eneMap[y][x - 1])) && !(blocked.size() > block)) {
             blocked.add(enemyList.get(eneMap[y][ x - 1]));
-            enemyList.get(eneMap[y][ x - 1]).setMS(0);
           }
         }
       }

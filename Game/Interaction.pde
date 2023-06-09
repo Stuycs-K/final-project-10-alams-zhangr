@@ -36,7 +36,7 @@ public class Interaction {
 
       if (stepsPerSquare != 0) {
         //image(i, e.getXCoord() - (int)SQUARE_SIZE/2, e.getYCoord() - (int)SQUARE_SIZE/2, SQUARE_SIZE, SQUARE_SIZE);
-        if (!pause){
+        if (!pause) {
 
           e.move(e.getMS());
           stepsPerSquare--;
@@ -56,40 +56,42 @@ public class Interaction {
   }
 
   void enemyAction() {
-    if (enemyList.size() != 0 && !dead && !pause && enemyList.get(0).getMS() != 0) {
+    if (enemyList.size() != 0) {
+      if ( !dead && !pause && enemyList.get(0).getMS() != 0) {
 
-      attacks.enemyMove(enemyList.get(0));
-    }
-    if (enemyPath.length() == 0) {
-      enemiesleft--;
-      if (lostLP) {
-        lp--;
+        attacks.enemyMove(enemyList.get(0));
       }
-    }
-    for (int row = 0; row < eneMap.length; row++) {
-      for (int col = 0; col < eneMap[0].length; col++) {
-        if (eneMap[row][col] >= 0 && charMap[row][col] >= 0) {
-          int atkingEnemy = eneMap[row][col];
-          int atkingChar = charMap[row][col];
-          if (inventory[atkingChar].getBlocked().size() < inventory[atkingChar].getBlock()) {
-            inventory[atkingChar].checkRange();
-            if (enemyList.get(atkingEnemy).getHealth() > 0 && inventory[atkingChar].getHealth() > 0) {
-              enemyList.get(atkingEnemy).toAttack(inventory[atkingChar]);
-            } else if (inventory[atkingChar].getHealth() <= 0) {
-              charMap[row][col] = map[row][col];
-              inventory[atkingChar].setDeployed(false);
-              inventory[atkingChar].setAttacking(false);
-              unitLimit++;
+      if (enemyPath.length() == 0) {
+        enemiesleft--;
+        if (lostLP) {
+          lp--;
+        }
+      }
+      for (int row = 0; row < eneMap.length; row++) {
+        for (int col = 0; col < eneMap[0].length; col++) {
+          if (eneMap[row][col] >= 0 && charMap[row][col] >= 0) {
+            int atkingEnemy = eneMap[row][col];
+            int atkingChar = charMap[row][col];
+            if (inventory[atkingChar].getBlocked().size() < inventory[atkingChar].getBlock()) {
+              inventory[atkingChar].checkRange();
+              if (enemyList.get(atkingEnemy).getHealth() > 0 && inventory[atkingChar].getHealth() > 0) {
+                enemyList.get(atkingEnemy).toAttack(inventory[atkingChar]);
+              } else if (inventory[atkingChar].getHealth() <= 0) {
+                charMap[row][col] = map[row][col];
+                inventory[atkingChar].setDeployed(false);
+                inventory[atkingChar].setAttacking(false);
+                unitLimit++;
+              }
             }
           }
         }
       }
     }
   }
-  
-  void coolDown(){
-    for(int i = 0 ; i < coolDowns.length ; i++){
-      if(coolDowns[i] != 0){
+
+  void coolDown() {
+    for (int i = 0; i < coolDowns.length; i++) {
+      if (coolDowns[i] != 0) {
         coolDowns[i]--;
       }
     }
