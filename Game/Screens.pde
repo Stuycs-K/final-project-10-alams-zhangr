@@ -39,6 +39,7 @@ public class Screens {
     if (!onResults) {
         attacks.charAction();
         attacks.enemyAction();
+        display.animate();
     }
     if (lp == 0) {
       onResults = true;

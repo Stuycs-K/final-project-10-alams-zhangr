@@ -120,7 +120,6 @@ void draw() {
     attacks.coolDown();
     display.displayChar();
     display.displayEne();
-    display.animate();
     display.limits();
     screen.results();  //has charaction & eneaction
   } else if (!onMenu) {
