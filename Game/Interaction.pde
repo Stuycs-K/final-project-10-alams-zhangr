@@ -34,9 +34,6 @@ public class Interaction {
 
       if (stepsPerSquare != 0) {
         //image(i, e.getXCoord() - (int)SQUARE_SIZE/2, e.getYCoord() - (int)SQUARE_SIZE/2, SQUARE_SIZE, SQUARE_SIZE);
-        if (!dead) {
-          display.displayEne();
-        }
         if (!pause){
           e.move(e.getMS());
           stepsPerSquare--;
@@ -50,16 +47,13 @@ public class Interaction {
         }
         stepsPerSquare = (int)SQUARE_SIZE / e.getMS();
         //image(i, e.getXCoord() - (int)SQUARE_SIZE/2, e.getYCoord() - (int)SQUARE_SIZE/2, SQUARE_SIZE, SQUARE_SIZE);
-        if (!dead && !pause) {
-          display.displayEne();
-        }
       }
       eneMap[e.getYCoord() / (int)SQUARE_SIZE][e.getXCoord()/ (int)SQUARE_SIZE] = enemyList.indexOf(sluggy);
     }
   }
 
   void enemyAction() {
-    if (!dead && !pause) {
+    if (enemyList.size() != 0 && !dead && !pause && enemyList.get(0).getMS() != 0) {
       attacks.enemyMove(enemyList.get(0));
     }
     if (enemyPath.length() == 0) {
@@ -91,14 +85,6 @@ public class Interaction {
     for(int i = 0 ; i < coolDowns.length ; i++){
       if(coolDowns[i] != 0){
         coolDowns[i]--;
-      }
-    }
-  }
-  
-  void animate(){
-    for(int i = 0 ; i < inventory.length ; i++){
-      if(inventory[i].getDeployed()){
-        
       }
     }
   }

@@ -76,8 +76,9 @@ public class Display {
     for (int i = 0; i < charMap.length; i++) {
       for (int j = 0; j < charMap[i].length; j++) {
         if (charMap[i][j] >= 0) {
-          PImage op0 = loadImage(inventory[charMap[i][j]].getSprite()[0]);
-          image(op0, SQUARE_SIZE*j - 30, SQUARE_SIZE*i - 70, 175, 175);
+          int frame = inventory[charMap[i][j]].getFrame();
+          PImage op0 = loadImage(inventory[charMap[i][j]].getSprite()[frame]);
+          image(op0, SQUARE_SIZE*j - SQUARE_SIZE/6, SQUARE_SIZE*i - (SQUARE_SIZE/3), SQUARE_SIZE*5/4,SQUARE_SIZE*5/4);
           healthBarsT(inventory[charMap[i][j]]);
         }
       }
@@ -120,6 +121,17 @@ public class Display {
           image(op0, SQUARE_SIZE*i, SQUARE_SIZE*(map.length), SQUARE_SIZE, SQUARE_SIZE);
         }
         noTint();
+      }
+    }
+  }
+  
+    
+  void animate(){
+    for(int i = 0 ; i < inventory.length ; i++){
+      if(inventory[i].getDeployed()){
+        if(timer%3== 0){
+          inventory[i].increaseFrame();
+        }
       }
     }
   }
