@@ -53,6 +53,7 @@ private boolean pause = false;
 private boolean dead = false;
 
 private Enemies sluggy;
+private boolean lostLP = false;
 
 PImage lvlone;
 

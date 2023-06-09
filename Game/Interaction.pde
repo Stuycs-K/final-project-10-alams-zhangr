@@ -7,18 +7,20 @@ public class Interaction {
       for (int i = 0; i < inventory.length; i++) {
         if (inventory[i].getDeployed() && !directionSelect) {
           if (inventory[i].checkRange() != null) {
-            inventory[i].setAttacking(true);
-            if (inventory[i].getTicks()%inventory[i].getSpeed() == 0) {
-              if (inventory[i].checkRange().getHealth() > 0) {
-                inventory[i].toAttack(inventory[i].checkRange());
-                if (inventory[i].checkRange() != null) {
-                  if (inventory[i].checkRange().getHealth() <= 0) {
-                    inventory[i].setAttacking(false);
-                    int[] position = inventory[i].checkRange().getLocation();
-                    eneMap[position[1]][position[0]] = map[position[1]][position[0]];
-                    enemyList.remove(0);
-                    enemiesleft--;
-                    inventory[i].blocked.remove();
+            if (!pause) {
+              inventory[i].setAttacking(true);
+              if (inventory[i].getTicks()%inventory[i].getSpeed() == 0) {
+                if (inventory[i].checkRange().getHealth() > 0) {
+                  inventory[i].toAttack(inventory[i].checkRange());
+                  if (inventory[i].checkRange() != null) {
+                    if (inventory[i].checkRange().getHealth() <= 0) {
+                      inventory[i].setAttacking(false);
+                      int[] position = inventory[i].checkRange().getLocation();
+                      eneMap[position[1]][position[0]] = map[position[1]][position[0]];
+                      enemyList.remove(0);
+                      enemiesleft--;
+                      inventory[i].blocked.remove();
+                    }
                   }
                 }
               }
@@ -35,6 +37,7 @@ public class Interaction {
       if (stepsPerSquare != 0) {
         //image(i, e.getXCoord() - (int)SQUARE_SIZE/2, e.getYCoord() - (int)SQUARE_SIZE/2, SQUARE_SIZE, SQUARE_SIZE);
         if (!pause){
+
           e.move(e.getMS());
           stepsPerSquare--;
         }
@@ -54,11 +57,14 @@ public class Interaction {
 
   void enemyAction() {
     if (enemyList.size() != 0 && !dead && !pause && enemyList.get(0).getMS() != 0) {
+
       attacks.enemyMove(enemyList.get(0));
     }
     if (enemyPath.length() == 0) {
       enemiesleft--;
-      lp--;
+      if (lostLP) {
+        lp--;
+      }
     }
     for (int row = 0; row < eneMap.length; row++) {
       for (int col = 0; col < eneMap[0].length; col++) {
