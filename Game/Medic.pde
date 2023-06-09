@@ -1,12 +1,11 @@
 public class Medic extends TowerCharacters {
-
   public Queue<TowerCharacters> blocked;
 
   public Medic() {
     super();
   }
 
-  public Medic(int hp, int spd, int atk, int hit, String img, int blk, int optype, int deploymentCost) {
+  public Medic(int hp, int spd, int atk, int hit, String[] img, int blk, int optype, int deploymentCost) {
     super(hp, spd, atk, hit, img, blk, optype, deploymentCost);
     blocked = new LinkedList<TowerCharacters>();
   }
@@ -33,6 +32,7 @@ public class Medic extends TowerCharacters {
       rangeOne();
     }
     if (this.getRange() == 2) {
+      rangeOne();
       rangeTwo();
     }
 

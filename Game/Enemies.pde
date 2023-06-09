@@ -11,8 +11,8 @@ public class Enemies extends LivingObjects {
   private int yCoord;
   private int ticks;
   private float sqSize;
-
   private int ms;
+  
   public Enemies() { //default
   }
 
@@ -85,6 +85,14 @@ public class Enemies extends LivingObjects {
   public String getSprite() {
     return sprite;
   }
+  
+  public void setMS(int move) {
+    ms = move;
+  }
+  
+  public int getMS() {
+    return ms;
+  }
 
   public int getXCoord() {
     return xCoord;
@@ -103,12 +111,8 @@ public class Enemies extends LivingObjects {
   }
 
 
-  public int getMS() {
-    return ms;
-  }
 
-
-  ///////////////METHODS/////////////////////////////
+  //METHODS
   public void toAttack(LivingObjects other) {
     other.setHealth(other.getHealth() - this.getAttack());
   }

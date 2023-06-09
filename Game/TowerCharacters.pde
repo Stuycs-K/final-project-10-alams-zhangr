@@ -6,7 +6,8 @@ public class TowerCharacters extends LivingObjects {
   private int direction;
   private int range;
   private int[] location;
-  private String sprite;
+  private String[] sprite;
+  private int frame;
   public int ticks = 0;
   private int block;
   public Queue<Enemies> blocked;
@@ -14,12 +15,12 @@ public class TowerCharacters extends LivingObjects {
   private boolean attacking;
   private int type;
   private int dp;
-  //public int defense;
+  private int cd;
 
-  public TowerCharacters() { //default
+  public TowerCharacters() {
   }
 
-  public TowerCharacters(int hp, int spd, int atk, int hit, String img, int blk, int optype, int deploymentCost) {
+  public TowerCharacters(int hp, int spd, int atk, int hit, String[] img, int blk, int optype, int deploymentCost) {
     maxHealth = hp;
     health = hp;
     speed = spd;
@@ -28,6 +29,7 @@ public class TowerCharacters extends LivingObjects {
     range = hit;
     location = new int[]{0, 0};
     sprite = img;
+    frame = 1;
     block = blk;
     blocked = new LinkedList<Enemies>();
     deployed = false;
@@ -84,8 +86,22 @@ public class TowerCharacters extends LivingObjects {
     location = newLocation;
   }
 
-  public String getSprite() {
+  public String[] getSprite() {
     return sprite;
+  }
+
+  public int getFrame() {
+    return frame;
+  }
+
+  public void increaseFrame() {
+    if (!attacking && (frame >= 10)) {
+      frame = 1;
+    } else if (attacking && (frame < 10 || frame >= 20 )) {
+      frame = 11;
+    } else {
+      frame++;
+    }
   }
 
   public void increaseTicks() {
@@ -103,8 +119,8 @@ public class TowerCharacters extends LivingObjects {
   public int getBlock() {
     return block;
   }
-  
-  public Queue<Enemies> getBlocked(){
+
+  public Queue<Enemies> getBlocked() {
     return blocked;
   }
 
@@ -114,6 +130,9 @@ public class TowerCharacters extends LivingObjects {
 
   public void setDeployed(boolean deploy) {
     deployed = deploy;
+    if (deploy) {
+      health = maxHealth;
+    }
   }
 
   public boolean getAttacking() {
@@ -134,15 +153,16 @@ public class TowerCharacters extends LivingObjects {
     return dp;
   }
 
-  ///////////////////////////////METHODS/////////////////////////////////////////
+  //METHODS
   public void toAttack(LivingObjects other) {
     other.setHealth(other.getHealth() - this.getAttack());
   }
 
   public LivingObjects checkRange() { //returns first value of blocked
     if (eneMap[location[1]][location[0]] > -1) {
-      if (!blocked.contains(enemyList.get(eneMap[location[1]][location[0]]))) {
+      if (!blocked.contains(enemyList.get(eneMap[location[1]][location[0]])) && !(blocked.size() > block)) {
         blocked.add(enemyList.get(eneMap[location[1]][location[0]]));
+        enemyList.get(eneMap[location[1]][location[0]]).setMS(0);
       }
     }
     if (this.getRange() == 1) {
@@ -160,8 +180,9 @@ public class TowerCharacters extends LivingObjects {
     if (this.getDirection() == T) {
       if (y - 1 > 0) {
         if (eneMap[y - 1][x] > -1) {
-          if (!blocked.contains(enemyList.get(eneMap[y - 1][x]))) {
+          if (!blocked.contains(enemyList.get(eneMap[y - 1][x])) && !(blocked.size() > block)) {
             blocked.add(enemyList.get(eneMap[y - 1][x]));
+            enemyList.get(eneMap[y - 1][x]).setMS(0);
           }
         }
       }
@@ -169,8 +190,9 @@ public class TowerCharacters extends LivingObjects {
     if (this.getDirection() == R) {
       if (x + 1 < eneMap[0].length) {
         if (eneMap[y][x+1] > -1) {
-          if (!blocked.contains(enemyList.get(eneMap[y][x + 1]))) {
+          if (!blocked.contains(enemyList.get(eneMap[y][x + 1])) && !(blocked.size() > block)) {
             blocked.add(enemyList.get(eneMap[y][ x + 1]));
+            enemyList.get(eneMap[y][ x + 1]).setMS(0);
           }
         }
       }
@@ -178,8 +200,9 @@ public class TowerCharacters extends LivingObjects {
     if (this.getDirection() == D) {
       if (y + 1 < eneMap.length) {
         if (eneMap[y +1][x] > -1) {
-          if (!blocked.contains(enemyList.get(eneMap[y + 1][x]))) {
+          if (!blocked.contains(enemyList.get(eneMap[y + 1][x])) && !(blocked.size() > block)) {
             blocked.add(enemyList.get(eneMap[y + 1][x]));
+            enemyList.get(eneMap[y + 1][x]).setMS(0);
           }
         }
       }
@@ -187,15 +210,16 @@ public class TowerCharacters extends LivingObjects {
     if (this.getDirection() == L) {
       if (x - 1 > 0) {
         if (eneMap[y][x - 1] > -1) {
-          if (!blocked.contains(enemyList.get(eneMap[y][x - 1]))) {
+          if (!blocked.contains(enemyList.get(eneMap[y][x - 1])) && !(blocked.size() > block)) {
             blocked.add(enemyList.get(eneMap[y][ x - 1]));
+            enemyList.get(eneMap[y][ x - 1]).setMS(0);
           }
         }
       }
     }
   }
-  
-  void rangeTwo(){
+
+  void rangeTwo() {
   }
 
   void rangeSix() {

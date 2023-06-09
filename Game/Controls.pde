@@ -12,11 +12,13 @@ public class Controls {
     }
     if (mouseX >= 325 && mouseX <= 675 && mouseY >=250 && mouseY <= 300) {
       levelSelect = 2;
+      level.lvlTwo();
       onMenu = false;
       onMap = true;
     }
     if (mouseX >= 325 && mouseX <= 675 && mouseY >=325 && mouseY <= 375) {
       levelSelect = 3;
+      level.lvlTwo();
       onMenu = false;
       onMap = true;
     }
@@ -68,7 +70,12 @@ public class Controls {
         equal = true;
       }
     }
-    if (equal) {
+    
+    //add a check direction method
+    int current = inventory[index].getDirection();
+    
+    
+    if (equal && checkDirection(inventory[index])) {
       if (key == 'w') {
         inventory[index].setDirection(T);
       }
@@ -99,7 +106,7 @@ public class Controls {
     if (equal) {
       String keey = "" + key;
       int index = Integer.parseInt(keey) - 1;
-      while (!inventory[index].getDeployed() && inventory[index].getType() == map[selectedY][selectedX] && ((cost - inventory[index].getDp()) >= 0) && unitLimit > 0) {
+      while (!inventory[index].getDeployed() && inventory[index].getType() == map[selectedY][selectedX] && ((cost - inventory[index].getDp()) >= 0) && unitLimit > 0 && coolDowns[index] == 0) {
         cost -= inventory[index].getDp();
         charMap[selectedY][selectedX] = index;
         inventory[index].setLocation(new int[]{selectedX, selectedY});
@@ -111,6 +118,10 @@ public class Controls {
     }
   }
 
+  boolean checkDirection(TowerCharacters other){
+    return true;
+  }
+  
   void operatorRemove() {
     while (keyPressed == false) {
     }
@@ -118,6 +129,9 @@ public class Controls {
       int index = charMap[selectedY][selectedX];
       charMap[selectedY][selectedX] = map[selectedY][selectedX];
       inventory[index].setDeployed(false);
+      
+      coolDowns[index] = 60;
+      
       unitLimit++;
       println("removed character");
       opRemove = false;
@@ -125,9 +139,4 @@ public class Controls {
       opRemove = false;
     }
   }
-  
-  void resultsExit(){
-    
-  }
-  
 }
