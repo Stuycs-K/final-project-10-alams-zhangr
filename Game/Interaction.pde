@@ -8,9 +8,9 @@ public class Interaction {
         if (inventory[i].getDeployed() && !directionSelect) {
           if (inventory[i].checkRange() != null) {
             if (!pause) {
-              inventory[i].setAttacking(true);
               if (inventory[i].getTicks()%(inventory[i].getSpeed()*3.3) == 0) {
                 if (inventory[i].checkRange().getHealth() > 0) {
+                  inventory[i].setAttacking(true);
                   inventory[i].toAttack(inventory[i].checkRange());
                   if (inventory[i].checkRange() != null) {
                     if (inventory[i].checkRange().getHealth() <= 0) {

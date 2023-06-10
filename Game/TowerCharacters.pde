@@ -167,13 +167,16 @@ public class TowerCharacters extends LivingObjects {
       if (enemyList.size() != 0 && !blocked.contains(enemyList.get(eneMap[location[1]][location[0]])) && !(blocked.size() > block)) {
         blocked.add(enemyList.get(eneMap[location[1]][location[0]]));
       } else if (blocked.contains(enemyList.get(eneMap[location[1]][location[0]]))) {
-        if (enemyList.get(eneMap[location[1]][location[0]]).getMS() != 0) {
+        if (deployed && !directionSelect && enemyList.get(eneMap[location[1]][location[0]]).getMS() != 0) {
           enemyList.get(eneMap[location[1]][location[0]]).setMS(0);
         }
       }
 
       while ( blocked.size() != 0 && !(blocked.peek().getLocation()[1] == location[1]) && !(blocked.peek().getLocation()[0] == location[0])) {
         blocked.remove();
+        if (blocked.size() == 0) {
+          attacking = false;
+        }
       }
     }
 
@@ -198,6 +201,9 @@ public class TowerCharacters extends LivingObjects {
           }
           while ( blocked.size() != 0 && !(blocked.peek().getLocation()[1] == y-1) && !(blocked.peek().getLocation()[0] == x)) {
             blocked.remove();
+            if (blocked.size() == 0) {
+              attacking = false;
+            }
           }
         }
       }
@@ -210,6 +216,9 @@ public class TowerCharacters extends LivingObjects {
           }
           while ( blocked.size() != 0 && !(blocked.peek().getLocation()[1] == y) && !(blocked.peek().getLocation()[0] == x + 1)) {
             blocked.remove();
+            if (blocked.size() == 0) {
+              attacking = false;
+            }
           }
         }
       }
@@ -222,6 +231,9 @@ public class TowerCharacters extends LivingObjects {
           }
           while ( blocked.size() != 0 && !(blocked.peek().getLocation()[1] == y+1) && !(blocked.peek().getLocation()[0] == x)) {
             blocked.remove();
+            if (blocked.size() == 0) {
+              attacking = false;
+            }
           }
         }
       }
@@ -234,6 +246,9 @@ public class TowerCharacters extends LivingObjects {
           }
           while ( blocked.size() != 0 && !(blocked.peek().getLocation()[1] == y) && !(blocked.peek().getLocation()[0] == x - 1)) {
             blocked.remove();
+            if (blocked.size() == 0) {
+              attacking = false;
+            }
           }
         }
       }
