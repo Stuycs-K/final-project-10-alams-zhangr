@@ -103,6 +103,10 @@ public class TowerCharacters extends LivingObjects {
       frame++;
     }
   }
+  
+  public void setFrame(int newFrame){
+    frame = newFrame;
+  }
 
   public void increaseTicks() {
     ticks++;

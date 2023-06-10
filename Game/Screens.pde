@@ -36,7 +36,7 @@ public class Screens {
   }
 
   void results() {
-    if (!onResults) {
+    if (!onResults && !pause) {
         attacks.charAction();
         attacks.enemyAction();
         display.animate();
