@@ -124,6 +124,7 @@ public class Maps {
       if (inventory[i].getDeployed()) {
         inventory[i].setDeployed(false);
         inventory[i].setHealth(inventory[i].getMaxHP());
+        inventory[i].setFrame(1);
       }
     }
   }

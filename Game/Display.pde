@@ -78,7 +78,7 @@ public class Display {
         if (charMap[i][j] >= 0) {
           int frame = inventory[charMap[i][j]].getFrame();
           PImage op0 = loadImage(inventory[charMap[i][j]].getSprite()[frame]);
-          image(op0, SQUARE_SIZE*j - SQUARE_SIZE/3, SQUARE_SIZE*i - (SQUARE_SIZE/2), SQUARE_SIZE*11/6,SQUARE_SIZE*11/6);
+          image(op0, SQUARE_SIZE*j - SQUARE_SIZE/3, SQUARE_SIZE*i - (SQUARE_SIZE/2), SQUARE_SIZE*11/6, SQUARE_SIZE*11/6);
           healthBarsT(inventory[charMap[i][j]]);
         }
       }
@@ -91,6 +91,7 @@ public class Display {
         if (eneMap[i][j] >= 0 && enemyList.size() != 0) {
           PImage op0 = loadImage(enemyList.get(eneMap[i][j]).getSprite());
           image(op0, enemyList.get(eneMap[i][j]).getXCoord() - SQUARE_SIZE/2, enemyList.get(eneMap[i][j]).getYCoord()- SQUARE_SIZE/2, SQUARE_SIZE, SQUARE_SIZE);
+
           healthBarsE(enemyList.get(eneMap[i][j]));
         }
       }
@@ -115,7 +116,7 @@ public class Display {
           tint(150, 150, 150);
           fill(255);
           textSize(30);
-          image(op0, SQUARE_SIZE*i - 10, SQUARE_SIZE*3.5, SQUARE_SIZE, SQUARE_SIZE);
+          image(op0, SQUARE_SIZE*i, SQUARE_SIZE*(map.length), SQUARE_SIZE, SQUARE_SIZE);
           text(coolDowns[i], SQUARE_SIZE*i+(SQUARE_SIZE/2), SQUARE_SIZE*4.5);
         } else {
           image(op0, SQUARE_SIZE*i, SQUARE_SIZE*(map.length), SQUARE_SIZE, SQUARE_SIZE);
@@ -124,13 +125,15 @@ public class Display {
       }
     }
   }
-  
-    
-  void animate(){
-    for(int i = 0 ; i < inventory.length ; i++){
-      if(inventory[i].getDeployed()){
-        if(timer%4== 0){
-          inventory[i].increaseFrame();
+
+
+  void animate() {
+    if (!pause && !onResults) {
+      for (int i = 0; i < inventory.length; i++) {
+        if (inventory[i].getDeployed()) {
+          if (timer%4== 0) {
+            inventory[i].increaseFrame();
+          }
         }
       }
     }
