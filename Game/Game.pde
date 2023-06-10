@@ -65,6 +65,19 @@ void setup() {
 
   //SETUP LIVING OBJECTS
 
+<<<<<<< HEAD
+=======
+  //SET UP ENEMIES & MOVEMENT IN MAPS
+
+  sluggy = new Enemies(500, 1, 1, 0, "slug/slugA-0.png", 5, 950, 250, new int[]{2, 8}, Integer.parseInt(enemyPath.substring(0, 1)));
+
+  //SETUP ENEMYLIST
+  enemyList = new ArrayList<Enemies>();
+
+  //THIS TOO
+  enemyList.add(sluggy);
+
+>>>>>>> 9f7522ff312808905b12d834550ba65019e623c8
   //SETUP OPERATORS
   
   String[] frostl = new String[]{"frostl/frostl-0.png", "frostl/frostlI-1.png","frostl/frostlI-2.png", "frostl/frostlI-3.png", "frostl/frostlI-4.png","frostl/frostlI-5.png", "frostl/frostlI-6.png",
