@@ -104,10 +104,6 @@ public class TowerCharacters extends LivingObjects {
     }
   }
 
-  public void setFrame(int newFrame) {
-    frame = newFrame;
-  }
-
   public void increaseTicks() {
     ticks++;
   }
@@ -171,19 +167,16 @@ public class TowerCharacters extends LivingObjects {
           enemyList.get(eneMap[location[1]][location[0]]).setMS(0);
         }
       }
-
-      while ( blocked.size() != 0 && !(blocked.peek().getLocation()[1] == location[1]) && !(blocked.peek().getLocation()[0] == location[0])) {
-        blocked.remove();
-      }
     }
-
     if (this.getRange() == 1) {
       rangeOne();
     }
     if (this.getRange() == 2) {
       rangeTwo();
     }
-
+    while (!(blocked.peek().getLocation()[1] == location[1]) && !(blocked.peek().getLocation()[0] == location[0])) {
+      blocked.remove();
+    }
     return blocked.peek();
   }
 
@@ -196,9 +189,6 @@ public class TowerCharacters extends LivingObjects {
           if (enemyList.size() != 0 &&!blocked.contains(enemyList.get(eneMap[y - 1][x])) && !(blocked.size() > block)) {
             blocked.add(enemyList.get(eneMap[y - 1][x]));
           }
-          while ( blocked.size() != 0 && !(blocked.peek().getLocation()[1] == y-1) && !(blocked.peek().getLocation()[0] == x)) {
-            blocked.remove();
-          }
         }
       }
     }
@@ -207,9 +197,6 @@ public class TowerCharacters extends LivingObjects {
         if (eneMap[y][x+1] > -1) {
           if (enemyList.size() != 0 &&!blocked.contains(enemyList.get(eneMap[y][x + 1])) && !(blocked.size() > block)) {
             blocked.add(enemyList.get(eneMap[y][ x + 1]));
-          }
-          while ( blocked.size() != 0 && !(blocked.peek().getLocation()[1] == y) && !(blocked.peek().getLocation()[0] == x + 1)) {
-            blocked.remove();
           }
         }
       }
@@ -220,9 +207,6 @@ public class TowerCharacters extends LivingObjects {
           if (enemyList.size() != 0 &&!blocked.contains(enemyList.get(eneMap[y + 1][x])) && !(blocked.size() > block)) {
             blocked.add(enemyList.get(eneMap[y + 1][x]));
           }
-          while ( blocked.size() != 0 && !(blocked.peek().getLocation()[1] == y+1) && !(blocked.peek().getLocation()[0] == x)) {
-            blocked.remove();
-          }
         }
       }
     }
@@ -231,9 +215,6 @@ public class TowerCharacters extends LivingObjects {
         if (eneMap[y][x - 1] > -1) {
           if (enemyList.size() != 0 &&!blocked.contains(enemyList.get(eneMap[y][x - 1])) && !(blocked.size() > block)) {
             blocked.add(enemyList.get(eneMap[y][ x - 1]));
-          }
-          while ( blocked.size() != 0 && !(blocked.peek().getLocation()[1] == y) && !(blocked.peek().getLocation()[0] == x - 1)) {
-            blocked.remove();
           }
         }
       }

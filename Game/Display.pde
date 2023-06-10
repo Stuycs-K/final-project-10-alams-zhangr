@@ -115,7 +115,7 @@ public class Display {
           tint(150, 150, 150);
           fill(255);
           textSize(30);
-          image(op0, SQUARE_SIZE*i - 10, SQUARE_SIZE*3.5, SQUARE_SIZE, SQUARE_SIZE);
+          image(op0, SQUARE_SIZE*i, SQUARE_SIZE*(map.length), SQUARE_SIZE, SQUARE_SIZE);
           text(coolDowns[i], SQUARE_SIZE*i+(SQUARE_SIZE/2), SQUARE_SIZE*4.5);
         } else {
           image(op0, SQUARE_SIZE*i, SQUARE_SIZE*(map.length), SQUARE_SIZE, SQUARE_SIZE);
