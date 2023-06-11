@@ -7,6 +7,7 @@ public class TowerCharacters extends LivingObjects {
   private int range;
   private int[] location;
   private String[] sprite;
+  private int[] framing;
   private int frame;
   public int ticks = 0;
   private int block;
@@ -20,7 +21,7 @@ public class TowerCharacters extends LivingObjects {
   public TowerCharacters() {
   }
 
-  public TowerCharacters(int hp, int spd, int atk, int hit, String[] img, int blk, int optype, int deploymentCost) {
+  public TowerCharacters(int hp, int spd, int atk, int hit, String[] img, int[] framenums, int blk, int optype, int deploymentCost) {
     maxHealth = hp;
     health = hp;
     speed = spd;
@@ -29,6 +30,7 @@ public class TowerCharacters extends LivingObjects {
     range = hit;
     location = new int[]{0, 0};
     sprite = img;
+    framing = framenums;
     frame = 1;
     block = blk;
     blocked = new LinkedList<Enemies>();
@@ -94,11 +96,15 @@ public class TowerCharacters extends LivingObjects {
     return frame;
   }
 
-  public void increaseFrame() {
-    if (!attacking && (frame >= 6)) {
-      frame = 1;
-    } else if (attacking && (frame < 7 || frame >= 15 )) {
-      frame = 7;
+  //takes in an int[]
+  public void increaseFrame(int[] frames) {
+    if (!attacking && (frame >= frames[0])) {
+      frame = frames[0];
+    } else if (frames.length == 3 && attacking && (frame < frames[1] || frame >= frames[2] )) {
+      frame = frame[1];
+    //}
+    //else if (attacking && (frame < 7)) {
+      
     } else {
       frame++;
     }
