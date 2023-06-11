@@ -36,14 +36,15 @@ public class Interaction {
       for (int i = 0; i < inventory.length; i++) {
         TowerCharacters op = inventory[i];
         if (op.getDeployed() && !directionSelect) {
-          op.checkRange();
+          if (op.blocked.size() < op.block) {
+            op.checkRange();
+          }
           if (op.blocked.size() != 0) {
             op.setAttacking(true);
             if (op.getTicks()%(op.getSpeed()*3.3) == 0 && op.blocked.peek().getHealth() > 0) {
               op.toAttack(op.blocked.peek());
             }
-            if(op.blocked.peek().getHealth() <= 0){
-              
+            if (op.blocked.peek().getHealth() <= 0) {
               op.blocked.remove();
               enemiesleft--;
             }
@@ -91,7 +92,7 @@ public class Interaction {
             int atkingEnemy = eneMap[row][col];
             int atkingChar = charMap[row][col];
             if (inventory[atkingChar].getBlocked().size() < inventory[atkingChar].getBlock()) {
-              
+
               if (enemyList.get(atkingEnemy).getHealth() > 0 && inventory[atkingChar].getHealth() > 0) {
                 enemyList.get(atkingEnemy).toAttack(inventory[atkingChar]);
               } else if (inventory[atkingChar].getHealth() <= 0) {

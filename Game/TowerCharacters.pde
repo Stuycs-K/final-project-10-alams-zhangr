@@ -177,7 +177,7 @@ public class TowerCharacters extends LivingObjects {
       Enemies invader = enemyList.get(j);
       
         if (invader.getLocation()[1] == location[1] && invader.getLocation()[0] == location[0] ) {
-          if (!blocked.contains(invader)) {
+          if (!blocked.contains(invader) && invader.getHealth() > 0) {
             blocked.add(invader);
           
           invader.setMS(0);
