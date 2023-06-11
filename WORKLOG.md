@@ -191,3 +191,11 @@ Found Bug:
 
 - i think pause works as intended now
 - maybe life points problem fixed (needs testing)
+
+### 6/8/23
+
+- attempted to add multiple enemies
+
+### 6/9/23
+
+- still attempting to add multiple enemies, yet it broke, will work on a fix

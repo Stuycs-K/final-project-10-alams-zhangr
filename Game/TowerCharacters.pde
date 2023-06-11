@@ -7,7 +7,7 @@ public class TowerCharacters extends LivingObjects {
   private int range;
   private int[] location;
   private String[] sprite;
-  private int[] framing;
+  public int[] framing;
   private int frame;
   public int ticks = 0;
   private int block;
@@ -101,7 +101,7 @@ public class TowerCharacters extends LivingObjects {
     if (!attacking && (frame >= frames[0])) {
       frame = frames[0];
     } else if (frames.length == 3 && attacking && (frame < frames[1] || frame >= frames[2] )) {
-      frame = frame[1];
+      frame = frames[1];
     //}
     //else if (attacking && (frame < 7)) {
       

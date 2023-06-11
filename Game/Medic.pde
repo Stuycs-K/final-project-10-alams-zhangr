@@ -5,8 +5,8 @@ public class Medic extends TowerCharacters {
     super();
   }
 
-  public Medic(int hp, int spd, int atk, int hit, String[] img, int blk, int optype, int deploymentCost) {
-    super(hp, spd, atk, hit, img, blk, optype, deploymentCost);
+  public Medic(int hp, int spd, int atk, int hit, String[] img, int[]frami, int blk, int optype, int deploymentCost) {
+    super(hp, spd, atk, hit, img, frami, blk, optype, deploymentCost);
     blocked = new LinkedList<TowerCharacters>();
   }
 

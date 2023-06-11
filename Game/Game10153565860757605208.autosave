@@ -54,28 +54,23 @@ private boolean dead = false;
 
 private Enemies sluggy;
 private Enemies sluggy2;
+
 private boolean lostLP = false;
-
-Animate boop = new Animate();
-
-private boolean instantiate = true;
-
 
 PImage lvlone;
 
 void setup() {
   size(1000, 550);
   screen.menu();
-  
+
   //SETUP LIVING OBJECTS
 
 
   //SETUP OPERATORS
   
-  
-  boop.charSprites();
-
-  TowerCharacters op0 = new TowerCharacters(742, 10, 157, 1, boop.frostl, new int[]{1, 7, 15}, 2, GROUND, 9);
+  String[] frostl = new String[]{"frostl/frostl-0.png", "frostl/frostlI-1.png","frostl/frostlI-2.png", "frostl/frostlI-3.png", "frostl/frostlI-4.png","frostl/frostlI-5.png", "frostl/frostlI-6.png",
+  "frostl/frostlA-1.png", "frostl/frostlA-2.png", "frostl/frostlA-3.png", "frostl/frostlA-4.png", "frostl/frostlA-5.png", "frostl/frostlA-6.png", "frostl/frostlA-7.png", "frostl/frostlA-8.png", "frostl/frostlA-9.png"};
+  TowerCharacters op0 = new TowerCharacters(742, 10, 157, 1, frostl, 2, GROUND, 9);
   //TowerCharacters op1 = new TowerCharacters(250, 10, 180, 1, "meterorite.png", 0, AERIAL, 8);
   //TowerCharacters op2 = new Medic(500, 30, 100, 1, "purestream.png", 0, AERIAL, 10);
   //TowerCharacters op3 = new Medic(500, 30, 100, 1, "kaltsit.png", 0, AERIAL, 8);
@@ -106,13 +101,9 @@ Interaction attacks = new Interaction();
 //image(lvlone, 1000, 550 - SQUARE_SIZE);
 
 void draw() {
-  if (levelSelect > 0 && instantiate){
-    level.enemylvlOne();
-    instantiate = !instantiate;
-  }
   if (levelSelect > 0 ) {
     timer++;
-      
+
     display.gameMap(ogmap);
     //image(lvlone, 0, 0, 1000, 550 - SQUARE_SIZE);
 

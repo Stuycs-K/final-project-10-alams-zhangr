@@ -10,7 +10,7 @@ public class Maps {
     lp = 1;
     totalenemies = 1;
     enemiesleft = 1;
-    
+
     reset();
 
     map = new int[4][9];
@@ -60,8 +60,8 @@ public class Maps {
     map[2][8] = WALL;
     map[1][0] = WALL;
   }
-  
-    void lvlTwo() {
+
+  void lvlTwo() {
     //MAP1 for placement purposes
     cost = 10;
     unitLimit = 3;
@@ -118,7 +118,7 @@ public class Maps {
     map[2][8] = WALL;
     map[1][0] = WALL;
   }
-  
+
   void reset() {
     for (int i = 0; i < inventory.length; i++) {
       if (inventory[i].getDeployed()) {
@@ -127,5 +127,20 @@ public class Maps {
         inventory[i].setFrame(1);
       }
     }
+  }
+
+  void enemylvlOne() {
+    //SET UP ENEMIES & MOVEMENT IN MAPS
+
+    sluggy = new Enemies(500, 1, 1, 0, "slug/slugA-0.png", 5, 950, 250, new int[]{2, 8}, Integer.parseInt(enemyPath.substring(0, 1)), enemyPath, 0);
+    sluggy = new Enemies(500, 1, 1, 0, "slug/slugA-0.png", 5, 950, 250, new int[]{2, 8}, Integer.parseInt(enemyPath.substring(0, 1)), enemyPath, 200);
+
+    //SETUP ENEMYLIST
+    enemyList = new ArrayList<Enemies>();
+
+    //THIS TOO
+    enemyList.add(sluggy);
+    
+    enemyList.add(sluggy2);
   }
 }
