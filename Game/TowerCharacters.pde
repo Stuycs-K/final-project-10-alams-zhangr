@@ -98,7 +98,7 @@ public class TowerCharacters extends LivingObjects {
 
   //takes in an int[]
   public void increaseFrame(int[] frames) {
-    if (!attacking && (frame >= frames[0])) {
+    if (!attacking && (frame >= frames[1])) {
       frame = frames[0];
     } else if (frames.length == 3 && attacking && (frame < frames[1] || frame >= frames[2] )) {
       frame = frames[1];

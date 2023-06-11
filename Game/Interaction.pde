@@ -37,11 +37,9 @@ public class Interaction {
         if (e.get(i).enemyPath.length() > 0) {
           if (stepsPerSquare != 0) {
             if (!pause) {
-
               e.get(i).move(e.get(i).getMS());
               stepsPerSquare--;
             }
-
             e.get(i).setLocation(new int[]{e.get(i).getXCoord()/ (int)SQUARE_SIZE, e.get(i).getYCoord()/ (int)SQUARE_SIZE});
           } else {
             enemyPath = enemyPath.substring(1);
@@ -59,12 +57,10 @@ public class Interaction {
   void enemyAction() {
     if (enemyList.size() != 0) {
       if ( !dead && !pause) {
-
         attacks.enemyMove(enemyList);
       }
       if (enemyPath.length() == 0) {
         enemiesleft--;
-
         lp--;
       }
       for (int row = 0; row < eneMap.length; row++) {

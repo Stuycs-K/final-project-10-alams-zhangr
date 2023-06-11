@@ -33,7 +33,7 @@ public class Medic extends TowerCharacters {
     }
     if (this.getRange() == 2) {
       rangeOne();
-      rangeTwo();
+     
     }
 
     for (int i = 0; i < blocked.size(); i++) {

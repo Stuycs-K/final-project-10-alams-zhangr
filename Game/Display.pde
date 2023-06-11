@@ -102,6 +102,7 @@ public class Display {
     //display inventory
     for (int i = 0; i < inventory.length; i++) {
       if (!inventory[i].getDeployed()) {
+        println(inventory[i].getSprite()[0]);
         PImage op0 = loadImage(inventory[i].getSprite()[0]);
         if (cost < inventory[i].getDp() || unitLimit == 0) {
           tint(150, 150, 150);

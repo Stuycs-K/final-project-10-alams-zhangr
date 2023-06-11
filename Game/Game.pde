@@ -73,7 +73,7 @@ void setup() {
   //SETUP OPERATORS
   
   
-  boop.charSprites();
+    enemyList = new ArrayList<Enemies>();
 
   TowerCharacters op0 = new TowerCharacters(742, 10, 157, 1, boop.frostl, new int[]{1, 7, 15}, 2, GROUND, 9);
   //TowerCharacters op1 = new TowerCharacters(250, 10, 180, 1, "meterorite.png", 0, AERIAL, 8);
@@ -106,10 +106,7 @@ Interaction attacks = new Interaction();
 //image(lvlone, 1000, 550 - SQUARE_SIZE);
 
 void draw() {
-  if (levelSelect > 0 && instantiate){
-    level.enemylvlOne();
-    instantiate = !instantiate;
-  }
+
   if (levelSelect > 0 ) {
     timer++;
       
