@@ -86,23 +86,20 @@ public class Display {
   }
 
   void displayEne() {
-    for (int i = 0; i < eneMap.length; i++) {
-      for (int j = 0; j < eneMap[i].length; j++) {
-        if (eneMap[i][j] >= 0 && enemyList.size() != 0) {
-          PImage op0 = loadImage(enemyList.get(eneMap[i][j]).getSprite());
-          image(op0, enemyList.get(eneMap[i][j]).getXCoord() - SQUARE_SIZE/2, enemyList.get(eneMap[i][j]).getYCoord()- SQUARE_SIZE/2, SQUARE_SIZE, SQUARE_SIZE);
-
-          healthBarsE(enemyList.get(eneMap[i][j]));
+    for (int i = 0; i < enemyList.size(); i++) {
+         if(timer >= enemyList.get(i).timeDeploy && enemyList.get(i).getHealth() > 0){
+          PImage op0 = loadImage(enemyList.get(i).getSprite());
+          image(op0, enemyList.get(i).getXCoord() - SQUARE_SIZE/2, enemyList.get(i).getYCoord()- SQUARE_SIZE/2, SQUARE_SIZE, SQUARE_SIZE);
+          healthBarsE(enemyList.get(i));
+         }
         }
       }
-    }
-  }
+   
 
   void inventory() {
     //display inventory
     for (int i = 0; i < inventory.length; i++) {
       if (!inventory[i].getDeployed()) {
-        println(inventory[i].getSprite()[0]);
         PImage op0 = loadImage(inventory[i].getSprite()[0]);
         if (cost < inventory[i].getDp() || unitLimit == 0) {
           tint(150, 150, 150);

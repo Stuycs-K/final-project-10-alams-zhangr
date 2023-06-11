@@ -2,28 +2,51 @@ public class Interaction {
   public Interaction() {
   };
 
+  //void charAction() {
+  //  if (enemyList.size() != 0) {
+  //    for (int i = 0; i < inventory.length; i++) {
+  //      if (inventory[i].getDeployed() && !directionSelect) {
+  //        if (inventory[i].checkRange() != null) {
+  //          if (!pause) {
+  //            if (inventory[i].getTicks()%(inventory[i].getSpeed()*3.3) == 0) {
+  //              if (inventory[i].checkRange().getHealth() > 0) {
+  //                inventory[i].setAttacking(true);
+  //                inventory[i].toAttack(inventory[i].checkRange());
+  //                if (inventory[i].checkRange() != null) {
+  //                  if (inventory[i].checkRange().getHealth() <= 0) {
+  //                    inventory[i].setAttacking(false);
+  //                    int[] position = inventory[i].checkRange().getLocation();
+  //                    eneMap[position[1]][position[0]] = map[position[1]][position[0]];
+  //                    enemyList.remove(0);
+  //                    enemiesleft--;
+  //                    inventory[i].blocked.remove();
+  //                  }
+  //                }
+  //              }
+  //            }
+  //          }
+  //        }
+  //      }
+  //    }
+  //  }
+  //}
+
   void charAction() {
-    if (enemyList.size() != 0) {
+    if (!pause) {
       for (int i = 0; i < inventory.length; i++) {
-        if (inventory[i].getDeployed() && !directionSelect) {
-          if (inventory[i].checkRange() != null) {
-            if (!pause) {
-              if (inventory[i].getTicks()%(inventory[i].getSpeed()*3.3) == 0) {
-                if (inventory[i].checkRange().getHealth() > 0) {
-                  inventory[i].setAttacking(true);
-                  inventory[i].toAttack(inventory[i].checkRange());
-                  if (inventory[i].checkRange() != null) {
-                    if (inventory[i].checkRange().getHealth() <= 0) {
-                      inventory[i].setAttacking(false);
-                      int[] position = inventory[i].checkRange().getLocation();
-                      eneMap[position[1]][position[0]] = map[position[1]][position[0]];
-                      enemyList.remove(0);
-                      enemiesleft--;
-                      inventory[i].blocked.remove();
-                    }
-                  }
-                }
-              }
+        TowerCharacters op = inventory[i];
+        if (op.getDeployed() && !directionSelect) {
+          if (op.blocked.size() < op.block) {
+            op.checkRange();
+          }
+          if (op.blocked.size() != 0) {
+            op.setAttacking(true);
+            if (op.getTicks()%(op.getSpeed()*3.3) == 0 && op.blocked.peek().getHealth() > 0) {
+              op.toAttack(op.blocked.peek());
+            }
+            if (op.blocked.peek().getHealth() <= 0) {
+              op.blocked.remove();
+              enemiesleft--;
             }
           }
         }
@@ -69,7 +92,7 @@ public class Interaction {
             int atkingEnemy = eneMap[row][col];
             int atkingChar = charMap[row][col];
             if (inventory[atkingChar].getBlocked().size() < inventory[atkingChar].getBlock()) {
-              inventory[atkingChar].checkRange();
+
               if (enemyList.get(atkingEnemy).getHealth() > 0 && inventory[atkingChar].getHealth() > 0) {
                 enemyList.get(atkingEnemy).toAttack(inventory[atkingChar]);
               } else if (inventory[atkingChar].getHealth() <= 0) {

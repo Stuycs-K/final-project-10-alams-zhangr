@@ -75,7 +75,7 @@ void setup() {
   
     enemyList = new ArrayList<Enemies>();
 
-  TowerCharacters op0 = new TowerCharacters(742, 10, 157, 1, boop.frostl, new int[]{1, 7, 15}, 2, GROUND, 9);
+  TowerCharacters op0 = new TowerCharacters(742, 10, 157, 1, boop.frostl, new int[]{1, 6, 15}, 2, GROUND, 9);
   //TowerCharacters op1 = new TowerCharacters(250, 10, 180, 1, "meterorite.png", 0, AERIAL, 8);
   //TowerCharacters op2 = new Medic(500, 30, 100, 1, "purestream.png", 0, AERIAL, 10);
   //TowerCharacters op3 = new Medic(500, 30, 100, 1, "kaltsit.png", 0, AERIAL, 8);
