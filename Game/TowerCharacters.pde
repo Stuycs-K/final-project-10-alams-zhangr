@@ -102,9 +102,8 @@ public class TowerCharacters extends LivingObjects {
       frame = frames[0];
     } else if (frames.length == 3 && attacking && (frame < frames[1] || frame >= frames[2] )) {
       frame = frames[1];
-    //}
-    //else if (attacking && (frame < 7)) {
-      
+      //}
+      //else if (attacking && (frame < 7)) {
     } else {
       frame++;
     }
@@ -168,105 +167,24 @@ public class TowerCharacters extends LivingObjects {
     other.setHealth(other.getHealth() - this.getAttack());
   }
 
-  public LivingObjects checkRange() { //returns first value of blocked
-    if (eneMap[location[1]][location[0]] > -1) {
-      if (enemyList.size() != 0 && !blocked.contains(enemyList.get(eneMap[location[1]][location[0]])) && !(blocked.size() > block)) {
-        blocked.add(enemyList.get(eneMap[location[1]][location[0]]));
-      } else if (blocked.contains(enemyList.get(eneMap[location[1]][location[0]]))) {
-        if (deployed && !directionSelect && enemyList.get(eneMap[location[1]][location[0]]).getMS() != 0) {
-          enemyList.get(eneMap[location[1]][location[0]]).setMS(0);
-        }
-      }
-
-      while ( blocked.size() != 0 && !(blocked.peek().getLocation()[1] == location[1]) && !(blocked.peek().getLocation()[0] == location[0])) {
-        blocked.remove();
-        if (blocked.size() == 0) {
-          attacking = false;
-        }
-      }
-    }
-
-    if (this.getRange() == 1) {
-      rangeOne();
-    }
-    if (this.getRange() == 2) {
-      rangeTwo();
-    }
-
-    return blocked.peek();
-  }
-
-  void rangeOne() {
-    int x = this.getLocation()[0];
-    int y = this.getLocation()[1];
-    if (this.getDirection() == T) {
-      if (y - 1 > 0) {
-        if (eneMap[y - 1][x] > -1) {
-          if (enemyList.size() != 0 &&!blocked.contains(enemyList.get(eneMap[y - 1][x])) && !(blocked.size() > block)) {
-            blocked.add(enemyList.get(eneMap[y - 1][x]));
-          }
-          while ( blocked.size() != 0 && !(blocked.peek().getLocation()[1] == y-1) && !(blocked.peek().getLocation()[0] == x)) {
-            blocked.remove();
-            if (blocked.size() == 0) {
-              attacking = false;
-            }
-          }
+  public void checkRange() {
+    //for(int i = 0 ; i < blocked.size() ; i++){
+    //  if(blocked.peek().getHealth() <=0){
+    //    blocked.remove();
+    //  }
+    //}
+    for (int j = 0; j < enemyList.size(); j++) {
+      Enemies invader = enemyList.get(j);
+      
+        if (invader.getLocation()[1] == location[1] && invader.getLocation()[0] == location[0] ) {
+          if (!blocked.contains(invader)) {
+            blocked.add(invader);
+          
+          invader.setMS(0);
+        } else if (range == 1) {
+        } else if (range == 2) {
         }
       }
     }
-    if (this.getDirection() == R) {
-      if (x + 1 < eneMap[0].length) {
-        if (eneMap[y][x+1] > -1) {
-          if (enemyList.size() != 0 &&!blocked.contains(enemyList.get(eneMap[y][x + 1])) && !(blocked.size() > block)) {
-            blocked.add(enemyList.get(eneMap[y][ x + 1]));
-          }
-          while ( blocked.size() != 0 && !(blocked.peek().getLocation()[1] == y) && !(blocked.peek().getLocation()[0] == x + 1)) {
-            blocked.remove();
-            if (blocked.size() == 0) {
-              attacking = false;
-            }
-          }
-        }
-      }
-    }
-    if (this.getDirection() == D) {
-      if (y + 1 < eneMap.length) {
-        if (eneMap[y +1][x] > -1) {
-          if (enemyList.size() != 0 &&!blocked.contains(enemyList.get(eneMap[y + 1][x])) && !(blocked.size() > block)) {
-            blocked.add(enemyList.get(eneMap[y + 1][x]));
-          }
-          while ( blocked.size() != 0 && !(blocked.peek().getLocation()[1] == y+1) && !(blocked.peek().getLocation()[0] == x)) {
-            blocked.remove();
-            if (blocked.size() == 0) {
-              attacking = false;
-            }
-          }
-        }
-      }
-    }
-    if (this.getDirection() == L) {
-      if (x - 1 > 0) {
-        if (eneMap[y][x - 1] > -1) {
-          if (enemyList.size() != 0 &&!blocked.contains(enemyList.get(eneMap[y][x - 1])) && !(blocked.size() > block)) {
-            blocked.add(enemyList.get(eneMap[y][ x - 1]));
-          }
-          while ( blocked.size() != 0 && !(blocked.peek().getLocation()[1] == y) && !(blocked.peek().getLocation()[0] == x - 1)) {
-            blocked.remove();
-            if (blocked.size() == 0) {
-              attacking = false;
-            }
-          }
-        }
-      }
-    }
-  }
-
-  void rangeTwo() {
-  }
-
-  void rangeSix() {
-    int[][]six = new int[2][6];
-    int x = this.getLocation()[0];
-    int y = this.getLocation()[1];
   }
 }

@@ -13,7 +13,7 @@ public class Enemies extends LivingObjects {
   private float sqSize;
   private int ms;
   private String enemyPath;
-  private int timeDeploy;
+  public int timeDeploy;
   
   public Enemies() { //default
   }
