@@ -33,7 +33,6 @@ public class Interaction {
 
   void enemyMove(ArrayList<Enemies> e) {
     for (int i = 0; i < e.size(); i++) {
-      System.out.println(e.get(i).getMS() + "s");
       if (e.get(i).getMS() != 0) {
         if (e.get(i).enemyPath.length() > 0) {
           if (stepsPerSquare != 0) {
