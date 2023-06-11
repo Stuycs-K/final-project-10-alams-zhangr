@@ -12,11 +12,13 @@ public class Enemies extends LivingObjects {
   private int ticks;
   private float sqSize;
   private int ms;
+  private String enemyPath;
+  private int timeDeploy;
   
   public Enemies() { //default
   }
 
-  public Enemies(int hp, int spd, int atk, int hit, String img, int moveSpeed, int x, int y, int[] spawn, int DIRECTION) {
+  public Enemies(int hp, int spd, int atk, int hit, String img, int moveSpeed, int x, int y, int[] spawn, int DIRECTION, String EP, int TD) {
     maxHealth = hp;
     health = hp;
     speed = spd;
@@ -30,6 +32,8 @@ public class Enemies extends LivingObjects {
     yCoord = y;
     location = spawn;
     direction = DIRECTION;
+    enemyPath = EP;
+    timeDeploy = TD;
   }
 
   ////////////////////////////////////////////
@@ -108,6 +112,10 @@ public class Enemies extends LivingObjects {
 
   public void setYCoord(int newY) {
     yCoord = newY;
+  }
+  
+  public String getEnemyPath(){
+    return enemyPath;
   }
 
 
