@@ -65,9 +65,9 @@ public class Interaction {
             }
             e.get(i).setLocation(new int[]{e.get(i).getXCoord()/ (int)SQUARE_SIZE, e.get(i).getYCoord()/ (int)SQUARE_SIZE});
           } else {
-            enemyPath = enemyPath.substring(1);
-            if (enemyPath.length() > 0) {
-              e.get(i).setDirection(Integer.parseInt(enemyPath.substring(0, 1)));
+            e.get(i).setEnemyPath(e.get(i).getEnemyPath().substring(1));
+            if (e.get(i).getEnemyPath().length() > 0) {
+              e.get(i).setDirection(Integer.parseInt(e.get(i).getEnemyPath().substring(0, 1)));
             }
             stepsPerSquare = (int)SQUARE_SIZE / e.get(i).getMS();
           }
