@@ -17,11 +17,11 @@ public class Enemies extends LivingObjects {
   private int ms;
   private String enemyPath;
   public int timeDeploy;
-
+  private int stepsPerSQ;
   public Enemies() { //default
   }
 
-  public Enemies(int hp, int spd, int atk, int hit, String[] img, int[] framenums, int moveSpeed, int x, int y, int[] spawn, int DIRECTION, String EP, int TD) {
+  public Enemies(int hp, int spd, int atk, int hit, String[] img, int[] framenums, int moveSpeed, int x, int y, int[] spawn, int DIRECTION, String EP, int TD, int SPSQ) {
     maxHealth = hp;
     health = hp;
     speed = spd;
@@ -40,6 +40,7 @@ public class Enemies extends LivingObjects {
     direction = DIRECTION;
     enemyPath = EP;
     timeDeploy = TD;
+    stepsPerSQ = SPSQ;
   }
 
   ////////////////////////////////////////////
@@ -162,7 +163,18 @@ public class Enemies extends LivingObjects {
   public void setEnemyPath(String newEP){
     enemyPath = newEP;
   }
+  
+  public int getTimeDeploy(){
+    return timeDeploy;
+  }
 
+  public int getStepsPerSQ(){
+    return stepsPerSQ;
+  }
+  
+  public void setStepsPerSQ(int newSPSQ){
+    stepsPerSQ = newSPSQ;
+  }
 
 
   //METHODS

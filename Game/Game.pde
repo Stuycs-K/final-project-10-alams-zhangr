@@ -52,8 +52,8 @@ private PImage slug;
 private boolean pause = false;
 private boolean dead = false;
 
-private Enemies sluggy;
-private Enemies sluggy2;
+//private Enemies sluggy;
+//private Enemies sluggy2;
 private boolean lostLP = false;
 
 Animate boop = new Animate();
@@ -71,7 +71,7 @@ void setup() {
 
 
   //SETUP OPERATORS
-//  public TowerCharacters(int hp, int spd, int atk, int hit, String[] img, int[] framenums, int blk, int optype, int deploymentCost) {
+  //public TowerCharacters(int hp, int spd, int atk, int hit, String[] img, int[] framenums, int blk, int optype, int deploymentCost) {
   TowerCharacters op0 = new TowerCharacters(100, 10, 100, 1, boop.frostl, new int[]{1, 6, 15}, 2, GROUND, 9);
   //TowerCharacters op0 = new TowerCharacters(740, 10, 2, 1, boop.frostl, new int[]{1, 6, 15}, 2, GROUND, 9);
 

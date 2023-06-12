@@ -22,13 +22,11 @@ public class Interaction {
                 enemiesleft--;
               }
             }
-          }
-<<<<<<< HEAD
-          else {
+          } else {
             println(op.getLocation()[0] + " " + op.getLocation()[1]);
             op.setDeployed(false);
             op.setAttacking(false);
-            op.setLocation(null);
+            //op.setLocation(null);
           }
         }
       }
@@ -37,29 +35,36 @@ public class Interaction {
 
   void enemyMove(ArrayList<Enemies> e) {
     for (int i = 0; i < e.size(); i++) {
-      if (e.get(i).getMS() != 0) {
-        if (e.get(i).enemyPath.length() > 0) {
-          if (stepsPerSquare != 0) {
-            if (!pause) {
-              e.get(i).move(e.get(i).getMS());
-              stepsPerSquare--;
+      //println(e.get(i).getStepsPerSQ() + " " + i);
+      println(e.get(i).getDirection() + " " + i);
+      println(e.get(i).getEnemyPath() + " " + i);
+      if (timer >= e.get(i).getTimeDeploy()) {
+        if (e.get(i).getMS() != 0) {
+          if (e.get(i).getEnemyPath().length() > 0) {
+            if (e.get(i).getStepsPerSQ() > 0) {
+              if (!pause) {
+                e.get(i).move(e.get(i).getMS());
+                //println(e.get(i).getXCoord() + " " + e.get(i).getYCoord() + " " + i);
+                e.get(i).setStepsPerSQ(e.get(i).getStepsPerSQ() - e.get(i).getMS());
+              }
+              e.get(i).setLocation(new int[]{e.get(i).getXCoord()/ (int)SQUARE_SIZE, e.get(i).getYCoord()/ (int)SQUARE_SIZE});
+            } else {
+              println("yes");
+              e.get(i).setEnemyPath(e.get(i).getEnemyPath().substring(1));
+              if (e.get(i).getEnemyPath().length() > 0) {
+                e.get(i).setDirection(Integer.parseInt(e.get(i).getEnemyPath().substring(0, 1)));
+              }
+              e.get(i).setStepsPerSQ((int)SQUARE_SIZE / e.get(i).getMS());
             }
-            e.get(i).setLocation(new int[]{e.get(i).getXCoord()/ (int)SQUARE_SIZE, e.get(i).getYCoord()/ (int)SQUARE_SIZE});
-          } else {
-            e.get(i).setEnemyPath(e.get(i).getEnemyPath().substring(1));
-            if (e.get(i).getEnemyPath().length() > 0) {
-              e.get(i).setDirection(Integer.parseInt(e.get(i).getEnemyPath().substring(0, 1)));
-            }
-            stepsPerSquare = (int)SQUARE_SIZE / e.get(i).getMS();
+            eneMap[e.get(i).getYCoord() / (int)SQUARE_SIZE][e.get(i).getXCoord()/ (int)SQUARE_SIZE] = e.indexOf(e.get(i));
+          } else if (e.get(i).enemyPath.length() == 0) {
+            enemiesleft--;
+            lp--;
           }
-          eneMap[e.get(i).getYCoord() / (int)SQUARE_SIZE][e.get(i).getXCoord()/ (int)SQUARE_SIZE] = enemyList.indexOf(sluggy);
-        } else if (e.get(i).enemyPath.length() == 0) {
-          enemiesleft--;
-          lp--;
         }
       }
     }
-    println(e.get(0).getEnemyPath());
+    //println(e.get(0).getEnemyPath());
   }
 
   void enemyAction() {
@@ -67,20 +72,12 @@ public class Interaction {
       if ( !dead && !pause) {
         attacks.enemyMove(enemyList);
       }
-<<<<<<< HEAD
       //if (enemyPath.length() == 0) {
-      //  println("length 0");
       //  enemiesleft--;
       //  lp--;
       //}
 
-=======
-      if (enemyPath.length() == 0) {
-        enemiesleft--;
-        lp--;
-      }
-      
->>>>>>> newBlock
+
       for (int row = 0; row < eneMap.length; row++) {
         for (int col = 0; col < eneMap[0].length; col++) {
           if (eneMap[row][col] >= 0 && charMap[row][col] >= 0 && !directionSelect) {

@@ -18,7 +18,7 @@ public class Controls {
     }
     if (mouseX >= 325 && mouseX <= 675 && mouseY >=325 && mouseY <= 375) {
       levelSelect = 3;
-      level.lvlTwo();
+      level.lvlThree();
       onMenu = false;
       onMap = true;
     }
