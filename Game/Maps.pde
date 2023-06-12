@@ -71,9 +71,9 @@ public class Maps {
     enemiesleft = 1;
     reset();
 
-    map = new int[4][9];
-    for (int i = 0; i < 4; i++) {
-      for (int j = 0; j < 9; j++) {
+    map = new int[5][8];
+    for (int i = 0; i < 5; i++) {
+      for (int j = 0; j < 8; j++) {
         map[i][j] = GROUND;
       }
     }
@@ -130,14 +130,14 @@ public class Maps {
   }
 
   void enemylvlOne() {
-      
+   enemyPath = "444144434414";
    enemyList = new ArrayList<Enemies>();
         totalenemies = 2;
     enemiesleft = 2;
     //SET UP ENEMIES & MOVEMENT IN MAPS
   //public Enemies(int hp, int spd, int atk, int hit, String[] img, int[] framenums, int moveSpeed, int x, int y, int[] spawn, int DIRECTION, String EP, int TD) {
     sluggy = new Enemies(500, 1, 1, 0, boop.slug, new int[]{0, 5, 9}, 1, 950, 250, new int[]{2, 8}, Integer.parseInt(enemyPath.substring(0, 1)), enemyPath, 0);
-    //sluggy2 = new Enemies(500, 1, 0, 0, boop.slug, 1, 950, 250, new int[]{2, 8}, Integer.parseInt(enemyPath.substring(0, 1)), enemyPath, 200);
+    //sluggy2 = new Enemies(500, 1, 1, 0, boop.slug, new int[]{0, 5, 9}, 1, 950, 250, new int[]{2, 8}, Integer.parseInt(enemyPath.substring(0, 1)), enemyPath, 200);
 
     //SETUP ENEMYLIST
 
