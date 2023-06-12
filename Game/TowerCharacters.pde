@@ -108,12 +108,31 @@ public class TowerCharacters extends LivingObjects {
       }
     }
    
-   //if(frames.length == 4){
-   //  if(!attacking && (frame >= frames[2])){
-       
-   //  }
-   //}
-}
+   if(frames.length == 4){ //new int[]{5, 11, 18,25}
+   
+   //1-5 = is
+   //6-11 = i
+   //12-18 = ie
+   //19-25 = a 
+     
+     if(attacking && frame > frames[3] || (frame < 18) || frame == frames[3]){
+       frame = 18;
+     }
+     else if(attacking && frame <= 11 ){
+       frame = 11;
+     }
+     else if(!attacking && frame > 11 || frame >frames[3]){
+       frame = 1;
+     }
+     else if(!attacking && frame == frames[1]){
+       frame = 6;
+     }
+     else{
+       frame++;
+     }
+   }
+  }
+
 
 public void setFrame(int newFrame) {
   frame = newFrame;

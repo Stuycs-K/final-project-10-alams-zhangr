@@ -64,6 +64,12 @@ public class Animate {
     "pures/puresA-1.png", "pures/puresA-2.png", "pures/puresA-3.png", "pures/puresA-4.png", "pures/puresA-5.png",
     "pures/puresA-6.png", "pures/puresA-7.png", "pures/puresA-8.png", "pures/puresA-9.png",
   };
+  
+  public String[] skadi = new String[] //new int{}
+  {
+    //inventory
+    
+  };
 
 
 

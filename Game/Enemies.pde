@@ -158,6 +158,10 @@ public class Enemies extends LivingObjects {
   public String getEnemyPath() {
     return enemyPath;
   }
+  
+  public void setEnemyPath(String newEP){
+    enemyPath = newEP;
+  }
 
 
 

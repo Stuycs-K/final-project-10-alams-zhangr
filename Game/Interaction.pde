@@ -7,18 +7,24 @@ public class Interaction {
       for (int i = 0; i < inventory.length; i++) {
         TowerCharacters op = inventory[i];
         if (op.getDeployed() && !directionSelect) {
+
           if (op.blocked.size() < op.block) {
             op.checkRange();
           }
-          if (op.blocked.size() != 0) {
-            op.setAttacking(true);
-            if (op.getTicks()%(op.getSpeed()*3.3) == 0 && op.blocked.peek().getHealth() > 0) {
-              op.toAttack(op.blocked.peek());
-            }
-            if (op.blocked.peek().getHealth() <= 0) {
-              op.blocked.remove();
-              
-              enemiesleft--;
+
+          if (i != 3) {
+            
+
+            if (op.blocked.size() != 0) {
+              op.setAttacking(true);
+              if (op.getTicks()%(1) == 0 && op.blocked.peek().getHealth() > 0) {
+                op.toAttack(op.blocked.peek());
+              }
+              if (op.blocked.peek().getHealth() <= 0) {
+                op.blocked.remove();
+
+                enemiesleft--;
+              }
             }
           }
         }
@@ -58,7 +64,7 @@ public class Interaction {
         enemiesleft--;
         lp--;
       }
-      
+
       for (int row = 0; row < eneMap.length; row++) {
         for (int col = 0; col < eneMap[0].length; col++) {
           if (eneMap[row][col] >= 0 && charMap[row][col] >= 0 && !directionSelect) {
@@ -71,7 +77,7 @@ public class Interaction {
                 enemyList.get(atkingEnemy).toAttack(inventory[atkingChar]);
               } else if (inventory[atkingChar].getHealth() <= 0) {
                 enemyList.get(atkingEnemy).setAttacking(false);
-                //enemyList.get(atkingEnemy).setMS(enemyList.get(atkingEnemy).speed);
+                enemyList.get(atkingEnemy).setMS(enemyList.get(atkingEnemy).speed);
 
                 charMap[row][col] = map[row][col];
                 inventory[atkingChar].setDeployed(false);
