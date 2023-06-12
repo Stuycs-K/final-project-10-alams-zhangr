@@ -40,20 +40,17 @@ public class Interaction {
   void enemyMove(ArrayList<Enemies> e) {
     for (int i = 0; i < e.size(); i++) {
       //println(e.get(i).getStepsPerSQ() + " " + i);
-      println(e.get(i).getDirection() + " " + i);
-      println(e.get(i).getEnemyPath() + " " + i);
+
       if (timer >= e.get(i).getTimeDeploy()) {
         if (e.get(i).getMS() != 0) {
           if (e.get(i).getEnemyPath().length() > 0) {
             if (e.get(i).getStepsPerSQ() > 0) {
               if (!pause) {
                 e.get(i).move(e.get(i).getMS());
-                //println(e.get(i).getXCoord() + " " + e.get(i).getYCoord() + " " + i);
                 e.get(i).setStepsPerSQ(e.get(i).getStepsPerSQ() - e.get(i).getMS());
               }
               e.get(i).setLocation(new int[]{e.get(i).getXCoord()/ (int)SQUARE_SIZE, e.get(i).getYCoord()/ (int)SQUARE_SIZE});
             } else {
-              println("yes");
               e.get(i).setEnemyPath(e.get(i).getEnemyPath().substring(1));
               if (e.get(i).getEnemyPath().length() > 0) {
                 e.get(i).setDirection(Integer.parseInt(e.get(i).getEnemyPath().substring(0, 1)));
