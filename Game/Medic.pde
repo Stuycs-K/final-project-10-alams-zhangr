@@ -11,7 +11,7 @@ public class Medic extends TowerCharacters {
   }
 
   public void toAttack(LivingObjects other) {
-
+   if(other != null){
     if (other.getMaxHP() > other.getHealth()) {
       if (other.getHealth() + this.getAttack() > other.getMaxHP()) {
         other.setHealth(other.getMaxHP());
@@ -21,7 +21,7 @@ public class Medic extends TowerCharacters {
         other.setHealth(other.getHealth() + this.getAttack());
       }
     }
-    
+   }
   }
 
   public void checkRange() {
