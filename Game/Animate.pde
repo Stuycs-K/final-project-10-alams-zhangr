@@ -30,15 +30,41 @@ public class Animate {
     //inventory
     "rosmon/rosmon-0.png",
       //idle 13 frames
-      "rosmon/rosmonI-1.png","rosmon/rosmonI-2.png","rosmon/rosmonI-3.png","rosmon/rosmonI-4.png","rosmon/rosmonI-5.png","rosmon/rosmonI-6.png","rosmon/rosmonI-7.png",
-      "rosmon/rosmonI-8.png","rosmon/rosmonI-9.png","rosmon/rosmonI-10.png","rosmon/rosmonI-11.png","rosmon/rosmonI-12.png","rosmon/rosmonI-13.png",
+      "rosmon/rosmonI-1.png", "rosmon/rosmonI-2.png", "rosmon/rosmonI-3.png", "rosmon/rosmonI-4.png", "rosmon/rosmonI-5.png", "rosmon/rosmonI-6.png", "rosmon/rosmonI-7.png",
+      "rosmon/rosmonI-8.png", "rosmon/rosmonI-9.png", "rosmon/rosmonI-10.png", "rosmon/rosmonI-11.png", "rosmon/rosmonI-12.png", "rosmon/rosmonI-13.png",
       //attack 14 frames
-      "rosmon/rosmonA-1.png","rosmon/rosmonA-2.png","rosmon/rosmonA-3.png","rosmon/rosmonA-4.png","rosmon/rosmonA-5.png","rosmon/rosmonA-6.png","rosmon/rosmonA-7.png",
-      "rosmon/rosmonA-8.png","rosmon/rosmonA-9.png","rosmon/rosmonA-10.png","rosmon/rosmonA-11.png","rosmon/rosmonA-12.png","rosmon/rosmonA-13.png","rosmon/rosmonA-14.png"
+      "rosmon/rosmonA-1.png", "rosmon/rosmonA-2.png", "rosmon/rosmonA-3.png", "rosmon/rosmonA-4.png", "rosmon/rosmonA-5.png", "rosmon/rosmonA-6.png", "rosmon/rosmonA-7.png",
+      "rosmon/rosmonA-8.png", "rosmon/rosmonA-9.png", "rosmon/rosmonA-10.png", "rosmon/rosmonA-11.png", "rosmon/rosmonA-12.png", "rosmon/rosmonA-13.png", "rosmon/rosmonA-14.png"
   };
 
 
-  //public String[] meteorite = new String[]{
+
+  public String[] meteorite = new String[] //new int[]{1, 8, 16 }
+  {
+    //inventory
+    "meteo/meteo-0.png",
+      //idle 8 frames
+      "meteo/meteoI-1.png", "meteo/meteoI-2.png", "meteo/meteoI-3.png", "meteo/meteoI-4.png",
+      "meteo/meteoI-5.png", "meteo/meteoI-6.png", "meteo/meteoI-7.png", "meteo/meteoI-8.png",
+      //attack 8 frames
+      "meteo/meteoA-1.png", "meteo/meteoA-2.png", "meteo/meteoA-3.png", "meteo/meteoA-4.png",
+      "meteo/meteoA-5.png", "meteo/meteoA-6.png", "meteo/meteoA-7.png", "meteo/meteoA-8.png",
+  };
+
+
+
+  public String[] purestream = new String[] //new int[]{1, 9, 18}
+    {
+    //inventory
+    "pures/pures-0.png",
+    //idle 9 frames
+    "pures/puresI-1.png", "pures/puresI-2.png", "pures/puresI-3.png", "pures/puresI-4.png", "pures/puresI-5.png",
+    "pures/puresI-6.png", "pures/puresI-7.png", "pures/puresI-8.png", "pures/puresI-9.png",
+    //attack 9 frames
+    "pures/puresA-1.png", "pures/puresA-2.png", "pures/puresA-3.png", "pures/puresA-4.png", "pures/puresA-5.png",
+    "pures/puresA-6.png", "pures/puresA-7.png", "pures/puresA-8.png", "pures/puresA-9.png",
+  };
+
 
 
 

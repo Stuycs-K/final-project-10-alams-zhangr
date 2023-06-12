@@ -3,9 +3,9 @@ public class TowerCharacters extends LivingObjects {
   private int health;
   private int speed;
   private int attack;
-  private int direction;
-  private int range;
-  private int[] location;
+  int direction;
+  public int range;
+  public int[] location;
   private String[] sprite;
   public int[] framing;
   private int frame;
@@ -97,141 +97,144 @@ public class TowerCharacters extends LivingObjects {
   }
 
   //takes in an int[]
-  public void increaseFrame(int[] frames) {
-    if (!attacking && (frame >= frames[1])) {
-      frame = frames[0];
-    } else if (frames.length == 3 && attacking && (frame < frames[1] || frame >= frames[2] )) {
-      frame = frames[1];
-      //}
-      //else if (attacking && (frame < 7)) {
-    } else {
-      frame++;
-    }
-  }
-
-  public void setFrame(int newFrame) {
-    frame = newFrame;
-  }
-
-  public void increaseTicks() {
-    ticks++;
-  }
-
-  public void restartTicks() {
-    ticks = 0;
-  }
-
-  public int getTicks() {
-    return ticks;
-  }
-
-  public int getBlock() {
-    return block;
-  }
-
-  public Queue<Enemies> getBlocked() {
-    return blocked;
-  }
-
-  public boolean getDeployed() {
-    return deployed;
-  }
-
-  public void setDeployed(boolean deploy) {
-    deployed = deploy;
-    if (deploy) {
-      health = maxHealth;
-    }
-  }
-
-  public boolean getAttacking() {
-    return attacking;
-  }
-
-  public void setAttacking(boolean attacks) {
-    attacking = attacks;
-    if (attacks) increaseTicks();
-    else restartTicks();
-  }
-
-  public int getType() {
-    return type;
-  }
-
-  public int getDp() {
-    return dp;
-  }
-
-  //METHODS
-  public void toAttack(LivingObjects other) {
-    other.setHealth(other.getHealth() - this.getAttack());
-  }
-  
-  public void charAttack(){
-  }
-
-  public void checkRange() {
-    for (int j = 0; j < enemiesleft; j++) {
-      Enemies invader = enemyList.get(j);
-      if (invader.getLocation()[1] == location[1] && invader.getLocation()[0] == location[0] ) {
-        if (!blocked.contains(invader) && invader.getHealth() > 0) {
-          blocked.add(invader);
-        }
-        invader.setMS(0);
+  public void increaseFrame(int[] frames) { 
+    if (frames.length == 3) {
+      if (!attacking && (frame >= frames[1])) {
+        frame = frames[0];
+      } else if (frames.length == 3 && attacking && (frame < frames[1] || frame >= frames[2] )) {
+        frame = frames[1];
+      } else {
+        frame++;
       }
     }
-    if (range >=1 && range < 5) {
-      rangeStraight(1);
-    }
+   
+   //if(frames.length == 4){
+   //  if(!attacking && (frame >= frames[2])){
+       
+   //  }
+   //}
+}
 
-    if (range >=2 && range < 5) {
-      rangeStraight(2);
+public void setFrame(int newFrame) {
+  frame = newFrame;
+}
+
+public void increaseTicks() {
+  ticks++;
+}
+
+public void restartTicks() {
+  ticks = 0;
+}
+
+public int getTicks() {
+  return ticks;
+}
+
+public int getBlock() {
+  return block;
+}
+
+public Queue<Enemies> getBlocked() {
+  return blocked;
+}
+
+public boolean getDeployed() {
+  return deployed;
+}
+
+public void setDeployed(boolean deploy) {
+  deployed = deploy;
+  if (deploy) {
+    health = maxHealth;
+  }
+}
+
+public boolean getAttacking() {
+  return attacking;
+}
+
+public void setAttacking(boolean attacks) {
+  attacking = attacks;
+  if (attacks) increaseTicks();
+  else restartTicks();
+}
+
+public int getType() {
+  return type;
+}
+
+public int getDp() {
+  return dp;
+}
+
+//METHODS
+public void toAttack(LivingObjects other) {
+  other.setHealth(other.getHealth() - this.getAttack());
+}
+
+public void checkRange() {
+  for (int j = 0; j < enemiesleft; j++) {
+    Enemies invader = enemyList.get(j);
+    if (invader.getLocation()[1] == location[1] && invader.getLocation()[0] == location[0] ) {
+      if (!blocked.contains(invader) && invader.getHealth() > 0) {
+        blocked.add(invader);
+      }
+      invader.setMS(0);
     }
   }
+  if (range >=1 && range < 5) {
+    rangeStraight(1);
+  }
 
-  public void rangeStraight(int num) {
-    int x = this.getLocation()[0];
-    int y = this.getLocation()[1];
+  if (range >=2 && range < 5) {
+    rangeStraight(2);
+  }
+}
 
-    for (int i = 0; i < enemiesleft; i++) {
-      Enemies invader = enemyList.get(i);
-      int enex = invader.getLocation()[0];
-      int eney = invader.getLocation()[1];
+public void rangeStraight(int num) {
+  int x = this.getLocation()[0];
+  int y = this.getLocation()[1];
+
+  for (int i = 0; i < enemiesleft; i++) {
+    Enemies invader = enemyList.get(i);
+    int enex = invader.getLocation()[0];
+    int eney = invader.getLocation()[1];
 
 
-      if (direction == T) {
-        if (y - num > 0) {
-          if (eney == y - num && enex == x) {
-            if (!blocked.contains(invader) && invader.getHealth() > 0) {
-              blocked.add(invader);
-            }
-          }
-        }
-      } else if (direction == R) {
-        if (x + num < map[0].length) {
-          if (eney == y && enex == x + num) {
-            if (!blocked.contains(invader) && invader.getHealth() > 0) {
-              blocked.add(invader);
-            }
-          }
-        }
-      } else if (direction == D) {
-        if (y + num < map.length) {
-          if (eney == y + num && enex == x) {
-            if (!blocked.contains(invader) && invader.getHealth() > 0) {
-              blocked.add(invader);
-            }
-          }
-        }
-      } else if (direction == L) {
-        if (x - num > 0) {
-          if (eney == y && enex == x - num) {
-            if (!blocked.contains(invader) && invader.getHealth() > 0) {
-              blocked.add(invader);
-            }
+    if (direction == T) {
+      if (y - num > 0) {
+        if (eney == y - num && enex == x) {
+          if (!blocked.contains(invader) && invader.getHealth() > 0) {
+            blocked.add(invader);
           }
         }
       }
+    } else if (direction == R) {
+      if (x + num < map[0].length) {
+        if (eney == y && enex == x + num) {
+          if (!blocked.contains(invader) && invader.getHealth() > 0) {
+            blocked.add(invader);
+          }
+        }
+      }
+    } else if (direction == D) {
+      if (y + num < map.length) {
+        if (eney == y + num && enex == x) {
+          if (!blocked.contains(invader) && invader.getHealth() > 0) {
+            blocked.add(invader);
+          }
+        }
+      }
+    } else if (direction == L) {
+      if (x - num > 0) {
+        if (eney == y && enex == x - num) {
+          if (!blocked.contains(invader) && invader.getHealth() > 0) {
+            blocked.add(invader);
+          }
+        }
+      }
     }
   }
+}
 }
