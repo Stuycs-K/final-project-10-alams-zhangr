@@ -6,7 +6,10 @@ public class Enemies extends LivingObjects {
   private int direction;
   private int range;
   private int[] location;
-  private String sprite;
+  private String[] sprite;
+  private int[] framing;
+    private int frame;
+  private boolean attacking;
   private int xCoord;
   private int yCoord;
   private int ticks;
@@ -14,11 +17,11 @@ public class Enemies extends LivingObjects {
   private int ms;
   private String enemyPath;
   public int timeDeploy;
-  
+
   public Enemies() { //default
   }
 
-  public Enemies(int hp, int spd, int atk, int hit, String img, int moveSpeed, int x, int y, int[] spawn, int DIRECTION, String EP, int TD) {
+  public Enemies(int hp, int spd, int atk, int hit, String[] img, int[] framenums, int moveSpeed, int x, int y, int[] spawn, int DIRECTION, String EP, int TD) {
     maxHealth = hp;
     health = hp;
     speed = spd;
@@ -26,6 +29,9 @@ public class Enemies extends LivingObjects {
     direction = 1;
     range = hit;
     sprite = img;
+    frame = 0;
+    framing = framenums;
+    attacking = false;
     ticks = 0;
     ms = moveSpeed;
     xCoord = x;
@@ -86,14 +92,38 @@ public class Enemies extends LivingObjects {
     location = newLocation;
   }
 
-  public String getSprite() {
+  public String[] getSprite() {
     return sprite;
+  }
+
+  public void increaseFrame(int[] frames) {
+    if (!attacking && (frame >= frames[1])) {
+      frame = frames[0];
+    } else if (frames.length == 3 && attacking && (frame < frames[1] || frame >= frames[2] )) {
+      frame = frames[1];
+      //}
+      //else if (attacking && (frame < 7)) {
+    } else {
+      frame++;
+    }
+  }
+
+  public void setFrame(int newFrame) {
+    frame = newFrame;
+  }
+  
+  public boolean getAttacking() {
+    return attacking;
+  }
+
+  public void setAttacking(boolean attacks) {
+    attacking = attacks;
   }
   
   public void setMS(int move) {
     ms = move;
   }
-  
+
   public int getMS() {
     return ms;
   }
@@ -113,8 +143,8 @@ public class Enemies extends LivingObjects {
   public void setYCoord(int newY) {
     yCoord = newY;
   }
-  
-  public String getEnemyPath(){
+
+  public String getEnemyPath() {
     return enemyPath;
   }
   

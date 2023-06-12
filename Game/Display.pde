@@ -88,8 +88,8 @@ public class Display {
   void displayEne() {
     for (int i = 0; i < enemyList.size(); i++) {
          if(timer >= enemyList.get(i).timeDeploy && enemyList.get(i).getHealth() > 0){
-          PImage op0 = loadImage(enemyList.get(i).getSprite());
-          image(op0, enemyList.get(i).getXCoord() - SQUARE_SIZE/2, enemyList.get(i).getYCoord()- SQUARE_SIZE/2, SQUARE_SIZE, SQUARE_SIZE);
+          PImage op0 = loadImage(enemyList.get(i).getSprite()[enemyList.get(i).frame]);
+          image(op0, enemyList.get(i).getXCoord() - SQUARE_SIZE*3/2, enemyList.get(i).getYCoord()- SQUARE_SIZE*3/2, SQUARE_SIZE*7/3, SQUARE_SIZE*7/3);
           healthBarsE(enemyList.get(i));
          }
         }
@@ -131,6 +131,13 @@ public class Display {
         if (inventory[i].getDeployed()) {
           if (timer%4== 0) {
             inventory[i].increaseFrame(inventory[i].framing);
+          }
+        }
+      }
+      for(int i = 0 ; i < enemyList.size() ; i++){
+        if(timer >= enemyList.get(i).timeDeploy){
+          if(timer%4 == 0){
+          enemyList.get(i).increaseFrame(enemyList.get(i).framing);
           }
         }
       }
