@@ -100,10 +100,11 @@ public class Interaction {
             if (inventory[atkingChar].getBlocked().size() < inventory[atkingChar].getBlock()) {
 
               if (enemyList.get(atkingEnemy).getHealth() > 0 && inventory[atkingChar].getHealth() > 0) {
-                enemyList.get(atkingEnemy).setAttacking(true);
+
                 enemyList.get(atkingEnemy).toAttack(inventory[atkingChar]);
               } else if (inventory[atkingChar].getHealth() <= 0) {
                 enemyList.get(atkingEnemy).setAttacking(false);
+                //enemyList.get(atkingEnemy).setMS(enemyList.get(atkingEnemy).speed);
 
                 charMap[row][col] = map[row][col];
                 inventory[atkingChar].setDeployed(false);

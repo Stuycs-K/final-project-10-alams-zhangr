@@ -121,8 +121,12 @@ public class Maps {
 
   void reset() {
     for (int i = 0; i < inventory.length; i++) {
-      if (inventory[i].getDeployed()) {
+      if (inventory[i].getDeployed() || inventory[i].attacking) {
+        inventory[i].setAttacking(false);
         inventory[i].setDeployed(false);
+        while(inventory[i].blocked.size() > 0){
+          inventory[i].blocked.remove();
+        }
         inventory[i].setHealth(inventory[i].getMaxHP());
         inventory[i].setFrame(1);
       }
@@ -132,12 +136,13 @@ public class Maps {
   void enemylvlOne() {
    enemyPath = "444144434414";
    enemyList = new ArrayList<Enemies>();
-        totalenemies = 2;
-    enemiesleft = 2;
+        totalenemies = 1;
+    enemiesleft = 1;
     //SET UP ENEMIES & MOVEMENT IN MAPS
   //public Enemies(int hp, int spd, int atk, int hit, String[] img, int[] framenums, int moveSpeed, int x, int y, int[] spawn, int DIRECTION, String EP, int TD) {
     sluggy = new Enemies(500, 1, 1, 0, boop.slug, new int[]{0, 5, 9}, 1, 950, 250, new int[]{2, 8}, Integer.parseInt(enemyPath.substring(0, 1)), enemyPath, 0);
     //sluggy2 = new Enemies(500, 1, 1, 0, boop.slug, new int[]{0, 5, 9}, 1, 950, 250, new int[]{2, 8}, Integer.parseInt(enemyPath.substring(0, 1)), enemyPath, 200);
+
 
     //SETUP ENEMYLIST
 

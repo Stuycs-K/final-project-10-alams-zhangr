@@ -8,11 +8,11 @@ public class Enemies extends LivingObjects {
   private int[] location;
   private String[] sprite;
   private int[] framing;
-    private int frame;
+  private int frame;
   private boolean attacking;
   private int xCoord;
   private int yCoord;
-  private int ticks;
+  private int ticks = 0;
   private float sqSize;
   private int ms;
   private String enemyPath;
@@ -111,7 +111,18 @@ public class Enemies extends LivingObjects {
   public void setFrame(int newFrame) {
     frame = newFrame;
   }
-  
+
+  public void increaseTicks() {
+    ticks++;
+  }
+
+  public void restartTicks() {
+    ticks = 0;
+  }
+  public int getTicks() {
+    return ticks;
+  }
+
   public boolean getAttacking() {
     return attacking;
   }
@@ -119,7 +130,7 @@ public class Enemies extends LivingObjects {
   public void setAttacking(boolean attacks) {
     attacking = attacks;
   }
-  
+
   public void setMS(int move) {
     ms = move;
   }
