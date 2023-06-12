@@ -121,8 +121,12 @@ public class Maps {
 
   void reset() {
     for (int i = 0; i < inventory.length; i++) {
-      if (inventory[i].getDeployed()) {
+      if (inventory[i].getDeployed() || inventory[i].attacking) {
+        inventory[i].setAttacking(false);
         inventory[i].setDeployed(false);
+        while(inventory[i].blocked.size() > 0){
+          inventory[i].blocked.remove();
+        }
         inventory[i].setHealth(inventory[i].getMaxHP());
         inventory[i].setFrame(1);
       }

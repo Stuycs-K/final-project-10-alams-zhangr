@@ -168,21 +168,60 @@ public class TowerCharacters extends LivingObjects {
   }
 
   public void checkRange() {
-    //for(int i = 0 ; i < blocked.size() ; i++){
-    //  if(blocked.peek().getHealth() <=0){
-    //    blocked.remove();
-    //  }
-    //}
     for (int j = 0; j < enemyList.size(); j++) {
       Enemies invader = enemyList.get(j);
-      
-        if (invader.getLocation()[1] == location[1] && invader.getLocation()[0] == location[0] ) {
-          if (!blocked.contains(invader) && invader.getHealth() > 0) {
-            blocked.add(invader);
-          
+      if (invader.getLocation()[1] == location[1] && invader.getLocation()[0] == location[0] ) {
+        if (!blocked.contains(invader) && invader.getHealth() > 0) {
+          blocked.add(invader);
           invader.setMS(0);
         } else if (range == 1) {
+          rangeOne();
         } else if (range == 2) {
+        }
+      }
+    }
+  }
+
+  public void rangeOne() {
+    int x = this.getLocation()[0];
+    int y = this.getLocation()[1];
+
+    for (int i = 0; i < enemyList.size(); i++) {
+      Enemies invader = enemyList.get(i);
+      int enex = invader.getLocation()[0];
+      int eney = invader.getLocation()[1];
+
+      if (direction == T) {
+        if (y - 1 > 0) {
+          if (eney == location[y - 1] && enex == location[x]) {
+            if (!blocked.contains(invader) && invader.getHealth() > 0) {
+              blocked.add(invader);
+            }
+          }
+        }
+      } else if (direction == R) {
+        if (x + 1 > map[0].length) {
+          if (eney == location[y] && enex == location[x + 1]) {
+            if (!blocked.contains(invader) && invader.getHealth() > 0) {
+              blocked.add(invader);
+            }
+          }
+        }
+      } else if (direction == D) {
+        if (y + 1 > map.length) {
+          if (eney == location[y + 1] && enex == location[x]) {
+            if (!blocked.contains(invader) && invader.getHealth() > 0) {
+              blocked.add(invader);
+            }
+          }
+        }
+      } else if (direction == L) {
+        if (x - 1 > 0) {
+          if (eney == location[y] && enex == location[x - 1]) {
+            if (!blocked.contains(invader) && invader.getHealth() > 0) {
+              blocked.add(invader);
+            }
+          }
         }
       }
     }
