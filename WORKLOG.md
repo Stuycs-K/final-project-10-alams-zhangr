@@ -199,3 +199,8 @@ Found Bug:
 ### 6/9/23
 
 - still attempting to add multiple enemies, yet it broke, will work on a fix
+
+### 6/11/23
+
+- finished creating maps for levels 2 and 3
+- successfully allowed multiple enemies to follow a set path on the maps
