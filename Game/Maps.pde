@@ -212,8 +212,8 @@ public class Maps {
     //SET UP ENEMIES & MOVEMENT IN MAPS
 
   //public Enemies(int hp, int spd, int atk, int hit, String[] img, int[] framenums, int moveSpeed, int x, int y, int[] spawn, int DIRECTION, String EP, int TD, int SPSQ) {
-    Enemies sluggy = new Enemies(500, 1, 1, 0, boop.slug, new int[]{0, 5, 9}, 1, 950, 250, new int[]{2, 8}, Integer.parseInt(enemyPath.substring(0, 1)), "444144434414", 0, stepsPerSquare);
-    Enemies sluggy2 = new Enemies(500, 1, 1, 0, boop.slug, new int[]{0, 5, 9}, 1, 950, 250, new int[]{2, 8}, Integer.parseInt(enemyPath.substring(0, 1)), "444144434414", 10, stepsPerSquare);
+    Enemies sluggy = new Enemies(250, 1, 1, 0, boop.slug, new int[]{0, 5, 9}, 1, 950, 250, new int[]{2, 8}, Integer.parseInt(enemyPath.substring(0, 1)), "444144434414", 0, stepsPerSquare);
+    Enemies sluggy2 = new Enemies(250, 1, 1, 0, boop.slug, new int[]{0, 5, 9}, 1, 950, 250, new int[]{2, 8}, Integer.parseInt(enemyPath.substring(0, 1)), "444144434414", 10, stepsPerSquare);
 
 
     //SETUP ENEMYLIST
@@ -231,10 +231,10 @@ public class Maps {
     enemiesleft = 4;
     //SET UP ENEMIES & MOVEMENT IN MAPS
   //public Enemies(int hp, int spd, int atk, int hit, String[] img, int[] framenums, int moveSpeed, int x, int y, int[] spawn, int DIRECTION, String EP, int TD, int SPSQ) {
-    Enemies sluggy = new Enemies(500, 1, 1, 0, boop.slug, new int[]{0, 5, 9}, 1, 50, 50, new int[]{1, 0}, Integer.parseInt(enemyPath.substring(0, 1)), "2222223322", 0, stepsPerSquare);
-    Enemies sluggy2 = new Enemies(500, 1, 1, 0, boop.slug, new int[]{0, 5, 9}, 1, 50, 50, new int[]{1, 0}, Integer.parseInt(enemyPath.substring(0, 1)), "2222223322", 100, stepsPerSquare);
-    Enemies sluggy3 = new Enemies(500, 1, 1, 0, boop.slug, new int[]{0, 5, 9}, 1, 50, 250, new int[]{3, 0}, Integer.parseInt(enemyPath.substring(0, 1)), "22222222", 0, stepsPerSquare);
-    Enemies sluggy4 = new Enemies(500, 1, 1, 0, boop.slug, new int[]{0, 5, 9}, 1, 50, 250, new int[]{3, 0}, Integer.parseInt(enemyPath.substring(0, 1)), "22222222", 100, stepsPerSquare);
+    Enemies sluggy = new Enemies(250, 1, 1, 0, boop.slug, new int[]{0, 5, 9}, 1, 50, 50, new int[]{1, 0}, Integer.parseInt(enemyPath.substring(0, 1)), "2222223322", 0, stepsPerSquare);
+    Enemies sluggy2 = new Enemies(250, 1, 1, 0, boop.slug, new int[]{0, 5, 9}, 1, 50, 50, new int[]{1, 0}, Integer.parseInt(enemyPath.substring(0, 1)), "2222223322", 100, stepsPerSquare);
+    Enemies sluggy3 = new Enemies(250, 1, 1, 0, boop.slug, new int[]{0, 5, 9}, 1, 50, 250, new int[]{3, 0}, Integer.parseInt(enemyPath.substring(0, 1)), "22222222", 0, stepsPerSquare);
+    Enemies sluggy4 = new Enemies(250, 1, 1, 0, boop.slug, new int[]{0, 5, 9}, 1, 50, 250, new int[]{3, 0}, Integer.parseInt(enemyPath.substring(0, 1)), "22222222", 100, stepsPerSquare);
 
 
     //SETUP ENEMYLIST
@@ -255,11 +255,11 @@ public class Maps {
     enemiesleft = 5;
     //SET UP ENEMIES & MOVEMENT IN MAPS
   //public Enemies(int hp, int spd, int atk, int hit, String[] img, int[] framenums, int moveSpeed, int x, int y, int[] spawn, int DIRECTION, String EP, int TD, int SPSQ) {
-    Enemies sluggy = new Enemies(500, 1, 1, 0, boop.slug, new int[]{0, 5, 9}, 1, 50, 250, new int[]{2, 0}, Integer.parseInt(enemyPath.substring(0, 1)), "2221122221122", 0, stepsPerSquare);
-    Enemies sluggy2 = new Enemies(500, 1, 1, 0, boop.slug, new int[]{0, 5, 9}, 1, 50, 250, new int[]{2, 0}, Integer.parseInt(enemyPath.substring(0, 1)), "2221122221122", 100, stepsPerSquare);
-    Enemies sluggy3 = new Enemies(500, 1, 1, 0, boop.slug, new int[]{0, 5, 9}, 1, 50, 250, new int[]{2, 0}, Integer.parseInt(enemyPath.substring(0, 1)), "2221122221122", 200, stepsPerSquare);
-    Enemies sluggy4 = new Enemies(500, 1, 1, 0, boop.slug, new int[]{0, 5, 9}, 1, 50, 250, new int[]{2, 0}, Integer.parseInt(enemyPath.substring(0, 1)), "2221122221122", 250, stepsPerSquare);
-    Enemies sluggy5 = new Enemies(500, 1, 1, 0, boop.slug, new int[]{0, 5, 9}, 1, 50, 250, new int[]{2, 0}, Integer.parseInt(enemyPath.substring(0, 1)), "2221122221122", 300, stepsPerSquare);
+    Enemies sluggy = new Enemies(250, 1, 1, 0, boop.slug, new int[]{0, 5, 9}, 1, 50, 250, new int[]{2, 0}, Integer.parseInt(enemyPath.substring(0, 1)), "2221122221122", 0, stepsPerSquare);
+    Enemies sluggy2 = new Enemies(250, 1, 1, 0, boop.slug, new int[]{0, 5, 9}, 1, 50, 250, new int[]{2, 0}, Integer.parseInt(enemyPath.substring(0, 1)), "2221122221122", 100, stepsPerSquare);
+    Enemies sluggy3 = new Enemies(250, 1, 1, 0, boop.slug, new int[]{0, 5, 9}, 1, 50, 250, new int[]{2, 0}, Integer.parseInt(enemyPath.substring(0, 1)), "2221122221122", 200, stepsPerSquare);
+    Enemies sluggy4 = new Enemies(250, 1, 1, 0, boop.slug, new int[]{0, 5, 9}, 1, 50, 250, new int[]{2, 0}, Integer.parseInt(enemyPath.substring(0, 1)), "2221122221122", 250, stepsPerSquare);
+    Enemies sluggy5 = new Enemies(250, 1, 1, 0, boop.slug, new int[]{0, 5, 9}, 1, 50, 250, new int[]{2, 0}, Integer.parseInt(enemyPath.substring(0, 1)), "2221122221122", 300, stepsPerSquare);
 
     //SETUP ENEMYLIST
 
