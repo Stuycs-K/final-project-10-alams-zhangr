@@ -131,12 +131,11 @@ public class Controls {
       inventory[index].setDeployed(false);
       
       while(inventory[index].blocked.size() != 0){
-        inventory[index].blocked.peek().setMS(inventory[index].blocked.peek().getSpeed());
+        //inventory[index].blocked.peek().setMS(inventory[index].blocked.peek().getSpeed());
         inventory[index].blocked.remove();
       }
       
       coolDowns[index] = 60;
-      
       
       unitLimit++;
       println("removed character");

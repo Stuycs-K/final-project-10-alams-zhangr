@@ -72,8 +72,8 @@ void setup() {
 
   //SETUP OPERATORS
 //  public TowerCharacters(int hp, int spd, int atk, int hit, String[] img, int[] framenums, int blk, int optype, int deploymentCost) {
-  TowerCharacters op0 = new TowerCharacters(742, 10, 2, 1, boop.frostl, new int[]{1, 6, 15}, 2, GROUND, 9);
-  TowerCharacters op1 = new TowerCharacters(742, 10, 0, 1, boop.rosmontis, new int[]{1, 13, 27}, 2, AERIAL, 9);
+  TowerCharacters op0 = new TowerCharacters(100, 10, 2, 1, boop.frostl, new int[]{1, 6, 15}, 2, GROUND, 9);
+  TowerCharacters op1 = new TowerCharacters(742, 10, 2, 2, boop.rosmontis, new int[]{1, 13, 27}, 2, AERIAL, 9);
   //TowerCharacters op2 = new TowerCharacters(742, 10, 0, 1, boop.frostl, , 2, GROUND, 9);
   //TowerCharacters op1 = new TowerCharacters(250, 10, 180, 1, "meterorite.png", 0, AERIAL, 8);
   //TowerCharacters op2 = new Medic(500, 30, 100, 1, "purestream.png", 0, AERIAL, 10);
@@ -108,7 +108,6 @@ void draw() {
 
   if (levelSelect > 0 ) {
     timer++;
-    println(Arrays.toString(enemyList.get(0).getLocation()));
     display.gameMap(ogmap);
     //image(lvlone, 0, 0, 1000, 550 - SQUARE_SIZE);
 

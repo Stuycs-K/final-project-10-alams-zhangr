@@ -89,7 +89,7 @@ public class Display {
     for (int i = 0; i < enemyList.size(); i++) {
          if(timer >= enemyList.get(i).timeDeploy && enemyList.get(i).getHealth() > 0){
           PImage op0 = loadImage(enemyList.get(i).getSprite()[enemyList.get(i).frame]);
-          image(op0, enemyList.get(i).getXCoord() - SQUARE_SIZE*3/2, enemyList.get(i).getYCoord()- SQUARE_SIZE*6/5, SQUARE_SIZE*7/3, SQUARE_SIZE*7/3);
+          image(op0, enemyList.get(i).getXCoord() - SQUARE_SIZE*6/5, enemyList.get(i).getYCoord()- SQUARE_SIZE*6/5, SQUARE_SIZE*7/3, SQUARE_SIZE*7/3);
           healthBarsE(enemyList.get(i));
          }
         }
