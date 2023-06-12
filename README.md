@@ -19,3 +19,7 @@ corresponds with the character they want to place down. After clicking a square 
 need to press either w, a, s, or d, which determine the direction of the characters (up, left, down, and right
 respectively). At the end of a level (when a win or lose screen appears), players will go back to the menu and they
 could then select another level (or the same level) to play.
+
+## Link to Prototype
+
+https://docs.google.com/document/d/1lI-V2paujelImdod0M9yeIzKjDHrQeIQw4KSvHGe6I4/edit
