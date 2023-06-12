@@ -18,7 +18,7 @@ public class Controls {
     }
     if (mouseX >= 325 && mouseX <= 675 && mouseY >=325 && mouseY <= 375) {
       levelSelect = 3;
-      level.lvlTwo();
+      level.lvlThree();
       onMenu = false;
       onMap = true;
     }
@@ -131,6 +131,7 @@ public class Controls {
       inventory[index].setDeployed(false);
       
       while(inventory[index].blocked.size() != 0){
+
         inventory[index].blocked.peek().setMS(inventory[index].blocked.peek().getSpeed());
         inventory[index].blocked.remove();
       }
