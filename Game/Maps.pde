@@ -210,6 +210,7 @@ public class Maps {
         totalenemies = 2;
     enemiesleft = 2;
     //SET UP ENEMIES & MOVEMENT IN MAPS
+
   //public Enemies(int hp, int spd, int atk, int hit, String[] img, int[] framenums, int moveSpeed, int x, int y, int[] spawn, int DIRECTION, String EP, int TD, int SPSQ) {
     Enemies sluggy = new Enemies(500, 1, 1, 0, boop.slug, new int[]{0, 5, 9}, 1, 950, 250, new int[]{2, 8}, Integer.parseInt(enemyPath.substring(0, 1)), "444144434414", 0, stepsPerSquare);
     Enemies sluggy2 = new Enemies(500, 1, 1, 0, boop.slug, new int[]{0, 5, 9}, 1, 950, 250, new int[]{2, 8}, Integer.parseInt(enemyPath.substring(0, 1)), "444144434414", 10, stepsPerSquare);
