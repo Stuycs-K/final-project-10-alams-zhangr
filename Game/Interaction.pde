@@ -7,18 +7,22 @@ public class Interaction {
       for (int i = 0; i < inventory.length; i++) {
         TowerCharacters op = inventory[i];
         if (op.getDeployed() && !directionSelect) {
-          if (op.getHealth() > 0) {
 
-            if (op.blocked.size() < op.block) {
-              op.checkRange();
-            }
+          if (op.blocked.size() < op.block) {
+            op.checkRange();
+          }
+
+          if (i != 3) {
+            
+
             if (op.blocked.size() != 0) {
               op.setAttacking(true);
-              if (op.getTicks()%(op.getSpeed()*3.3) == 0 && op.blocked.peek().getHealth() > 0) {
+              if (op.getTicks()%(1) == 0 && op.blocked.peek().getHealth() > 0) {
                 op.toAttack(op.blocked.peek());
               }
               if (op.blocked.peek().getHealth() <= 0) {
                 op.blocked.remove();
+
                 enemiesleft--;
               }
             }
@@ -26,7 +30,7 @@ public class Interaction {
             println(op.getLocation()[0] + " " + op.getLocation()[1]);
             op.setDeployed(false);
             op.setAttacking(false);
-            //op.setLocation(null);
+
           }
         }
       }
@@ -56,6 +60,7 @@ public class Interaction {
               }
               e.get(i).setStepsPerSQ((int)SQUARE_SIZE / e.get(i).getMS());
             }
+
             eneMap[e.get(i).getYCoord() / (int)SQUARE_SIZE][e.get(i).getXCoord()/ (int)SQUARE_SIZE] = e.indexOf(e.get(i));
           } else if (e.get(i).enemyPath.length() == 0) {
             enemiesleft--;
@@ -64,7 +69,7 @@ public class Interaction {
         }
       }
     }
-    //println(e.get(0).getEnemyPath());
+
   }
 
   void enemyAction() {
@@ -72,10 +77,11 @@ public class Interaction {
       if ( !dead && !pause) {
         attacks.enemyMove(enemyList);
       }
-      //if (enemyPath.length() == 0) {
-      //  enemiesleft--;
-      //  lp--;
-      //}
+
+      if (enemyPath.length() == 0) {
+        enemiesleft--;
+        lp--;
+      }
 
 
       for (int row = 0; row < eneMap.length; row++) {
@@ -90,9 +96,9 @@ public class Interaction {
                 enemyList.get(atkingEnemy).toAttack(inventory[atkingChar]);
               } else if (inventory[atkingChar].getHealth() <= 0) {
                 enemyList.get(atkingEnemy).setAttacking(false);
-                charMap[row][col] = map[row][col];
                 enemyList.get(atkingEnemy).setMS(enemyList.get(atkingEnemy).speed);
 
+                charMap[row][col] = map[row][col];
                 inventory[atkingChar].setDeployed(false);
                 inventory[atkingChar].setAttacking(false);
                 unitLimit++;

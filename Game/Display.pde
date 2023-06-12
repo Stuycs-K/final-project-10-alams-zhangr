@@ -57,13 +57,13 @@ public class Display {
       strokeWeight(1);
       stroke(255, 255, 255);
     }
-    if (directionSelect) {
-      textSize(25);
-      fill(color(0, 255, 0));
-      text("Press wasd to select operator's direction.", 0, SQUARE_SIZE*map.length);
-      strokeWeight(1);
-      stroke(255, 255, 255);
-    }
+    //if (directionSelect) {
+    //  textSize(25);
+    //  fill(color(0, 255, 0));
+    //  text("Press wasd to select operator's direction.", 0, SQUARE_SIZE*map.length);
+    //  strokeWeight(1);
+    //  stroke(255, 255, 255);
+    //}
 
     fill(#7D7D7D);
     rect(960, 0, 40, 40);
@@ -163,6 +163,7 @@ public class Display {
 
   void healthBarsT(LivingObjects other) {
     fill(color(0, 255, 0));
+
     text(other.getHealth() + "/" + other.getMaxHP(), other.getLocation()[0]*SQUARE_SIZE, other.getLocation()[1]*SQUARE_SIZE);
   }
 
