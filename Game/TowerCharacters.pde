@@ -121,6 +121,7 @@ public class TowerCharacters extends LivingObjects {
       //6-11 = i
       //12-18 = ie
       //19-25 = a
+      
       if (!attacking && frame > 11 ) {
         frame = 1;
       } else if (!attacking && frame > frames[3]) {
@@ -133,9 +134,6 @@ public class TowerCharacters extends LivingObjects {
       } else {
         frame++;
       }
-    }
-
-    if (frames.length == 5) {
     }
   }
 

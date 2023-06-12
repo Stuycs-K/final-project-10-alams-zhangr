@@ -79,7 +79,7 @@ void setup() {
   TowerCharacters op1 = new TowerCharacters(742, 10, 2, 2, boop.rosmontis, new int[]{1, 13, 27}, 2, AERIAL, 9);
   TowerCharacters op2 = new TowerCharacters(100, 10, 2, 1, boop.meteorite, new int[]{1, 8, 16 }, 2, AERIAL, 9);
   Medic op3 = new Medic(742, 1, 700, 2, boop.purestream, new int[]{1, 9, 18}, 2, AERIAL, 9);
-  TowerCharacters op4 = new TowerCharacters(742, 1, 1, 1, boop.mizuki, new int[]{5, 11, 18,25}, 2, GROUND, 9);
+  TowerCharacters op4 = new TowerCharacters(742, 1, 1, 1, boop.mizuki, new int[]{1, 18,25}, 2, GROUND, 9);
   Medic op5 = new Medic(742, 1, 1, 1, boop.skadi, new int[]{47}, 2, AERIAL, 9);
 
   

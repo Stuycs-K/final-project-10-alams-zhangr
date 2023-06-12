@@ -27,7 +27,7 @@ public class Interaction {
               }
             }
           } else {
-            println(op.getLocation()[0] + " " + op.getLocation()[1]);
+            
             op.setDeployed(false);
             op.setAttacking(false);
 
@@ -40,8 +40,8 @@ public class Interaction {
   void enemyMove(ArrayList<Enemies> e) {
     for (int i = 0; i < e.size(); i++) {
       //println(e.get(i).getStepsPerSQ() + " " + i);
-      println(e.get(i).getDirection() + " " + i);
-      println(e.get(i).getEnemyPath() + " " + i);
+      //println(e.get(i).getDirection() + " " + i);
+      //println(e.get(i).getEnemyPath() + " " + i);
       if (timer >= e.get(i).getTimeDeploy()) {
         if (e.get(i).getMS() != 0) {
           if (e.get(i).getEnemyPath().length() > 0) {
