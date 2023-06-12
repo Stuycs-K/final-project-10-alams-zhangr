@@ -2,35 +2,6 @@ public class Interaction {
   public Interaction() {
   };
 
-  //void charAction() {
-  //  if (enemyList.size() != 0) {
-  //    for (int i = 0; i < inventory.length; i++) {
-  //      if (inventory[i].getDeployed() && !directionSelect) {
-  //        if (inventory[i].checkRange() != null) {
-  //          if (!pause) {
-  //            if (inventory[i].getTicks()%(inventory[i].getSpeed()*3.3) == 0) {
-  //              if (inventory[i].checkRange().getHealth() > 0) {
-  //                inventory[i].setAttacking(true);
-  //                inventory[i].toAttack(inventory[i].checkRange());
-  //                if (inventory[i].checkRange() != null) {
-  //                  if (inventory[i].checkRange().getHealth() <= 0) {
-  //                    inventory[i].setAttacking(false);
-  //                    int[] position = inventory[i].checkRange().getLocation();
-  //                    eneMap[position[1]][position[0]] = map[position[1]][position[0]];
-  //                    enemyList.remove(0);
-  //                    enemiesleft--;
-  //                    inventory[i].blocked.remove();
-  //                  }
-  //                }
-  //              }
-  //            }
-  //          }
-  //        }
-  //      }
-  //    }
-  //  }
-  //}
-
   void charAction() {
     if (!pause) {
       for (int i = 0; i < inventory.length; i++) {
@@ -46,6 +17,7 @@ public class Interaction {
             }
             if (op.blocked.peek().getHealth() <= 0) {
               op.blocked.remove();
+              
               enemiesleft--;
             }
           }
@@ -86,9 +58,10 @@ public class Interaction {
         enemiesleft--;
         lp--;
       }
+      
       for (int row = 0; row < eneMap.length; row++) {
         for (int col = 0; col < eneMap[0].length; col++) {
-          if (eneMap[row][col] >= 0 && charMap[row][col] >= 0) {
+          if (eneMap[row][col] >= 0 && charMap[row][col] >= 0 && !directionSelect) {
             int atkingEnemy = eneMap[row][col];
             int atkingChar = charMap[row][col];
             if (inventory[atkingChar].getBlocked().size() < inventory[atkingChar].getBlock()) {

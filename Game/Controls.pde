@@ -61,7 +61,7 @@ public class Controls {
 
   void selectDirection() {
     int index = charMap[selectedY][selectedX];
-    while (keyPressed == false) {
+    while (keyPressed == false ) {
     }
     String inputs = "wasd";
     boolean equal = false;
@@ -123,15 +123,17 @@ public class Controls {
   }
   
   void operatorRemove() {
-    while (keyPressed == false) {
+    while (keyPressed == false && !(charMap[selectedY][selectedX] > -1)) {
     }
     if (key == ENTER && charMap[selectedY][selectedX] > -1) {
       int index = charMap[selectedY][selectedX];
+      inventory[index].setAttacking(false);
       charMap[selectedY][selectedX] = map[selectedY][selectedX];
+            
+
       inventory[index].setDeployed(false);
       
-      while(inventory[index].blocked.size() != 0){
-        //inventory[index].blocked.peek().setMS(inventory[index].blocked.peek().getSpeed());
+      while(inventory[index].blocked.size() > 0){
         inventory[index].blocked.remove();
       }
       

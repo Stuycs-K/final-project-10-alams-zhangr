@@ -71,23 +71,22 @@ void setup() {
 
 
   //SETUP OPERATORS
-//  public TowerCharacters(int hp, int spd, int atk, int hit, String[] img, int[] framenums, int blk, int optype, int deploymentCost) {
-  TowerCharacters op0 = new TowerCharacters(100, 10, 2, 1, boop.frostl, new int[]{1, 6, 15}, 2, GROUND, 9);
+  //  public TowerCharacters(int hp, int spd, int atk, int hit, String[] img, int[] framenums, int blk, int optype, int deploymentCost) {
+  TowerCharacters op0 = new TowerCharacters(740, 10, 2, 1, boop.frostl, new int[]{1, 6, 15}, 2, GROUND, 9);
   TowerCharacters op1 = new TowerCharacters(742, 10, 2, 2, boop.rosmontis, new int[]{1, 13, 27}, 2, AERIAL, 9);
-  //TowerCharacters op2 = new TowerCharacters(742, 10, 0, 1, boop.frostl, , 2, GROUND, 9);
-  //TowerCharacters op1 = new TowerCharacters(250, 10, 180, 1, "meterorite.png", 0, AERIAL, 8);
-  //TowerCharacters op2 = new Medic(500, 30, 100, 1, "purestream.png", 0, AERIAL, 10);
-  //TowerCharacters op3 = new Medic(500, 30, 100, 1, "kaltsit.png", 0, AERIAL, 8);
+  TowerCharacters op2 = new TowerCharacters(100, 10, 2, 1, boop.meteorite, new int[]{1, 8, 16 }, 2, AERIAL, 9);
+  Medic op3 = new Medic(742, 200, 2, 2, boop.purestream, new int[]{1, 9, 18}, 2, AERIAL, 9);
 
 
 
+  op0.setHealth(200);
 
   //SETUP INVENTORY
-  inventory = new TowerCharacters[2];
+  inventory = new TowerCharacters[4];
   inventory[0] = op0;
   inventory[1] = op1;
-  //inventory[2] = op2;
-  //inventory[3] = op3;
+  inventory[2] = op2;
+  inventory[3] = op3;
   //inventory[4] = op4;
   //inventory[5] = op5;
 
@@ -110,7 +109,6 @@ void draw() {
     timer++;
     display.gameMap(ogmap);
     //image(lvlone, 0, 0, 1000, 550 - SQUARE_SIZE);
-
     display.inventory();
     attacks.coolDown();
     display.displayChar();
