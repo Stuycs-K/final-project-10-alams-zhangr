@@ -79,17 +79,20 @@ void setup() {
   TowerCharacters op2 = new TowerCharacters(100, 10, 2, 1, boop.meteorite, new int[]{1, 8, 16 }, 2, AERIAL, 9);
   Medic op3 = new Medic(742, 1, 700, 2, boop.purestream, new int[]{1, 9, 18}, 2, AERIAL, 9);
   TowerCharacters op4 = new TowerCharacters(742, 1, 1, 1, boop.mizuki, new int[]{5, 11, 18,25}, 2, GROUND, 9);
+  Medic op5 = new Medic(742, 1, 1, 1, boop.skadi, new int[]{47}, 2, AERIAL, 9);
+
+  
 
   
 
   //SETUP INVENTORY
-  inventory = new TowerCharacters[5];
+  inventory = new TowerCharacters[6];
   inventory[0] = op0;
   inventory[1] = op1;
   inventory[2] = op2;
   inventory[3] = op3;
   inventory[4] = op4;
-  //inventory[5] = op5;
+  inventory[5] = op5;
 
   coolDowns = new int[]{0, 0, 0, 0, 0, 0};
 

@@ -54,21 +54,32 @@ public class Animate {
 
 
   public String[] purestream = new String[] //new int[]{1, 9, 18}
-    {
+  {
     //inventory
     "pures/pures-0.png",
-    //idle 9 frames
-    "pures/puresI-1.png", "pures/puresI-2.png", "pures/puresI-3.png", "pures/puresI-4.png", "pures/puresI-5.png",
-    "pures/puresI-6.png", "pures/puresI-7.png", "pures/puresI-8.png", "pures/puresI-9.png",
-    //attack 9 frames
-    "pures/puresA-1.png", "pures/puresA-2.png", "pures/puresA-3.png", "pures/puresA-4.png", "pures/puresA-5.png",
-    "pures/puresA-6.png", "pures/puresA-7.png", "pures/puresA-8.png", "pures/puresA-9.png",
+      //idle 9 frames
+      "pures/puresI-1.png", "pures/puresI-2.png", "pures/puresI-3.png", "pures/puresI-4.png", "pures/puresI-5.png",
+      "pures/puresI-6.png", "pures/puresI-7.png", "pures/puresI-8.png", "pures/puresI-9.png",
+      //attack 9 frames
+      "pures/puresA-1.png", "pures/puresA-2.png", "pures/puresA-3.png", "pures/puresA-4.png", "pures/puresA-5.png",
+      "pures/puresA-6.png", "pures/puresA-7.png", "pures/puresA-8.png", "pures/puresA-9.png",
   };
-  
+
   public String[] skadi = new String[] //new int{}
   {
     //inventory
-    
+    "skadi/skadi-0.png",
+      //idle
+      "skadi/skadiI-1.png", "skadi/skadiI-2.png", "skadi/skadiI-3.png", "skadi/skadiI-4.png", "skadi/skadiI-5.png", "skadi/skadiI-6.png", "skadi/skadiI-7.png", "skadi/skadiI-8.png",
+      "skadi/skadiI-9.png", "skadi/skadiI-10.png", "skadi/skadiI-11.png", "skadi/skadiI-12.png", "skadi/skadiI-13.png", "skadi/skadiI-14.png", "skadi/skadiI-15.png", "skadi/skadiI-16.png",
+      "skadi/skadiI-17.png", "skadi/skadiI-18.png", "skadi/skadiI-19.png", "skadi/skadiI-20.png", "skadi/skadiI-21.png", "skadi/skadiI-22.png", "skadi/skadiI-23.png", "skadi/skadiI-24.png",
+      "skadi/skadiI-25.png", "skadi/skadiI-26.png", "skadi/skadiI-27.png", "skadi/skadiI-28.png", "skadi/skadiI-29.png", "skadi/skadiI-30.png", "skadi/skadiI-31.png", "skadi/skadiI-32.png",
+      "skadi/skadiI-33.png", "skadi/skadiI-34.png", "skadi/skadiI-35.png", "skadi/skadiI-36.png", "skadi/skadiI-37.png", "skadi/skadiI-38.png", "skadi/skadiI-39.png", "skadi/skadiI-40.png",
+      "skadi/skadiI-41.png", "skadi/skadiI-42.png", "skadi/skadiI-43.png", "skadi/skadiI-44.png", "skadi/skadiI-45.png", "skadi/skadiI-46.png", "skadi/skadiI-47.png"
+
+
+
+      //attack 20 frames
   };
 
 
