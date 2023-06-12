@@ -168,6 +168,6 @@ public class Display {
 
   void healthBarsE(Enemies other) {
     fill(color(0, 255, 0));
-    text(other.getHealth() + "/" + other.getMaxHP(), other.getXCoord() - SQUARE_SIZE/2, other.getYCoord() - SQUARE_SIZE/2);
+    text(other.getHealth() + "/" + other.getMaxHP(), other.getXCoord(), other.getYCoord());
   }
 }
