@@ -108,7 +108,29 @@ working on
 
 DEMO
 - test character attacking MOVING enemies
--
+
+### 6/1/23
+-finishing for demo
+
+
+### 6/5/23
+-working on adding sprites
+
+### 6/7/23
+-coding in sprites & animation
+
+### 6/8/23
+
+-enemy sprites & animation
+
+### 6/9/23
+
+-multiple enemies issue
+
+###6/11/23
+-redid range methods
+-medic issue
+
 
 
 ## GROUP MEMBER 2 //RAYMOND
