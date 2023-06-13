@@ -1,9 +1,28 @@
-#DEV LOG
+# DEV LOG
 
-###I.  Working features.
--
+### I.  Working features.
+- Menu select (where players select levels)
+- Implementation of three different maps
+- Implementation of block types: Ground, Aerial, Wall
+- Pause
+- Inventory of Tower Characters
+- Placement of Tower Characters
+- Selecting Direction of Tower Characters
+- Implementation of statistics such as cost, unit limit, life points, and enemies left
+- Health Bars
+- Tower Character attacking Enemy Characters
+- Enemy Characters attacking Tower Characters
+- Enemy movement along a preset path
+- Medic class
+- Removing of Tower characters
+- Implementation of multiple enemies on a map
+- Animation of Tower Characters and Enemy Characters
+- Character ranges
+- Results screen
+- Reset/Replay Game
+- Displaying of Characters and Enemies
 
-###II. Broken features / bugs.
+### II. Broken features / bugs.
 - TowerCharacters cannot block multiple enemies also attacking out of range.
 - Some TowerCharacters don't attack when multiple characters are placed.
 - Selecting another level after finishing one level delays the reset of that level(the enemies move back to spawn and then to their correct path)
@@ -14,9 +33,9 @@
 - The instructions for controls is not displaying anymore.
 - When clicking and pressing enter, it freezes the game
 - Display issues when trying to remove character (block turns green)
--
 
-###III. resources
+
+### III. resources
 -n/a
 
 # Work Log
