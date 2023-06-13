@@ -36,7 +36,7 @@
 
 
 ### III. resources
--n/a
+- N/A
 
 # Work Log
 
