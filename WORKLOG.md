@@ -1,3 +1,24 @@
+#DEV LOG
+
+###I.  Working features.
+-
+
+###II. Broken features / bugs.
+- TowerCharacters cannot block multiple enemies also attacking out of range.
+- Some TowerCharacters don't attack when multiple characters are placed.
+- Selecting another level after finishing one level delays the reset of that level(the enemies move back to spawn and then to their correct path)
+- Level one replays after playing
+- Animations are backwards for level two
+- Animations are not displaying properly at proper times.
+- Medics have animation issues (when healing they freeze).
+- The instructions for controls is not displaying anymore.
+- When clicking and pressing enter, it freezes the game
+- Display issues when trying to remove character (block turns green)
+-
+
+###III. resources
+-n/a
+
 # Work Log
 
 ## GROUP MEMBER 1 //SAFIKA
